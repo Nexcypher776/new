@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "Lead": {
+      "title": "Lead",
+      "description": "A potential client lead captured via the website form or AI assistant.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Full name of the lead" },
+        "email": { "type": "string", "format": "email", "description": "Email address" },
+        "businessType": { "type": "string", "description": "Type of business (e.g., E-commerce, SaaS)" },
+        "budget": { "type": "string", "description": "Estimated budget range" },
+        "message": { "type": "string", "description": "Additional details or questions" },
+        "source": { "type": "string", "enum": ["form", "ai_assistant"], "description": "Where the lead was captured" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of creation" }
+      },
+      "required": ["name", "email", "createdAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "A message in a chat session with the AI assistant.",
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string", "description": "Unique ID for the chat session" },
+        "role": { "type": "string", "enum": ["user", "model"], "description": "Role of the message sender" },
+        "content": { "type": "string", "description": "Text content of the message" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of the message" }
+      },
+      "required": ["sessionId", "role", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/leads/{leadId}": {
+      "schema": "Lead",
+      "description": "Collection of captured leads"
+    },
+    "/chats/{chatId}": {
+      "schema": "ChatMessage",
+      "description": "Collection of chat messages for AI assistant interactions"
+    }
+  }
+}

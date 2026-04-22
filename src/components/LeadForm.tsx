@@ -6,8 +6,6 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { db, handleFirestoreError, OperationType } from '../lib/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export const LeadForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -19,19 +17,27 @@ export const LeadForm = () => {
     
     const formData = new FormData(e.currentTarget);
     const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      budget: formData.get('budget'),
-      message: formData.get('message'),
-      createdAt: serverTimestamp(),
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      budget: formData.get('budget') as string,
+      message: formData.get('message') as string,
       source: 'website_contact_form'
     };
 
     try {
-      await addDoc(collection(db, 'leads'), data);
+      const response = await fetch('/api/klaviyo/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Klaviyo submission failed');
+      }
+
       setIsSubmitted(true);
     } catch (error) {
-      console.error("Submission error:", handleFirestoreError(error, OperationType.CREATE, 'leads'));
+      console.error("Submission error:", error);
       alert("There was an error sending your request. Please try again.");
     } finally {
       setIsSubmitting(false);

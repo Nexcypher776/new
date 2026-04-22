@@ -1,20 +1,26 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, CheckCircle2, Star, ArrowRight, Phone, Mail, User, Briefcase, Zap, MessageSquare } from 'lucide-react';
+import { X, CheckCircle2, Star, ArrowRight, Phone, Mail, User, Briefcase, Zap, MessageSquare, Home, LayoutGrid } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { LOGO_URL } from '../constants';
-import { db, handleFirestoreError, OperationType } from '../lib/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { useNavigate, Link } from 'react-router-dom';
 
 export const LeadPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Check if submitted in this session
+    const hasSubmitted = sessionStorage.getItem('nexcypher_lead_submitted');
+    if (hasSubmitted) {
+      setIsSubmitted(true);
+    }
+
     // Check if shown in this session
     const hasShown = sessionStorage.getItem('nexcypher_lead_popup_shown');
     
@@ -34,27 +40,39 @@ export const LeadPopup = () => {
     
     const formData = new FormData(e.currentTarget);
     const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      phone: formData.get('phone'),
-      business: formData.get('business'),
-      service: formData.get('service'),
-      budget: formData.get('budget'),
-      notes: formData.get('notes'),
-      createdAt: serverTimestamp(),
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      business: formData.get('business') as string,
+      service: formData.get('service') as string,
+      budget: formData.get('budget') as string,
+      notes: formData.get('notes') as string,
       source: 'popup_lead_form'
     };
 
     try {
-      await addDoc(collection(db, 'leads'), data);
+      // Send to Klaviyo (Server-side API)
+      const response = await fetch('/api/klaviyo/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error('Klaviyo submission failed');
+      }
+
       setIsSubmitted(true);
-      // Automatically close after 3 seconds of showing success
+      sessionStorage.setItem('nexcypher_lead_submitted', 'true');
+      
+      // Redirect to dedicated thank you page
       setTimeout(() => {
+        navigate('/thank-you');
         setIsOpen(false);
-      }, 3000);
+      }, 1500);
     } catch (error) {
-      console.error("Submission error:", handleFirestoreError(error, OperationType.CREATE, 'leads'));
-      alert("Error sending request. Please try again.");
+      console.error("Submission error:", error);
+      alert("We could not submit your details right now. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -92,17 +110,52 @@ export const LeadPopup = () => {
               {isSubmitted ? (
                 <motion.div 
                   key="success"
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="p-12 text-center space-y-6"
+                  className="p-10 md:p-16 text-center"
                 >
-                  <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-8">
-                    <CheckCircle2 className="w-10 h-10 text-green-500" />
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.2 }}
+                    className="w-20 h-20 bg-accent-blue/20 rounded-2xl flex items-center justify-center mx-auto mb-8 relative group"
+                  >
+                    <div className="absolute inset-0 bg-accent-blue/40 blur-xl opacity-50 group-hover:opacity-100 transition-opacity" />
+                    <CheckCircle2 className="w-10 h-10 text-accent-blue relative z-10" />
+                  </motion.div>
+
+                  <Badge className="mb-4 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em]">
+                    Success
+                  </Badge>
+
+                  <h3 className="text-3xl md:text-4xl font-black text-white italic uppercase tracking-tighter leading-tight mb-6">
+                    Thank You for <br/> <span className="text-accent-blue">Reaching Out</span>
+                  </h3>
+
+                  <div className="space-y-4 mb-10 text-sm md:text-base">
+                    <p className="text-white font-medium">Your details have been submitted successfully.</p>
+                    <p className="text-text-secondary">
+                      Our team will review your request and get back to you as soon as possible with the best next step for your business.
+                    </p>
+                    <p className="text-text-secondary/60 italic text-xs pt-2">
+                      Results are built through strategy, structure, and execution. We appreciate your interest in Nexcypher.
+                    </p>
                   </div>
-                  <h3 className="text-3xl font-black text-white italic uppercase tracking-tighter">Transmission Confirmed</h3>
-                  <p className="text-text-secondary text-lg">
-                    Chase or a team member will reach out to you within the next 24 hours.
-                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <Link to="/" onClick={() => setIsOpen(false)} className="w-full">
+                      <Button className="w-full bg-white/5 hover:bg-white/10 text-white border border-white/10 h-12 rounded-xl font-black uppercase tracking-[0.15em] text-[10px] flex items-center justify-center gap-2 group">
+                        <Home className="w-3.5 h-3.5 text-accent-blue group-hover:scale-110 transition-transform" />
+                        Back to Home
+                      </Button>
+                    </Link>
+                    <Link to="/services" onClick={() => setIsOpen(false)} className="w-full">
+                      <Button className="w-full bg-accent-blue hover:bg-accent-blue/90 text-white h-12 rounded-xl font-black uppercase tracking-[0.15em] text-[10px] flex items-center justify-center gap-2 shadow-lg shadow-accent-blue/10 group">
+                        <LayoutGrid className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform duration-300" />
+                        View Services
+                      </Button>
+                    </Link>
+                  </div>
                 </motion.div>
               ) : (
                 <motion.div key="form" className="p-8 md:p-12">

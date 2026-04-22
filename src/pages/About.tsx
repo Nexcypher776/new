@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { AboutSection } from '../components/AboutSection';
+import { WhyChooseSection } from '../components/WhyChooseSection';
 import { TrustSection } from '../components/TrustSection';
 import { Badge } from '@/components/ui/badge';
 
@@ -20,6 +21,8 @@ export const About = () => {
       </div>
 
       <AboutSection />
+      
+      <WhyChooseSection />
       
       <section className="py-32 bg-white/[0.01] border-y border-white/5">
         <div className="max-w-4xl mx-auto px-6 text-center">

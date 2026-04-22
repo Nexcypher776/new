@@ -17,6 +17,7 @@ import { SalesVideoProof } from './pages/SalesVideoProof';
 import { Results } from './pages/Results';
 import { Pricing } from './pages/Pricing';
 import { Contact } from './pages/Contact';
+import { ThankYou } from './pages/ThankYou';
 
 // --- Main App ---
 
@@ -54,6 +55,7 @@ export default function App() {
             <Route path="/results" element={<Results />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/thank-you" element={<ThankYou />} />
           </Routes>
         </main>
 

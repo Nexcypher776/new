@@ -14,6 +14,8 @@ export interface PricingTier {
   price: string;
   description: string;
   features: string[];
+  popular?: boolean;
+  period?: string;
   recommended?: boolean;
 }
 
@@ -51,11 +53,10 @@ export interface NicheProject {
 export interface Lead {
   name: string;
   email: string;
-  businessType: string;
   budget: string;
   message?: string;
-  source: 'form' | 'ai_assistant';
-  createdAt: string;
+  source: string;
+  createdAt: any;
 }
 
 export interface CaseStudy {

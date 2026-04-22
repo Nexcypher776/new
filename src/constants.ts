@@ -196,6 +196,7 @@ export const PRICING: PricingTier[] = [
   {
     name: 'Starter',
     price: '$997',
+    period: 'project',
     description: 'Perfect for new brands looking to launch professionally.',
     features: [
       'Premium Shopify Setup',
@@ -208,6 +209,8 @@ export const PRICING: PricingTier[] = [
   {
     name: 'Growth',
     price: '$2,497',
+    period: 'project',
+    popular: true,
     description: 'For established businesses ready to scale aggressively.',
     features: [
       'Custom UI/UX Design',
@@ -221,6 +224,7 @@ export const PRICING: PricingTier[] = [
   {
     name: 'Premium',
     price: 'Custom',
+    period: 'project',
     description: 'Full-service enterprise solutions for market leaders.',
     features: [
       'Full AI Agent Ecosystem',

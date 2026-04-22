@@ -1,11 +1,19 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, collection, addDoc, serverTimestamp, query, where, orderBy, onSnapshot, getDocFromServer, doc } from 'firebase/firestore';
+import { initializeFirestore, collection, addDoc, serverTimestamp, query, where, orderBy, onSnapshot, getDocFromServer, doc } from 'firebase/firestore';
 import firebaseConfig from '../../firebase-applet-config.json';
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
-export const auth = getAuth();
+
+console.log("Initializing Firestore with Database ID:", firebaseConfig.firestoreDatabaseId || '(default)');
+
+// Use initializeFirestore with settings for environment stability
+// In some environments, force long polling is required.
+export const db = initializeFirestore(app, {
+  experimentalForceLongPolling: true,
+}, firebaseConfig.firestoreDatabaseId || '(default)');
+
+export const auth = getAuth(app);
 
 export enum OperationType {
   CREATE = 'create',
@@ -53,13 +61,26 @@ export function handleFirestoreError(error: unknown, operationType: OperationTyp
   throw new Error(JSON.stringify(errInfo));
 }
 
-// Test connection
+// Test connection with a timeout to prevent silent hangs
 async function testConnection() {
+  const timeoutPromise = new Promise((_, reject) => 
+    setTimeout(() => reject(new Error("Firestore connection timed out")), 15000)
+  );
+
   try {
-    await getDocFromServer(doc(db, 'test', 'connection'));
+    // Try to reach the server to verify the config and network
+    await Promise.race([
+      getDocFromServer(doc(db, '_connection_test_', 'test')),
+      timeoutPromise
+    ]);
+    console.log("Firestore connected successfully.");
   } catch (error) {
-    if(error instanceof Error && error.message.includes('the client is offline')) {
-      console.error("Please check your Firebase configuration. ");
+    if (error instanceof Error) {
+      if (error.message.includes('offline') || error.message.includes('timed out')) {
+        console.error("Firestore connection failed: The backend could not be reached. This may be due to a poor connection or missing backend resources.");
+      } else {
+        console.error("Firestore connection error:", error.message);
+      }
     }
   }
 }

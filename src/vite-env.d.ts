@@ -12,5 +12,6 @@ interface ImportMeta {
 
 interface Window {
   _learnq: any[];
+  _klOnsite: any[];
   klaviyo: any;
 }

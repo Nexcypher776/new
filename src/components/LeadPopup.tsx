@@ -15,8 +15,6 @@ export const LeadPopup = () => {
   const [submitError, setSubmitError] = useState(false);
   const navigate = useNavigate();
 
-  const isDoubleOptIn = import.meta.env.VITE_KLAVIYO_DOUBLE_OPT_IN === 'true';
-
   useEffect(() => {
     // Check if submitted in this session
     const hasSubmitted = sessionStorage.getItem('nexcypher_lead_submitted');
@@ -72,7 +70,7 @@ export const LeadPopup = () => {
     const lastName = parts.length > 1 ? parts.slice(1).join(' ') : '';
 
     try {
-      // 1. Identify User
+      // 1. Identify User Profile explicitly
       await window.klaviyo.push([
         'identify',
         {
@@ -97,13 +95,16 @@ export const LeadPopup = () => {
           budget: budget
         }
       ]);
+      console.log("Lead Submitted tracked.");
 
-      // 3. Subscribe to List
+      // 3. Subscribe User to List via Klaviyo Client API fallback
       const listId = import.meta.env.VITE_KLAVIYO_LIST_ID;
       const companyId = import.meta.env.VITE_KLAVIYO_COMPANY_ID || 'XYMq3i';
 
       if (listId) {
         console.log("Subscription request sent.");
+        
+        // Use the proper REST /client/subscriptions API
         const subscribeRes = await fetch(`https://a.klaviyo.com/client/subscriptions/?company_id=${companyId}`, {
           method: 'POST',
           headers: { 
@@ -114,17 +115,15 @@ export const LeadPopup = () => {
             data: {
               type: 'subscription',
               attributes: { 
-                custom_source: 'Popup Form', 
+                custom_source: 'Popup Form',
                 profile: { 
                   data: { 
                     type: 'profile', 
                     attributes: { 
-                      email: email,
-                      first_name: firstName,
-                      last_name: lastName,
-                      phone_number: phone
-                    }
-                  }
+                      email: email
+                      // Note: We deliberately exclude phone here. If phone is not strict E.164, the entire subscription request HTTP 400s
+                    } 
+                  } 
                 }
               },
               relationships: {
@@ -141,14 +140,14 @@ export const LeadPopup = () => {
 
         if (!subscribeRes.ok) {
           const errorText = await subscribeRes.text();
-          throw new Error(`Subscription API responded with ${subscribeRes.status}: ${errorText}`);
+          console.error(`Subscription API failed with ${subscribeRes.status}: ${errorText}`);
+          throw new Error("Subscription failed");
         }
+        
         console.log("Subscription request success.");
-      } else {
-        console.warn("VITE_KLAVIYO_LIST_ID is missing. Skipped list subscription.");
       }
 
-      // 4. Show success state only after identify and subscribe are processed.
+      // 4. Show success state
       setIsSubmitted(true);
       sessionStorage.setItem('nexcypher_lead_submitted', 'true');
       
@@ -159,7 +158,7 @@ export const LeadPopup = () => {
       }, 3000);
       
     } catch (error) {
-      console.error("Subscription request failed:", error);
+      console.error("Subscription request error:", error);
       setSubmitError(true);
     } finally {
       setIsSubmitting(false);
@@ -221,17 +220,8 @@ export const LeadPopup = () => {
                   </h3>
 
                   <div className="space-y-4 mb-10 text-sm md:text-base">
-                    {isDoubleOptIn ? (
-                      <>
-                        <p className="text-white font-medium">Your request has been received.</p>
-                        <p className="text-accent-blue font-bold text-lg border-y border-white/10 py-3 my-4 inline-block">Please check your email to confirm your subscription.</p>
-                      </>
-                    ) : (
-                      <>
-                        <p className="text-white font-medium">Thank you. Your details have been submitted successfully.</p>
-                        <p className="text-text-secondary">Our team will get back to you soon.</p>
-                      </>
-                    )}
+                    <p className="text-white font-medium">Thank you. Your details have been submitted successfully.</p>
+                    <p className="text-text-secondary">Our team will contact you soon.</p>
                     <p className="text-text-secondary/60 italic text-xs pt-2">
                       Results are built through strategy, structure, and execution. We appreciate your interest in Nexcypher.
                     </p>

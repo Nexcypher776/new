@@ -12,8 +12,6 @@ export const LeadForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState(false);
 
-  const isDoubleOptIn = import.meta.env.VITE_KLAVIYO_DOUBLE_OPT_IN === 'true';
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitError(false);
@@ -46,7 +44,7 @@ export const LeadForm = () => {
     const lastName = parts.length > 1 ? parts.slice(1).join(' ') : '';
 
     try {
-      // 1. Identify User
+      // 1. Identify User explicitly
       await window.klaviyo.push([
         'identify',
         {
@@ -70,7 +68,7 @@ export const LeadForm = () => {
       ]);
       console.log("Lead Submitted tracked.");
 
-      // 3. Subscribe to List
+      // 3. Subscribe User to List via Klaviyo Client API fallback
       const listId = import.meta.env.VITE_KLAVIYO_LIST_ID;
       const companyId = import.meta.env.VITE_KLAVIYO_COMPANY_ID || 'XYMq3i';
 
@@ -91,9 +89,8 @@ export const LeadForm = () => {
                   data: { 
                     type: 'profile', 
                     attributes: { 
-                      email: email,
-                      first_name: firstName,
-                      last_name: lastName
+                      email: email
+                      // Exclude phone or complex fields that might fail formatting locally at /subscriptions
                     }
                   }
                 }
@@ -112,17 +109,17 @@ export const LeadForm = () => {
 
         if (!subscribeRes.ok) {
           const errorText = await subscribeRes.text();
-          throw new Error(`Subscription API responded with ${subscribeRes.status}: ${errorText}`);
+          console.error(`Subscription API failed with ${subscribeRes.status}: ${errorText}`);
+          throw new Error("Subscription failed");
         }
+        
         console.log("Subscription request success.");
-      } else {
-        console.warn("VITE_KLAVIYO_LIST_ID is missing. Skipped list subscription.");
       }
 
       // 4. Show success state
       setIsSubmitted(true);
     } catch (error) {
-      console.error("Subscription request failed:", error);
+      console.error("Subscription request error:", error);
       setSubmitError(true);
     } finally {
       setIsSubmitting(false);
@@ -196,17 +193,10 @@ export const LeadForm = () => {
                   </div>
                   <h3 className="text-3xl font-bold text-white">Message Received!</h3>
                   <div className="space-y-4">
-                    {isDoubleOptIn ? (
-                      <div className="text-center">
-                        <p className="text-white font-medium">Your request has been received.</p>
-                        <p className="text-accent-blue font-bold text-lg border-y border-white/10 py-3 my-4 inline-block">Please check your email to confirm your subscription.</p>
-                      </div>
-                    ) : (
-                      <div className="text-center">
-                        <p className="text-white font-medium">Thank you. Your details have been submitted successfully.</p>
-                        <p className="text-text-secondary mt-2">Our team will get back to you soon.</p>
-                      </div>
-                    )}
+                    <div className="text-center">
+                      <p className="text-white font-medium">Thank you. Your details have been submitted successfully.</p>
+                      <p className="text-text-secondary mt-2">Our team will contact you soon.</p>
+                    </div>
                   </div>
                   <Button onClick={() => setIsSubmitted(false)} variant="ghost" className="text-accent-blue mt-8">Send another message</Button>
                 </motion.div>

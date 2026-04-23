@@ -39,14 +39,6 @@ export const LeadPopup = () => {
     e.preventDefault();
     setSubmitError(false);
     
-    if (!window.klaviyo) {
-      console.error("Klaviyo script not loaded. Cannot submit lead.");
-      setSubmitError(true);
-      return;
-    }
-    
-    console.log("Klaviyo script loaded.");
-    
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email') as string;
     const name = formData.get('name') as string;
@@ -70,39 +62,47 @@ export const LeadPopup = () => {
     const lastName = parts.length > 1 ? parts.slice(1).join(' ') : '';
 
     try {
-      // 1. Identify User Profile explicitly
-      await window.klaviyo.push([
-        'identify',
-        {
-          '$email': email,
-          '$first_name': firstName,
-          '$last_name': lastName,
-          '$phone_number': phone,
-          'business_name': business,
-          'service_needed': service,
-          'budget': budget,
-          'notes': notes
-        }
-      ]);
-      console.log("Profile identified.");
+      // 1 & 2. Try to track metrics on client (fail silently if AdBlocker blocks Klaviyo snippet)
+      if (typeof window.klaviyo !== 'undefined' && typeof window.klaviyo.push === 'function') {
+        try {
+          window.klaviyo.push([
+            'identify',
+            {
+              '$email': email,
+              '$first_name': firstName,
+              '$last_name': lastName,
+              '$phone_number': phone,
+              'business_name': business,
+              'service_needed': service,
+              'budget': budget,
+              'notes': notes
+            }
+          ]);
+          console.log("Profile identified.");
 
-      // 2. Track Custom Event
-      await window.klaviyo.push([
-        'track',
-        'Lead Submitted',
-        {
-          service: service,
-          budget: budget
+          window.klaviyo.push([
+            'track',
+            'Lead Submitted',
+            {
+              service: service,
+              budget: budget
+            }
+          ]);
+          console.log("Lead Submitted tracked.");
+        } catch (klaviyoError) {
+          console.warn("Klaviyo client script error (likely blocked by extension):", klaviyoError);
         }
-      ]);
-      console.log("Lead Submitted tracked.");
+      } else {
+        console.warn("Klaviyo client script not available (likely adblock). Proceeding with backend sync.");
+      }
 
       // 3. Subscribe User to List via Secure Backend API
       console.log("Subscription request sent.");
       const subscribeRes = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
           email: email,
@@ -118,9 +118,14 @@ export const LeadPopup = () => {
       });
 
       if (!subscribeRes.ok) {
-        const errorData = await subscribeRes.json();
+        let errorData;
+        try {
+          errorData = await subscribeRes.json();
+        } catch (parseError) {
+          errorData = { error: 'Could not parse error response from backend' };
+        }
         console.error(`Subscription API failed:`, errorData);
-        throw new Error("Subscription failed");
+        throw new Error("Subscription failed: " + (errorData.failureReason || errorData.error || subscribeRes.status));
       }
       
       console.log("Subscription request success.");

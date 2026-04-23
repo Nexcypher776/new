@@ -15,20 +15,28 @@ export const LeadPopup = () => {
   const [submitError, setSubmitError] = useState(false);
   const navigate = useNavigate();
 
+  // Helper to safely access sessionStorage in restricted iframes
+  const safeSessionSet = (key: string, value: string) => {
+    try { sessionStorage.setItem(key, value); } catch (e) { console.warn('sessionStorage blocked'); }
+  };
+  const safeSessionGet = (key: string) => {
+    try { return sessionStorage.getItem(key); } catch (e) { return null; }
+  };
+
   useEffect(() => {
     // Check if submitted in this session
-    const hasSubmitted = sessionStorage.getItem('nexcypher_lead_submitted');
+    const hasSubmitted = safeSessionGet('nexcypher_lead_submitted');
     if (hasSubmitted) {
       setIsSubmitted(true);
     }
 
     // Check if shown in this session
-    const hasShown = sessionStorage.getItem('nexcypher_lead_popup_shown');
+    const hasShown = safeSessionGet('nexcypher_lead_popup_shown');
     
     if (!hasShown) {
       const timer = setTimeout(() => {
         setIsOpen(true);
-        sessionStorage.setItem('nexcypher_lead_popup_shown', 'true');
+        safeSessionSet('nexcypher_lead_popup_shown', 'true');
       }, 10000); // 10 seconds
 
       return () => clearTimeout(timer);
@@ -130,15 +138,13 @@ export const LeadPopup = () => {
       
       console.log("Subscription request success.");
 
-      // 4. Show success state
-      setIsSubmitted(true);
-      sessionStorage.setItem('nexcypher_lead_submitted', 'true');
+      // 4. Update success tracking state safely to prevent Safari/IFrame crashes
+      safeSessionSet('nexcypher_lead_submitted', 'true');
       
-      // Redirect to dedicated thank you page
-      setTimeout(() => {
-        navigate('/thank-you');
-        setIsOpen(false);
-      }, 3000);
+      // Trigger success state and redirect to dedicated thank you page immediately to satisfy user journey
+      setIsSubmitted(true);
+      navigate('/thank-you');
+      setIsOpen(false);
       
     } catch (error) {
       console.error("Subscription request error:", error);

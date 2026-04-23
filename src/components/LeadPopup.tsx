@@ -97,55 +97,33 @@ export const LeadPopup = () => {
       ]);
       console.log("Lead Submitted tracked.");
 
-      // 3. Subscribe User to List via Klaviyo Client API fallback
-      const listId = import.meta.env.VITE_KLAVIYO_LIST_ID;
-      const companyId = import.meta.env.VITE_KLAVIYO_COMPANY_ID || 'XYMq3i';
+      // 3. Subscribe User to List via Secure Backend API
+      console.log("Subscription request sent.");
+      const subscribeRes = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          firstName: firstName,
+          lastName: lastName,
+          phone: phone,
+          business: business,
+          service: service,
+          budget: budget,
+          notes: notes,
+          source: 'Popup Form'
+        })
+      });
 
-      if (listId) {
-        console.log("Subscription request sent.");
-        
-        // Use the proper REST /client/subscriptions API
-        const subscribeRes = await fetch(`https://a.klaviyo.com/client/subscriptions/?company_id=${companyId}`, {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json', 
-            'Revision': '2024-02-15' 
-          },
-          body: JSON.stringify({
-            data: {
-              type: 'subscription',
-              attributes: { 
-                custom_source: 'Popup Form',
-                profile: { 
-                  data: { 
-                    type: 'profile', 
-                    attributes: { 
-                      email: email
-                      // Note: We deliberately exclude phone here. If phone is not strict E.164, the entire subscription request HTTP 400s
-                    } 
-                  } 
-                }
-              },
-              relationships: {
-                list: {
-                  data: {
-                    type: 'list',
-                    id: listId
-                  }
-                }
-              }
-            }
-          })
-        });
-
-        if (!subscribeRes.ok) {
-          const errorText = await subscribeRes.text();
-          console.error(`Subscription API failed with ${subscribeRes.status}: ${errorText}`);
-          throw new Error("Subscription failed");
-        }
-        
-        console.log("Subscription request success.");
+      if (!subscribeRes.ok) {
+        const errorData = await subscribeRes.json();
+        console.error(`Subscription API failed:`, errorData);
+        throw new Error("Subscription failed");
       }
+      
+      console.log("Subscription request success.");
 
       // 4. Show success state
       setIsSubmitted(true);

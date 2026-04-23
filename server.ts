@@ -60,14 +60,20 @@ async function startServer() {
       };
 
       console.log('DEBUG: Sending payload to Klaviyo endpoint...');
-      const subscribeRes = await fetch('https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/', {
+      const klaviyoUrl = 'https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/';
+      
+      const payloadString = JSON.stringify(payload);
+      console.log('DEBUG: Exact Payload Sent to Klaviyo:', payloadString);
+      
+      const subscribeRes = await fetch(klaviyoUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Revision': '2024-02-15',
-          'Authorization': `Klaviyo-API-Key ${privateApiKey}`
+          'Authorization': `Klaviyo-API-Key ${privateApiKey}`,
+          'Accept': 'application/json'
         },
-        body: JSON.stringify(payload)
+        body: payloadString
       });
 
       console.log('DEBUG: Klaviyo Exact Status Code:', subscribeRes.status);
@@ -75,9 +81,19 @@ async function startServer() {
       console.log('DEBUG: Klaviyo Exact Response Body:', responseText);
 
       if (!subscribeRes.ok) {
-        console.error(`Klaviyo API error (${subscribeRes.status}):`, responseText);
-        console.log('--- DEBUG: End of Request (Failed) ---');
-        return res.status(subscribeRes.status).json({ error: 'Klaviyo API error', details: responseText });
+        let failureReason = 'unknown';
+        if (subscribeRes.status === 401) failureReason = 'auth error (invalid API key)';
+        else if (subscribeRes.status === 403) failureReason = 'missing scope (ensure key has Subscriptions:Write)';
+        else if (subscribeRes.status === 404) failureReason = 'wrong endpoint or wrong list ID';
+        else if (subscribeRes.status === 400) failureReason = 'wrong payload schema or invalid data format';
+
+        console.error(`--- DEBUG: End of Request (Failed) ---`);
+        console.error(`Failure Analysis: ${failureReason}`);
+        return res.status(subscribeRes.status).json({ 
+          error: 'Klaviyo API error', 
+          details: responseText,
+          failureReason: failureReason
+        });
       }
 
       console.log('Klaviyo subscribe success for:', email);

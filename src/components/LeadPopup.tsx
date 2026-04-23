@@ -34,9 +34,15 @@ export const LeadPopup = () => {
     }
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    
+    if (!window.klaviyo) {
+      console.error("Klaviyo script not loaded. Cannot submit lead.");
+      return;
+    }
+    
+    console.log("Klaviyo script loaded.");
     
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email') as string;
@@ -47,15 +53,23 @@ export const LeadPopup = () => {
     const budget = formData.get('budget') as string;
     const notes = formData.get('notes') as string;
 
-    const parts = name.split(' ');
+    // Basic email validation
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      console.error("Invalid email address provided.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const parts = name.trim().split(' ');
     const firstName = parts[0] || '';
     const lastName = parts.length > 1 ? parts.slice(1).join(' ') : '';
 
     try {
-      window.klaviyo = window.klaviyo || [];
-      
-      // Send Identify 
-      window.klaviyo.push([
+      // 1. Identify User
+      // identify creates/updates a Klaviyo profile.
+      // Note: it does not automatically subscribe the person to a list.
+      await window.klaviyo.push([
         'identify',
         {
           '$email': email,
@@ -68,9 +82,10 @@ export const LeadPopup = () => {
           'notes': notes
         }
       ]);
+      console.log("Identify sent.");
 
-      // Track Event
-      window.klaviyo.push([
+      // 2. Track Custom Event
+      await window.klaviyo.push([
         'track',
         'Lead Submitted',
         {
@@ -78,7 +93,25 @@ export const LeadPopup = () => {
           budget: budget
         }
       ]);
+      console.log("Lead Submitted tracked.");
 
+      // 3. Optional future state: subscribe to list.
+      // Example implementation (Requires Klaviyo List ID and correct API settings):
+      /*
+      await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=YOURCOMPANYID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Revision': '2024-02-15' },
+        body: JSON.stringify({
+          data: {
+            type: 'subscription',
+            attributes: { custom_source: 'Popup Form', profile: { data: { type: 'profile', attributes: { email: email }}}}
+          }
+        })
+      });
+      console.log("Subscribed to list.");
+      */
+
+      // 4. Show success state only after identify is processed.
       setIsSubmitted(true);
       sessionStorage.setItem('nexcypher_lead_submitted', 'true');
       
@@ -87,8 +120,9 @@ export const LeadPopup = () => {
         navigate('/thank-you');
         setIsOpen(false);
       }, 1500);
+      
     } catch (error) {
-      console.error("Submission error:", error);
+      console.error("Klaviyo identify failed:", error);
     } finally {
       setIsSubmitting(false);
     }

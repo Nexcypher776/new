@@ -11,9 +11,15 @@ export const LeadForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    
+    if (!window.klaviyo) {
+      console.error("Klaviyo script not loaded. Cannot submit lead.");
+      return;
+    }
+    
+    console.log("Klaviyo script loaded.");
     
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email') as string;
@@ -21,14 +27,23 @@ export const LeadForm = () => {
     const budget = formData.get('budget') as string;
     const message = formData.get('message') as string;
 
-    const parts = name.split(' ');
+    // Basic email validation
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      console.error("Invalid email address provided.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const parts = name.trim().split(' ');
     const firstName = parts[0] || '';
     const lastName = parts.length > 1 ? parts.slice(1).join(' ') : '';
 
     try {
-      window.klaviyo = window.klaviyo || [];
-      
-      window.klaviyo.push([
+      // 1. Identify User
+      // identify creates/updates a Klaviyo profile.
+      // Note: it does not automatically subscribe the person to a list.
+      await window.klaviyo.push([
         'identify',
         {
           '$email': email,
@@ -38,8 +53,10 @@ export const LeadForm = () => {
           'notes': message
         }
       ]);
+      console.log("Identify sent.");
 
-      window.klaviyo.push([
+      // 2. Track Custom Event
+      await window.klaviyo.push([
         'track',
         'Lead Submitted',
         {
@@ -47,10 +64,12 @@ export const LeadForm = () => {
           budget: budget
         }
       ]);
+      console.log("Lead Submitted tracked.");
 
+      // 3. Show success state
       setIsSubmitted(true);
     } catch (error) {
-      console.error("Submission error:", error);
+      console.error("Klaviyo identify failed:", error);
     } finally {
       setIsSubmitting(false);
     }

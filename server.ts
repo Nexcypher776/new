@@ -9,8 +9,8 @@ async function startServer() {
 
   app.use(express.json());
 
-  // API Route for Klaviyo Subscription
-  app.post('/api/subscribe', async (req, res) => {
+  // API Route for Klaviyo Subscription (renamed to avoid ad-blocker "subscribe" keyword filters)
+  app.post('/api/contact-strategy', async (req, res) => {
     try {
       console.log('--- DEBUG: POST /api/subscribe triggered ---');
       console.log('Received subscription request:', req.body.email);

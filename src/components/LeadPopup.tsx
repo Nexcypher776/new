@@ -12,7 +12,7 @@ export const LeadPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState(false);
+  const [submitError, setSubmitError] = useState<string | false>(false);
   const navigate = useNavigate();
 
   // Helper to safely access sessionStorage in restricted iframes
@@ -106,7 +106,7 @@ export const LeadPopup = () => {
 
       // 3. Subscribe User to List via Secure Backend API
       console.log("Subscription request sent.");
-      const subscribeRes = await fetch('/api/subscribe', {
+      const subscribeRes = await fetch('/api/contact-strategy', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -146,9 +146,9 @@ export const LeadPopup = () => {
       navigate('/thank-you');
       setIsOpen(false);
       
-    } catch (error) {
+    } catch (error: any) {
       console.error("Subscription request error:", error);
-      setSubmitError(true);
+      setSubmitError(error?.message || 'unknown error');
     } finally {
       setIsSubmitting(false);
     }
@@ -316,8 +316,9 @@ export const LeadPopup = () => {
                     </Button>
                     
                     {submitError && (
-                      <div className="text-red-400 text-sm text-center font-medium mt-4 bg-red-500/10 border border-red-500/20 py-2 rounded-lg">
-                        We could not complete your signup right now. Please try again.
+                      <div className="text-red-400 text-sm text-center font-medium mt-4 bg-red-500/10 border border-red-500/20 py-3 px-4 rounded-lg flex flex-col gap-1">
+                        <span>We could not complete your signup right now.</span>
+                        <span className="text-xs opacity-80">{typeof submitError === 'string' ? submitError : ''}</span>
                       </div>
                     )}
                   </form>

@@ -12,11 +12,15 @@ async function startServer() {
   // API Route for Klaviyo Subscription
   app.post('/api/subscribe', async (req, res) => {
     try {
+      console.log('--- DEBUG: POST /api/subscribe triggered ---');
       console.log('Received subscription request:', req.body.email);
 
       const { email, firstName, lastName, phone, business, service, budget, notes, source } = req.body;
       const listId = process.env.VITE_KLAVIYO_LIST_ID;
       const privateApiKey = process.env.KLAVIYO_PRIVATE_API_KEY;
+
+      console.log('DEBUG: KLAVIYO_PRIVATE_API_KEY present:', !!privateApiKey);
+      console.log('DEBUG: VITE_KLAVIYO_LIST_ID present:', !!listId);
 
       if (!listId || !privateApiKey) {
         console.error('Missing KLAVIYO_PRIVATE_API_KEY or VITE_KLAVIYO_LIST_ID environment variables.');
@@ -38,15 +42,7 @@ async function startServer() {
                   type: 'profile',
                   attributes: {
                     email: email,
-                    first_name: firstName || undefined,
-                    last_name: lastName || undefined,
-                    phone_number: phone || undefined,
-                    properties: {
-                      business_name: business,
-                      service_needed: service,
-                      budget: budget,
-                      notes: notes
-                    }
+                    ...(phone ? { phone_number: phone } : {})
                   }
                 }
               ]
@@ -63,6 +59,7 @@ async function startServer() {
         }
       };
 
+      console.log('DEBUG: Sending payload to Klaviyo endpoint...');
       const subscribeRes = await fetch('https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/', {
         method: 'POST',
         headers: {
@@ -73,17 +70,23 @@ async function startServer() {
         body: JSON.stringify(payload)
       });
 
+      console.log('DEBUG: Klaviyo Exact Status Code:', subscribeRes.status);
+      const responseText = await subscribeRes.text();
+      console.log('DEBUG: Klaviyo Exact Response Body:', responseText);
+
       if (!subscribeRes.ok) {
-        const errorText = await subscribeRes.text();
-        console.error(`Klaviyo API error (${subscribeRes.status}):`, errorText);
-        return res.status(subscribeRes.status).json({ error: 'Klaviyo API error', details: errorText });
+        console.error(`Klaviyo API error (${subscribeRes.status}):`, responseText);
+        console.log('--- DEBUG: End of Request (Failed) ---');
+        return res.status(subscribeRes.status).json({ error: 'Klaviyo API error', details: responseText });
       }
 
       console.log('Klaviyo subscribe success for:', email);
-      return res.status(200).json({ success: true });
+      console.log('--- DEBUG: End of Request (Success) ---');
+      return res.status(200).json({ success: true, klaviyoResponse: responseText });
 
     } catch (error) {
       console.error('Klaviyo subscribe error:', error);
+      console.log('--- DEBUG: End of Request (Exception) ---');
       return res.status(500).json({ error: 'Internal Server Error' });
     }
   });

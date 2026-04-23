@@ -12,7 +12,10 @@ export const LeadPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
   const navigate = useNavigate();
+
+  const isDoubleOptIn = import.meta.env.VITE_KLAVIYO_DOUBLE_OPT_IN === 'true';
 
   useEffect(() => {
     // Check if submitted in this session
@@ -36,9 +39,11 @@ export const LeadPopup = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitError(false);
     
     if (!window.klaviyo) {
       console.error("Klaviyo script not loaded. Cannot submit lead.");
+      setSubmitError(true);
       return;
     }
     
@@ -56,6 +61,7 @@ export const LeadPopup = () => {
     // Basic email validation
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       console.error("Invalid email address provided.");
+      setSubmitError(true);
       return;
     }
 
@@ -67,8 +73,6 @@ export const LeadPopup = () => {
 
     try {
       // 1. Identify User
-      // identify creates/updates a Klaviyo profile.
-      // Note: it does not automatically subscribe the person to a list.
       await window.klaviyo.push([
         'identify',
         {
@@ -82,7 +86,7 @@ export const LeadPopup = () => {
           'notes': notes
         }
       ]);
-      console.log("Identify sent.");
+      console.log("Profile identified.");
 
       // 2. Track Custom Event
       await window.klaviyo.push([
@@ -93,25 +97,58 @@ export const LeadPopup = () => {
           budget: budget
         }
       ]);
-      console.log("Lead Submitted tracked.");
 
-      // 3. Optional future state: subscribe to list.
-      // Example implementation (Requires Klaviyo List ID and correct API settings):
-      /*
-      await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=YOURCOMPANYID', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Revision': '2024-02-15' },
-        body: JSON.stringify({
-          data: {
-            type: 'subscription',
-            attributes: { custom_source: 'Popup Form', profile: { data: { type: 'profile', attributes: { email: email }}}}
-          }
-        })
-      });
-      console.log("Subscribed to list.");
-      */
+      // 3. Subscribe to List
+      const listId = import.meta.env.VITE_KLAVIYO_LIST_ID;
+      const companyId = import.meta.env.VITE_KLAVIYO_COMPANY_ID || 'XYMq3i';
 
-      // 4. Show success state only after identify is processed.
+      if (listId) {
+        console.log("Subscription request sent.");
+        const subscribeRes = await fetch(`https://a.klaviyo.com/client/subscriptions/?company_id=${companyId}`, {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json', 
+            'Revision': '2024-02-15' 
+          },
+          body: JSON.stringify({
+            data: {
+              type: 'subscription',
+              attributes: { 
+                custom_source: 'Popup Form', 
+                profile: { 
+                  data: { 
+                    type: 'profile', 
+                    attributes: { 
+                      email: email,
+                      first_name: firstName,
+                      last_name: lastName,
+                      phone_number: phone
+                    }
+                  }
+                }
+              },
+              relationships: {
+                list: {
+                  data: {
+                    type: 'list',
+                    id: listId
+                  }
+                }
+              }
+            }
+          })
+        });
+
+        if (!subscribeRes.ok) {
+          const errorText = await subscribeRes.text();
+          throw new Error(`Subscription API responded with ${subscribeRes.status}: ${errorText}`);
+        }
+        console.log("Subscription request success.");
+      } else {
+        console.warn("VITE_KLAVIYO_LIST_ID is missing. Skipped list subscription.");
+      }
+
+      // 4. Show success state only after identify and subscribe are processed.
       setIsSubmitted(true);
       sessionStorage.setItem('nexcypher_lead_submitted', 'true');
       
@@ -119,10 +156,11 @@ export const LeadPopup = () => {
       setTimeout(() => {
         navigate('/thank-you');
         setIsOpen(false);
-      }, 1500);
+      }, 3000);
       
     } catch (error) {
-      console.error("Klaviyo identify failed:", error);
+      console.error("Subscription request failed:", error);
+      setSubmitError(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -183,10 +221,17 @@ export const LeadPopup = () => {
                   </h3>
 
                   <div className="space-y-4 mb-10 text-sm md:text-base">
-                    <p className="text-white font-medium">Your details have been submitted successfully.</p>
-                    <p className="text-text-secondary">
-                      Our team will review your request and get back to you as soon as possible with the best next step for your business.
-                    </p>
+                    {isDoubleOptIn ? (
+                      <>
+                        <p className="text-white font-medium">Your request has been received.</p>
+                        <p className="text-accent-blue font-bold text-lg border-y border-white/10 py-3 my-4 inline-block">Please check your email to confirm your subscription.</p>
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-white font-medium">Thank you. Your details have been submitted successfully.</p>
+                        <p className="text-text-secondary">Our team will get back to you soon.</p>
+                      </>
+                    )}
                     <p className="text-text-secondary/60 italic text-xs pt-2">
                       Results are built through strategy, structure, and execution. We appreciate your interest in Nexcypher.
                     </p>
@@ -290,6 +335,12 @@ export const LeadPopup = () => {
                     >
                       {isSubmitting ? 'Processing...' : 'Send Strategy Request'}
                     </Button>
+                    
+                    {submitError && (
+                      <div className="text-red-400 text-sm text-center font-medium mt-4 bg-red-500/10 border border-red-500/20 py-2 rounded-lg">
+                        We could not complete your signup right now. Please try again.
+                      </div>
+                    )}
                   </form>
                 </motion.div>
               )}

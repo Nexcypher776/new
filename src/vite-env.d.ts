@@ -2,6 +2,8 @@
 
 interface ImportMetaEnv {
   readonly VITE_KLAVIYO_COMPANY_ID?: string;
+  readonly VITE_KLAVIYO_LIST_ID?: string;
+  readonly VITE_KLAVIYO_DOUBLE_OPT_IN?: string;
 }
 
 interface ImportMeta {

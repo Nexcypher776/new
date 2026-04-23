@@ -10,12 +10,17 @@ import { Badge } from '@/components/ui/badge';
 export const LeadForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+
+  const isDoubleOptIn = import.meta.env.VITE_KLAVIYO_DOUBLE_OPT_IN === 'true';
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitError(false);
     
     if (!window.klaviyo) {
       console.error("Klaviyo script not loaded. Cannot submit lead.");
+      setSubmitError(true);
       return;
     }
     
@@ -30,6 +35,7 @@ export const LeadForm = () => {
     // Basic email validation
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       console.error("Invalid email address provided.");
+      setSubmitError(true);
       return;
     }
 
@@ -41,8 +47,6 @@ export const LeadForm = () => {
 
     try {
       // 1. Identify User
-      // identify creates/updates a Klaviyo profile.
-      // Note: it does not automatically subscribe the person to a list.
       await window.klaviyo.push([
         'identify',
         {
@@ -53,7 +57,7 @@ export const LeadForm = () => {
           'notes': message
         }
       ]);
-      console.log("Identify sent.");
+      console.log("Profile identified.");
 
       // 2. Track Custom Event
       await window.klaviyo.push([
@@ -66,10 +70,60 @@ export const LeadForm = () => {
       ]);
       console.log("Lead Submitted tracked.");
 
-      // 3. Show success state
+      // 3. Subscribe to List
+      const listId = import.meta.env.VITE_KLAVIYO_LIST_ID;
+      const companyId = import.meta.env.VITE_KLAVIYO_COMPANY_ID || 'XYMq3i';
+
+      if (listId) {
+        console.log("Subscription request sent.");
+        const subscribeRes = await fetch(`https://a.klaviyo.com/client/subscriptions/?company_id=${companyId}`, {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json', 
+            'Revision': '2024-02-15' 
+          },
+          body: JSON.stringify({
+            data: {
+              type: 'subscription',
+              attributes: { 
+                custom_source: 'Contact Form', 
+                profile: { 
+                  data: { 
+                    type: 'profile', 
+                    attributes: { 
+                      email: email,
+                      first_name: firstName,
+                      last_name: lastName
+                    }
+                  }
+                }
+              },
+              relationships: {
+                list: {
+                  data: {
+                    type: 'list',
+                    id: listId
+                  }
+                }
+              }
+            }
+          })
+        });
+
+        if (!subscribeRes.ok) {
+          const errorText = await subscribeRes.text();
+          throw new Error(`Subscription API responded with ${subscribeRes.status}: ${errorText}`);
+        }
+        console.log("Subscription request success.");
+      } else {
+        console.warn("VITE_KLAVIYO_LIST_ID is missing. Skipped list subscription.");
+      }
+
+      // 4. Show success state
       setIsSubmitted(true);
     } catch (error) {
-      console.error("Klaviyo identify failed:", error);
+      console.error("Subscription request failed:", error);
+      setSubmitError(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -141,7 +195,19 @@ export const LeadForm = () => {
                     <CheckCircle2 className="w-10 h-10 text-green-500" />
                   </div>
                   <h3 className="text-3xl font-bold text-white">Message Received!</h3>
-                  <p className="text-text-secondary">Chase or a team member will reach out to you within the next 24 hours.</p>
+                  <div className="space-y-4">
+                    {isDoubleOptIn ? (
+                      <div className="text-center">
+                        <p className="text-white font-medium">Your request has been received.</p>
+                        <p className="text-accent-blue font-bold text-lg border-y border-white/10 py-3 my-4 inline-block">Please check your email to confirm your subscription.</p>
+                      </div>
+                    ) : (
+                      <div className="text-center">
+                        <p className="text-white font-medium">Thank you. Your details have been submitted successfully.</p>
+                        <p className="text-text-secondary mt-2">Our team will get back to you soon.</p>
+                      </div>
+                    )}
+                  </div>
                   <Button onClick={() => setIsSubmitted(false)} variant="ghost" className="text-accent-blue mt-8">Send another message</Button>
                 </motion.div>
               ) : (
@@ -169,6 +235,11 @@ export const LeadForm = () => {
                   <Button type="submit" disabled={isSubmitting} className="w-full bg-accent-blue hover:bg-accent-blue/90 text-white h-14 rounded-xl font-bold text-lg shadow-lg shadow-accent-blue/20">
                     {isSubmitting ? 'Sending...' : 'Send Strategy Request'}
                   </Button>
+                  {submitError && (
+                    <div className="text-red-400 text-sm text-center font-medium mt-4 bg-red-500/10 border border-red-500/20 py-2 rounded-lg">
+                      We could not complete your signup right now. Please try again.
+                    </div>
+                  )}
                 </form>
               )}
             </AnimatePresence>

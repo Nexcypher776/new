@@ -101,15 +101,15 @@ export const AboutSection = () => {
             <motion.div 
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-6 -right-6 z-20 glass p-4 rounded-2xl border border-white/20 shadow-xl"
+              className="absolute -top-6 -right-2 md:-right-6 z-20 glass p-3 md:p-4 rounded-2xl border border-white/20 shadow-xl"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
-                  <ShoppingBag className="w-5 h-5 text-green-500" />
+              <div className="flex items-center gap-2 md:gap-3">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                  <ShoppingBag className="w-4 h-4 md:w-5 md:h-5 text-green-500" />
                 </div>
                 <div>
-                  <p className="text-xs text-text-secondary font-medium">Verified</p>
-                  <p className="text-sm font-bold text-white">Shopify Expert</p>
+                  <p className="text-[10px] md:text-xs text-text-secondary font-medium">Verified</p>
+                  <p className="text-xs md:text-sm font-bold text-white">Shopify Expert</p>
                 </div>
               </div>
             </motion.div>
@@ -117,15 +117,15 @@ export const AboutSection = () => {
             <motion.div 
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute top-1/2 -left-10 z-20 glass p-4 rounded-2xl border border-white/20 shadow-xl"
+              className="absolute top-1/2 -left-2 md:-left-10 z-20 glass p-3 md:p-4 rounded-2xl border border-white/20 shadow-xl"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-accent-purple/20 flex items-center justify-center">
-                  <Bot className="w-5 h-5 text-accent-purple" />
+              <div className="flex items-center gap-2 md:gap-3">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-accent-purple/20 flex items-center justify-center">
+                  <Bot className="w-4 h-4 md:w-5 md:h-5 text-accent-purple" />
                 </div>
                 <div>
-                  <p className="text-xs text-text-secondary font-medium">Specialist</p>
-                  <p className="text-sm font-bold text-white">AI Agent Dev</p>
+                  <p className="text-[10px] md:text-xs text-text-secondary font-medium">Specialist</p>
+                  <p className="text-xs md:text-sm font-bold text-white">AI Agent Dev</p>
                 </div>
               </div>
             </motion.div>

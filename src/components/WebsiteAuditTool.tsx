@@ -47,20 +47,20 @@ export const WebsiteAuditTool = () => {
         </div>
 
         <div className="relative max-w-5xl">
-          <div className="flex flex-col md:flex-row gap-4 p-2 bg-white/[0.03] border border-white/10 rounded-full backdrop-blur-xl mb-12">
-            <div className="flex-1 flex items-center px-8">
-              <Globe className="w-5 h-5 text-text-secondary mr-4" />
+          <div className="flex flex-col md:flex-row gap-4 p-2 md:p-2 bg-white/[0.03] border border-white/10 rounded-2xl md:rounded-full backdrop-blur-xl mb-12">
+            <div className="flex-1 flex items-center px-4 md:px-8">
+              <Globe className="w-5 h-5 text-text-secondary mr-4 shrink-0" />
               <Input 
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="Paste your website or store URL..."
-                className="bg-transparent border-none text-white placeholder:text-text-secondary focus-visible:ring-0 text-lg h-14"
+                className="bg-transparent border-none text-white placeholder:text-text-secondary focus-visible:ring-0 text-base md:text-lg h-14"
               />
             </div>
             <Button 
               onClick={handleAudit}
               disabled={isLoading || !url}
-              className="bg-white text-black hover:bg-gray-100 rounded-full h-14 px-12 font-black italic uppercase tracking-widest"
+              className="bg-white text-black w-full md:w-auto hover:bg-gray-100 rounded-xl md:rounded-full h-14 px-12 font-black italic uppercase tracking-widest"
             >
               {isLoading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : null}
               Analyze My Store

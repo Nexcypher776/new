@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, CheckCircle2, Star, ArrowRight, Phone, Mail, User, Briefcase, Zap, MessageSquare, Home, LayoutGrid } from 'lucide-react';
+import { X, CheckCircle2, Home, LayoutGrid, User, Mail, Phone, Briefcase, Zap, Star, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -10,8 +10,8 @@ import { useNavigate, Link } from 'react-router-dom';
 
 export const LeadPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,33 +34,50 @@ export const LeadPopup = () => {
     }
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      phone: formData.get('phone') as string,
-      business: formData.get('business') as string,
-      service: formData.get('service') as string,
-      budget: formData.get('budget') as string,
-      notes: formData.get('notes') as string,
-      source: 'popup_lead_form'
-    };
+    const email = formData.get('email') as string;
+    const name = formData.get('name') as string;
+    const phone = formData.get('phone') as string;
+    const business = formData.get('business') as string;
+    const service = formData.get('service') as string;
+    const budget = formData.get('budget') as string;
+    const notes = formData.get('notes') as string;
+
+    const parts = name.split(' ');
+    const firstName = parts[0] || '';
+    const lastName = parts.length > 1 ? parts.slice(1).join(' ') : '';
 
     try {
-      // Send to Klaviyo (Server-side API)
-      const response = await fetch('/api/klaviyo/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+      window.klaviyo = window.klaviyo || [];
+      
+      // Send Identify 
+      window.klaviyo.push([
+        'identify',
+        {
+          '$email': email,
+          '$first_name': firstName,
+          '$last_name': lastName,
+          '$phone_number': phone,
+          'business_name': business,
+          'service_needed': service,
+          'budget': budget,
+          'notes': notes
+        }
+      ]);
 
-      if (!response.ok) {
-        throw new Error('Klaviyo submission failed');
-      }
+      // Track Event
+      window.klaviyo.push([
+        'track',
+        'Lead Submitted',
+        {
+          service: service,
+          budget: budget
+        }
+      ]);
 
       setIsSubmitted(true);
       sessionStorage.setItem('nexcypher_lead_submitted', 'true');
@@ -72,7 +89,6 @@ export const LeadPopup = () => {
       }, 1500);
     } catch (error) {
       console.error("Submission error:", error);
-      alert("We could not submit your details right now. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

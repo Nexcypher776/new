@@ -5,7 +5,7 @@ export const TrustSection = () => {
   const stats = [
     { label: 'Experience', value: '5+ Years', icon: Clock, color: 'text-accent-blue' },
     { label: 'Projects Completed', value: '1000+', icon: Briefcase, color: 'text-accent-gold' },
-    { label: 'Team Experts', value: '10 professionals', icon: Users, color: 'text-accent-cyan' },
+    { label: 'Professionals', value: '10+', icon: Users, color: 'text-accent-cyan' },
     { label: 'Success Rate', value: '98%', icon: ShieldCheck, color: 'text-accent-purple' },
   ];
 
@@ -20,11 +20,11 @@ export const TrustSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
-              className="p-8 rounded-3xl bg-white/5 border border-white/10 text-center group hover:bg-white/10 transition-all hover:border-accent-gold/30"
+              className="px-4 py-8 sm:p-8 rounded-3xl bg-white/5 border border-white/10 text-center group hover:bg-white/10 transition-all hover:border-accent-gold/30"
             >
               <stat.icon className={`w-8 h-8 ${stat.color} mx-auto mb-4 opacity-80 group-hover:scale-110 transition-transform`} />
               <p className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.value}</p>
-              <p className="text-xs text-text-secondary uppercase tracking-[0.2em] font-bold">{stat.label}</p>
+              <p className="text-[10px] sm:text-xs text-text-secondary uppercase tracking-widest sm:tracking-[0.2em] font-bold break-words">{stat.label}</p>
             </motion.div>
           ))}
         </div>

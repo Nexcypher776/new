@@ -45,21 +45,21 @@ export const NicheResearchTool = () => {
           </p>
         </div>
 
-        <div className="relative max-w-4xl">
-          <div className="flex flex-col md:flex-row gap-4 p-2 bg-white/[0.03] border border-white/10 rounded-[32px] backdrop-blur-xl mb-8">
-            <div className="flex-1 flex items-center px-6">
-              <Search className="w-5 h-5 text-text-secondary mr-4" />
+        <div className="relative max-w-4xl mx-auto md:mx-0">
+          <div className="flex flex-col md:flex-row gap-4 p-2 bg-white/[0.03] border border-white/10 rounded-2xl md:rounded-[32px] backdrop-blur-xl mb-8">
+            <div className="flex-1 flex items-center px-4 md:px-6">
+              <Search className="w-5 h-5 text-text-secondary mr-4 shrink-0" />
               <Input 
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Enter a niche, product category, or market..."
-                className="bg-transparent border-none text-white placeholder:text-text-secondary focus-visible:ring-0 text-lg h-14"
+                className="bg-transparent border-none text-white placeholder:text-text-secondary focus-visible:ring-0 text-base md:text-lg h-14"
               />
             </div>
             <Button 
               onClick={handleAnalyze}
               disabled={isLoading || !query}
-              className="bg-accent-blue hover:bg-accent-blue/90 text-white rounded-full h-14 px-12 font-black italic uppercase tracking-widest shadow-2xl shadow-accent-blue/20"
+              className="bg-accent-blue hover:bg-accent-blue/90 text-white w-full md:w-auto rounded-xl md:rounded-full h-14 px-12 font-black italic uppercase tracking-widest shadow-2xl shadow-accent-blue/20"
             >
               {isLoading ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : null}
               Analyze Niche

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, ShoppingBag, Megaphone, Bot, TrendingUp, Sparkles } from 'lucide-react';
+import { CheckCircle2, ShoppingBag, Megaphone, Bot, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -11,34 +11,46 @@ export const LeadForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      budget: formData.get('budget') as string,
-      message: formData.get('message') as string,
-      source: 'website_contact_form'
-    };
+    const email = formData.get('email') as string;
+    const name = formData.get('name') as string;
+    const budget = formData.get('budget') as string;
+    const message = formData.get('message') as string;
+
+    const parts = name.split(' ');
+    const firstName = parts[0] || '';
+    const lastName = parts.length > 1 ? parts.slice(1).join(' ') : '';
 
     try {
-      const response = await fetch('/api/klaviyo/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+      window.klaviyo = window.klaviyo || [];
+      
+      window.klaviyo.push([
+        'identify',
+        {
+          '$email': email,
+          '$first_name': firstName,
+          '$last_name': lastName,
+          'budget': budget,
+          'notes': message
+        }
+      ]);
 
-      if (!response.ok) {
-        throw new Error('Klaviyo submission failed');
-      }
+      window.klaviyo.push([
+        'track',
+        'Lead Submitted',
+        {
+          source: 'Contact Form',
+          budget: budget
+        }
+      ]);
 
       setIsSubmitted(true);
     } catch (error) {
       console.error("Submission error:", error);
-      alert("There was an error sending your request. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

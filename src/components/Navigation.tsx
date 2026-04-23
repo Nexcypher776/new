@@ -48,15 +48,15 @@ export const Navigation = () => {
   const location = useLocation();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100]">
+    <header className="fixed top-0 left-0 right-0 z-[100] pointer-events-none">
       {/* Top Banner */}
-      <div className="bg-black border-b border-white/5 py-2.5 px-4 text-center">
+      <div className="bg-black border-b border-white/5 py-2.5 px-4 text-center pointer-events-auto">
         <p className="text-white text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
           🚀 Limited Time: Free 15-Min Shopify Growth Audit — <Link to="/contact" className="text-accent-gold underline cursor-pointer">Book Now</Link>
         </p>
       </div>
 
-      <nav className="p-4 md:p-6 flex flex-col items-center gap-4">
+      <nav className="p-4 md:p-6 flex flex-col items-center gap-4 pointer-events-auto">
         {/* Logo Centered */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -66,12 +66,13 @@ export const Navigation = () => {
         </motion.div>
 
         {/* Menu Bar */}
-        <div className="max-w-6xl w-auto min-w-[320px] md:min-w-[700px] bg-black/80 border border-white/10 h-14 md:h-16 rounded-full flex items-center justify-between px-6 md:px-8 relative shadow-2xl backdrop-blur-3xl transform transition-all hover:border-white/20">
+        <div className="w-full max-w-6xl md:w-auto md:min-w-[700px] bg-black/80 border border-white/10 h-14 md:h-16 rounded-full flex items-center justify-between px-4 md:px-8 relative shadow-2xl backdrop-blur-3xl transform transition-all hover:border-white/20">
           {/* Mobile Menu Toggle (Left on mobile) */}
-          <div className="flex md:hidden items-center mr-4">
+          <div className="flex md:hidden items-center">
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-white p-2"
+              aria-label="Toggle Menu"
             >
               <MenuIcon className="w-6 h-6" />
             </button>

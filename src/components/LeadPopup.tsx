@@ -8,12 +8,12 @@ import { Badge } from '@/components/ui/badge';
 import { LOGO_URL } from '../constants';
 import { useNavigate } from 'react-router-dom';
 
-// Safe session storage helpers to prevent iframe SecurityError crashes
-const safeSessionSet = (key: string, value: string) => {
-  try { sessionStorage.setItem(key, value); } catch (e) { console.warn('session storage blocked'); }
+// Safe local storage helpers to prevent iframe SecurityError crashes and persist across sessions
+const safeLocalSet = (key: string, value: string) => {
+  try { localStorage.setItem(key, value); } catch (e) { console.warn('local storage blocked'); }
 };
-const safeSessionGet = (key: string) => {
-  try { return sessionStorage.getItem(key); } catch (e) { return null; }
+const safeLocalGet = (key: string) => {
+  try { return localStorage.getItem(key); } catch (e) { return null; }
 };
 
 export const LeadPopup = () => {
@@ -23,22 +23,25 @@ export const LeadPopup = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const hasSubmitted = safeSessionGet('nexcypher_lead_submitted');
-    const hasShown = safeSessionGet('nexcypher_lead_popup_shown');
+    const hasSubmitted = safeLocalGet('nexcypher_lead_submitted');
+    const hasDismissed = safeLocalGet('nexcypher_lead_popup_dismissed');
 
-    if (hasSubmitted) return; // Prevent showing if already converted
+    if (hasSubmitted || hasDismissed) return; // Prevent showing if already converted or explicitly dismissed
 
-    if (!hasShown) {
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-        safeSessionSet('nexcypher_lead_popup_shown', 'true');
-      }, 7000); // Trigger after 7s to engage user
-      return () => clearTimeout(timer);
-    }
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 10000); // Trigger after 10s to engage user
+    
+    return () => clearTimeout(timer);
   }, []);
 
+  const handleClose = () => {
+    safeLocalSet('nexcypher_lead_popup_dismissed', 'true');
+    setIsOpen(false);
+  };
+
   const handleSuccessRedirect = () => {
-    safeSessionSet('nexcypher_lead_submitted', 'true');
+    safeLocalSet('nexcypher_lead_submitted', 'true');
     setIsOpen(false);
     navigate('/thank-you');
   };
@@ -151,7 +154,7 @@ export const LeadPopup = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)}
+            onClick={handleClose}
             className="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer"
           />
 
@@ -168,7 +171,7 @@ export const LeadPopup = () => {
 
             {/* Close Button */}
             <button
-              onClick={() => setIsOpen(false)}
+              onClick={handleClose}
               className="absolute top-4 right-4 p-2 text-white/50 hover:text-white hover:bg-white/5 rounded-full transition-colors z-20"
             >
               <X className="w-5 h-5" />
@@ -204,7 +207,7 @@ export const LeadPopup = () => {
                     <label className="text-[11px] font-bold text-white/70 uppercase tracking-wider flex items-center gap-1.5">
                       <Mail className="w-3.5 h-3.5 text-accent-blue" /> Email Address
                     </label>
-                    <Input name="email" type="email" required placeholder="john@company.com" className="h-12 bg-white/5 border-white/10 text-white rounded-xl focus:border-accent-blue/50 focus:ring-1 focus:ring-accent-blue/50 placeholder:text-white/20" />
+                    <Input name="email" type="email" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+" title="Please enter a valid email address" placeholder="john@company.com" className="h-12 bg-white/5 border-white/10 text-white rounded-xl focus:border-accent-blue/50 focus:ring-1 focus:ring-accent-blue/50 placeholder:text-white/20" />
                   </div>
                 </div>
 

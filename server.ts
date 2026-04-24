@@ -42,7 +42,15 @@ async function startServer() {
                   type: 'profile',
                   attributes: {
                     email: email,
-                    ...(phone ? { phone_number: phone } : {})
+                    ...(phone ? { phone_number: phone } : {}),
+                    ...(firstName ? { first_name: firstName } : {}),
+                    ...(lastName ? { last_name: lastName } : {}),
+                    ...(business ? { organization: business } : {}),
+                    properties: {
+                      service_needed: service,
+                      budget: budget,
+                      notes: notes
+                    }
                   }
                 }
               ]

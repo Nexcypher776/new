@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { AiCallingAgentsPreview } from '../components/AiCallingAgentsPreview';
 import { Badge } from '@/components/ui/badge';
@@ -8,6 +9,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 export const AiCallingAgents = () => {
   return (
     <div className="pt-44 md:pt-64 pb-32">
+       <Helmet>
+        <title>AI Calling Agents | Nexcypher</title>
+        <meta name="description" content="Automate your customer service and sales with Nexcypher's advanced AI calling agents tailored for e-commerce." />
+        <meta name="keywords" content="AI calling agents, Customer service AI, AI sales automation, E-commerce AI bots" />
+      </Helmet>
        <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-gold/10 text-accent-gold border-accent-gold/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           The New Standard

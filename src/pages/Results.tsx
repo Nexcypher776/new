@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { SalesProofSection } from '../components/SalesProofSection';
 import { VideoTestimonials } from '../components/VideoTestimonials';
@@ -9,6 +10,11 @@ import { Link } from 'react-router-dom';
 export const Results = () => {
   return (
     <div className="pt-44 md:pt-64 pb-32">
+      <Helmet>
+        <title>Client Results | Nexcypher</title>
+        <meta name="description" content="Discover the incredible ROI and revenue growth our clients have achieved with Nexcypher's e-commerce and AI solutions." />
+        <meta name="keywords" content="Client results, E-commerce ROI, Nexcypher testimonials, Shopify success" />
+      </Helmet>
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">

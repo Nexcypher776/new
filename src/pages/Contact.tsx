@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { LeadForm } from '../components/LeadForm';
 import { Badge } from '@/components/ui/badge';
@@ -6,6 +7,11 @@ import { FiverrProfileSection } from '../components/FiverrProfileSection';
 export const Contact = () => {
   return (
     <div className="pt-44 md:pt-64 pb-16">
+      <Helmet>
+        <title>Contact Us | Nexcypher</title>
+        <meta name="description" content="Get in touch with Nexcypher. Let's discuss how we can scale your Shopify store and implement AI automation." />
+        <meta name="keywords" content="Contact Nexcypher, E-commerce consultation, Hire Shopify agency" />
+      </Helmet>
        <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
         <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           Initiate Port

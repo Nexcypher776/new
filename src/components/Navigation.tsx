@@ -36,11 +36,11 @@ const NAV_LINKS = [
       { name: 'AI Calling Agents', path: '/ai-calling-agents' },
       { name: 'Shopify Marketing', path: '/shopify-marketing' },
       { name: 'Shopify Growth', path: '/shopify-growth' },
-      { name: 'Pricing', path: '/pricing' },
     ]
   },
   { name: 'Portfolio', path: '/portfolio' },
   { name: 'Sales Video Proof', path: '/sales-video-proof' },
+  { name: 'Pricing', path: '/pricing' },
 ];
 
 export const Navigation = () => {
@@ -139,9 +139,9 @@ export const Navigation = () => {
           </div>
 
           {/* CTAs (Right) */}
-          <div className="flex items-center shrink-0 ml-4 md:ml-8">
+          <div className="flex items-center shrink-0 ml-4 md:ml-8 gap-4">
             <Link to="/contact">
-              <Button className="bg-accent-blue hover:bg-accent-blue/90 text-white rounded-full px-6 md:px-8 h-9 shadow-lg shadow-accent-blue/20 whitespace-nowrap text-[10px] font-bold uppercase tracking-widest">
+              <Button className="bg-accent-blue hover:bg-accent-blue/90 text-white rounded-full px-6 md:px-8 h-9 shadow-lg shadow-accent-blue/20 whitespace-nowrap text-[10px] font-bold uppercase tracking-widest pointer-events-auto">
                 Get Started
               </Button>
             </Link>

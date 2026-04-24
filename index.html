@@ -3,12 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Nexcypher - Premium Shopify & AI Agency. We build high-converting Shopify stores, AI calling agents, and growth marketing strategies to scale your business." />
+    <meta name="keywords" content="Shopify, AI Agents, Growth Marketing, E-commerce strategy" />
     <title>Nexcypher - Premium Shopify & AI Agency</title>
     <link rel="icon" type="image/png" href="https://imglink.cc/cdn/BjEmiX6yMd.png" />
   </head>
   <body>
+    <!-- Google Translate Widget Styling (Hidden) -->
+    <style>
+      #google_translate_element {
+        display: none !important;
+      }
+      .goog-te-banner-frame.skiptranslate {
+        display: none !important;
+      }
+      body {
+        top: 0px !important;
+      }
+    </style>
+    <div id="google_translate_element"></div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script type="text/javascript">
+      // Auto-translate based on browser language
+      (function() {
+        var userLang = navigator.language || navigator.userLanguage;
+        if (userLang && !userLang.startsWith('en')) {
+          var langCode = userLang.split('-')[0];
+          // Set googtrans cookie if not already set by the user manually
+          if (document.cookie.indexOf('googtrans=') === -1) {
+            document.cookie = 'googtrans=/en/' + langCode + '; path=/';
+            document.cookie = 'googtrans=/en/' + langCode + '; domain=' + location.hostname + '; path=/';
+          }
+        }
+      })();
+      
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/XYMq3i/klaviyo.js?company_id=XYMq3i'></script>
     <script type="text/javascript"> 
       //Initialize Klaviyo object on page load

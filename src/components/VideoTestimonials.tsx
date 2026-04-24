@@ -1,16 +1,40 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
-import { Play, Star } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Play, Star, Twitter, Linkedin, Facebook } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { VIDEO_TESTIMONIALS } from '../constants';
 
 export const VideoTestimonials = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const [hoveredVideo, setHoveredVideo] = useState<string | null>(null);
 
   const getVimeoId = (url: string) => {
     const match = url.match(/vimeo\.com\/(\d+)/);
     return match ? match[1] : null;
+  };
+
+  const handleShare = (e: React.MouseEvent, platform: string, video: any) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://nexcypher.com/results';
+    const url = encodeURIComponent(currentUrl);
+    const text = encodeURIComponent(`Watch this testimonial by ${video.clientName} about Nexcypher's results!`);
+    
+    let shareUrl = '';
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+        break;
+    }
+    if (shareUrl) window.open(shareUrl, '_blank', 'width=600,height=400');
   };
 
   return (
@@ -30,6 +54,8 @@ export const VideoTestimonials = () => {
               whileHover={{ y: -10 }}
               className="glass-card overflow-hidden group relative cursor-pointer"
               onClick={() => setSelectedVideo(video.videoUrl)}
+              onHoverStart={() => setHoveredVideo(video.id)}
+              onHoverEnd={() => setHoveredVideo(null)}
             >
               <div className="relative aspect-video">
                 <img src={video.thumbnail} alt={video.clientName} className="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
@@ -37,6 +63,29 @@ export const VideoTestimonials = () => {
                   <div className="w-16 h-16 bg-accent-blue rounded-full flex items-center justify-center shadow-xl shadow-accent-blue/40 group-hover:scale-110 transition-transform">
                     <Play className="text-white w-8 h-8 fill-white" />
                   </div>
+                </div>
+                
+                <div className="absolute top-4 right-4 z-20 flex flex-col items-end gap-2">
+                  <AnimatePresence>
+                    {hoveredVideo === video.id && (
+                      <motion.div 
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 20 }}
+                        className="flex flex-col gap-2"
+                      >
+                        <button onClick={(e) => handleShare(e, 'twitter', video)} className="p-2 bg-black/60 hover:bg-accent-blue/90 text-white rounded-full backdrop-blur-sm border border-white/10 transition-colors shadow-lg group/btn" aria-label="Share on Twitter">
+                          <Twitter className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+                        </button>
+                        <button onClick={(e) => handleShare(e, 'linkedin', video)} className="p-2 bg-black/60 hover:bg-accent-blue/90 text-white rounded-full backdrop-blur-sm border border-white/10 transition-colors shadow-lg group/btn" aria-label="Share on LinkedIn">
+                          <Linkedin className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+                        </button>
+                        <button onClick={(e) => handleShare(e, 'facebook', video)} className="p-2 bg-black/60 hover:bg-accent-blue/90 text-white rounded-full backdrop-blur-sm border border-white/10 transition-colors shadow-lg group/btn" aria-label="Share on Facebook">
+                          <Facebook className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
               <div className="p-6">

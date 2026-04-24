@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -64,6 +65,11 @@ const VIDEO_PROOFS = [
 export const SalesVideoProof = () => {
   return (
     <div className="pt-44 md:pt-64 pb-32">
+      <Helmet>
+        <title>Sales Video Proof | Nexcypher</title>
+        <meta name="description" content="Watch how our AI calling agents and Shopify growth strategies generate real sales and revenue for our clients." />
+        <meta name="keywords" content="Sales proof, AI agent results, Shopify growth video, Nexcypher reviews" />
+      </Helmet>
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">

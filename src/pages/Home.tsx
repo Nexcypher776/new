@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { HeroSlider } from '../components/HeroSlider';
 import { TrustSection } from '../components/TrustSection';
@@ -17,6 +18,11 @@ import { Link } from 'react-router-dom';
 export const Home = () => {
   return (
     <>
+      <Helmet>
+        <title>Nexcypher | Premium Shopify & AI Agency</title>
+        <meta name="description" content="We build high-converting Shopify stores, AI calling agents, and growth marketing strategies to scale your business." />
+        <meta name="keywords" content="Shopify, AI Agents, Growth Marketing, E-commerce strategy, Nexcypher" />
+      </Helmet>
       <HeroSlider />
       <TrustSection />
       

@@ -100,22 +100,41 @@ export const HeroSlider = () => {
           <div className="relative h-full max-w-7xl mx-auto px-6 flex items-center">
             <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
               <motion.div
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+                  }
+                }}
                 className="relative z-10"
               >
-                <div className="flex items-center gap-4 mb-8">
+                <motion.div 
+                  variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}
+                  className="flex items-center gap-4 mb-8"
+                >
                   <Logo className="w-16 h-16 md:w-20 md:h-20" />
                   <div className={`w-12 h-1 ${slides[current].accent} rounded-full`} />
-                </div>
-                <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
+                </motion.div>
+                <motion.h2 
+                  variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}
+                  className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]"
+                >
                   {slides[current].title}
-                </h2>
-                <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed font-light max-w-xl">
+                </motion.h2>
+                <motion.p 
+                  variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}
+                  className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed font-light max-w-xl"
+                >
                   {slides[current].subtitle}
-                </p>
-                <div className="flex flex-wrap gap-4">
+                </motion.p>
+                <motion.div 
+                  variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}
+                  className="flex flex-wrap gap-4"
+                >
                   {slides[current].ctas.map((cta, idx) => (
                     <Link key={idx} to={cta.path}>
                       <Button 
@@ -131,12 +150,13 @@ export const HeroSlider = () => {
                       </Button>
                     </Link>
                   ))}
-                </div>
+                </motion.div>
               </motion.div>
 
               <motion.div
-                initial={{ x: 50, opacity: 0, scale: 0.9 }}
-                animate={{ x: 0, opacity: 1, scale: 1 }}
+                initial={{ y: 50, opacity: 0, scale: 0.95 }}
+                whileInView={{ y: 0, opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: 0.5, duration: 1 }}
                 className="hidden lg:block relative"
               >

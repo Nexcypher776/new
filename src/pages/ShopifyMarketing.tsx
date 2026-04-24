@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { SalesProofSection } from '../components/SalesProofSection';
 import { VideoTestimonials } from '../components/VideoTestimonials';
@@ -54,6 +55,11 @@ const STEPS = [
 export const ShopifyMarketing = () => {
   return (
     <div className="pt-44 md:pt-64 pb-32">
+      <Helmet>
+        <title>Shopify Marketing | Nexcypher</title>
+        <meta name="description" content="Scale your Shopify store with Nexcypher's data-driven marketing, paid ads, and retention strategies." />
+        <meta name="keywords" content="Shopify marketing, E-commerce ads, Paid social, Email marketing, SMS marketing" />
+      </Helmet>
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 mb-32">
         <div className="max-w-4xl">
@@ -68,10 +74,10 @@ export const ShopifyMarketing = () => {
           </h2>
           <div className="space-y-6 text-text-secondary text-lg max-w-3xl leading-relaxed">
             <p>
-              At Nexcypher, we believe in transparency, strategy, and delivering exceptional results through structured execution. Our Shopify Marketing service is designed to help brands increase visibility, attract the right audience, improve conversions, and build long-term growth.
+              At Nexcypher, we believe in transparency, strategy, and delivering exceptional results through structured execution. Our Shopify Marketing and Dropshipping services are designed to help brands increase visibility, attract the right audience, improve conversions, and build long-term growth.
             </p>
             <p>
-              We do not promise instant sales. Real growth takes commitment, consistency, and the right systems. Our role is to guide your brand through a proven step-by-step process that creates a stronger marketing foundation and better opportunities for scale.
+              We do not promise instant sales. Real growth takes commitment, consistency, and the right systems. Our role is to guide your brand through a proven step-by-step process—leveraging Facebook Ads, TikTok Ads, Google Ads, robust Sales Funnels, Google Site Mapping, and Full SEO—that creates a stronger marketing foundation and better opportunities for scale.
             </p>
           </div>
         </div>

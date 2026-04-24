@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -56,6 +57,11 @@ const SERVICE_CATEGORIES = [
 export const Services = () => {
   return (
     <div className="pt-44 md:pt-64 pb-32">
+      <Helmet>
+        <title>Our Services | Shopify & AI Solutions | Nexcypher</title>
+        <meta name="description" content="Explore Nexcypher's premium services: Shopify development, AI calling agents, and Shopify growth marketing." />
+        <meta name="keywords" content="Shopify services, AI services, E-commerce marketing, Growth strategies" />
+      </Helmet>
       {/* Hero */}
       <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">

@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { ShopifyGrowthPreview } from '../components/ShopifyGrowthPreview';
 import { SalesProofSection } from '../components/SalesProofSection';
@@ -9,6 +10,11 @@ import { Link } from 'react-router-dom';
 export const ShopifyGrowth = () => {
   return (
     <div className="pt-44 md:pt-64 pb-32">
+      <Helmet>
+        <title>Shopify Growth Agency | Nexcypher</title>
+        <meta name="description" content="Accelerate your e-commerce revenue with our proven Shopify growth systems and conversion rate optimization." />
+        <meta name="keywords" content="Shopify growth, CRO, Conversion rate optimization, E-commerce scaling" />
+      </Helmet>
        <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-cyan/10 text-accent-cyan border-accent-cyan/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           Scaling Logic

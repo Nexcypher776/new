@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { AboutSection } from '../components/AboutSection';
 import { WhyChooseSection } from '../components/WhyChooseSection';
@@ -7,6 +8,11 @@ import { Badge } from '@/components/ui/badge';
 export const About = () => {
   return (
     <div className="pt-44 md:pt-64 pb-32">
+      <Helmet>
+        <title>About Nexcypher | Our Mission & Team</title>
+        <meta name="description" content="Learn about Nexcypher's mission, our team of experts, and how we help e-commerce brands scale with Shopify and AI." />
+        <meta name="keywords" content="About Nexcypher, E-commerce experts, Shopify developers, AI marketing team" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           Who We Are

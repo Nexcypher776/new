@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { SalesProofSection } from '../components/SalesProofSection';
 import { VideoTestimonials } from '../components/VideoTestimonials';
@@ -55,20 +54,17 @@ const STEPS = [
 export const ShopifyMarketing = () => {
   return (
     <div className="pt-44 md:pt-64 pb-32">
-      <Helmet>
-        <title>Shopify Marketing | Nexcypher</title>
-        <meta name="description" content="Scale your Shopify store with Nexcypher's data-driven marketing, paid ads, and retention strategies." />
-        <meta name="keywords" content="Shopify marketing, E-commerce ads, Paid social, Email marketing, SMS marketing" />
-      </Helmet>
-      {/* Hero Section */}
+            
+        <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
+{/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 mb-32">
         <div className="max-w-4xl">
           <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
             Marketing Framework
           </Badge>
-          <h1 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic">
+          <h2 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic">
             Shopify <span className="text-accent-blue">Marketing.</span>
-          </h1>
+          </h2>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 italic">
             Results are a step-by-step process.
           </h2>
@@ -175,9 +171,9 @@ export const ShopifyMarketing = () => {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <div className="max-w-xl text-center md:text-left">
-              <h1 className="text-4xl md:text-7xl font-black tracking-tighter uppercase italic leading-none mb-6">
+              <h2 className="text-4xl md:text-7xl font-black tracking-tighter uppercase italic leading-none mb-6">
                 Ready for <br /> Real Growth?
-              </h1>
+              </h2>
               <p className="text-blue-100 text-lg font-medium">
                 No shortcuts. Just high-velocity execution and proven strategy. 
               </p>

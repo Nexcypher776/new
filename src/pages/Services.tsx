@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -57,19 +56,16 @@ const SERVICE_CATEGORIES = [
 export const Services = () => {
   return (
     <div className="pt-44 md:pt-64 pb-32">
-      <Helmet>
-        <title>Our Services | Shopify & AI Solutions | Nexcypher</title>
-        <meta name="description" content="Explore Nexcypher's premium services: Shopify development, AI calling agents, and Shopify growth marketing." />
-        <meta name="keywords" content="Shopify services, AI services, E-commerce marketing, Growth strategies" />
-      </Helmet>
-      {/* Hero */}
+            
+        <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
+{/* Hero */}
       <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           Solutions Portfolio
         </Badge>
-        <h1 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic">
+        <h2 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic">
           Powering <br /> <span className="text-accent-blue">Digital Dominance.</span>
-        </h1>
+        </h2>
         <p className="text-text-secondary text-xl max-w-3xl mx-auto leading-relaxed">
           Explore our specialized service categories designed to automate your business and accelerate your growth. 
         </p>

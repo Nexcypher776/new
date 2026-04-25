@@ -1,20 +1,16 @@
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 
 export const Privacy = () => {
   return (
     <div className="pt-44 md:pt-64 pb-32">
-      <Helmet>
-        <title>Privacy Policy | Nexcypher</title>
-        <meta name="description" content="Read the Privacy Policy to understand how Nexcypher handles your data." />
-        <meta name="keywords" content="Privacy policy, Data protection, Nexcypher privacy" />
-      </Helmet>
-      <div className="max-w-4xl mx-auto px-6">
+            
+        <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
+<div className="max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tighter">Privacy Policy — Nexcypher</h1>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tighter">Privacy Policy — Nexcypher</h2>
           <p className="text-text-secondary mb-12">Effective Date: April 23, 2026</p>
 
           <div className="space-y-8 text-text-secondary text-lg leading-relaxed">

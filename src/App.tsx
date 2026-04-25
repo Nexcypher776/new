@@ -49,6 +49,8 @@ const AppContent = () => {
   return (
     <div className="bg-background min-h-screen selection:bg-accent-blue/30 selection:text-white font-sans text-white overflow-x-hidden">
       <Helmet>
+        <title>Nexcypher | Shopify Growth & AI Calling Agency</title>
+        <meta name="description" content="Nexcypher helps brands scale with Shopify marketing and AI calling agents. Get more leads, conversions, and automated growth today." />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
       

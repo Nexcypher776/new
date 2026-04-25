@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -65,23 +64,22 @@ const VIDEO_PROOFS = [
 export const SalesVideoProof = () => {
   return (
     <div className="pt-44 md:pt-64 pb-32">
-      <Helmet>
-        <title>Sales Video Proof | Nexcypher</title>
-        <meta name="description" content="Watch how our AI calling agents and Shopify growth strategies generate real sales and revenue for our clients." />
-        <meta name="keywords" content="Sales proof, AI agent results, Shopify growth video, Nexcypher reviews" />
-      </Helmet>
-      {/* Hero Section */}
+            
+        
+        <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
+<h2 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h2>
+{/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           Evidence of Excellence
         </Badge>
-        <motion.h1 
+        <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic leading-none"
         >
           Sales <br /> <span className="text-accent-blue">Video Proof.</span>
-        </motion.h1>
+        </motion.h2>
         <h2 className="text-xl md:text-2xl font-bold text-white mb-8 italic">
           Real results. Real performance. Real growth.
         </h2>

@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { CheckCircle2, ArrowRight, Home, LayoutGrid } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -10,12 +9,9 @@ import { Footer } from '../components/Footer';
 export const ThankYou = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <Helmet>
-        <title>Thank You | Nexcypher</title>
-        <meta name="description" content="Thank you for contacting Nexcypher. We will be in touch shortly." />
-        <meta name="keywords" content="Thank you, contact confirmed" />
-      </Helmet>
-      <Navigation />
+            
+        <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
+<Navigation />
       
       <main className="flex-1 flex items-center justify-center pt-32 pb-20 px-4 relative overflow-hidden">
         {/* Background Accents */}
@@ -43,9 +39,9 @@ export const ThankYou = () => {
               Request Received
             </Badge>
 
-            <h1 className="text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter leading-none mb-6">
+            <h2 className="text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter leading-none mb-6">
               Thank You for <span className="text-accent-blue">Reaching Out</span>
-            </h1>
+            </h2>
 
             <div className="space-y-4 mb-12">
               <p className="text-white text-lg md:text-xl font-medium">

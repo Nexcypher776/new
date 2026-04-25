@@ -1,4 +1,3 @@
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { AboutSection } from '../components/AboutSection';
 import { WhyChooseSection } from '../components/WhyChooseSection';
@@ -8,18 +7,15 @@ import { Badge } from '@/components/ui/badge';
 export const About = () => {
   return (
     <div className="pt-44 md:pt-64 pb-32">
-      <Helmet>
-        <title>About Nexcypher | Our Mission & Team</title>
-        <meta name="description" content="Learn about Nexcypher's mission, our team of experts, and how we help e-commerce brands scale with Shopify and AI." />
-        <meta name="keywords" content="About Nexcypher, E-commerce experts, Shopify developers, AI marketing team" />
-      </Helmet>
-      <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
+            
+        <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
+<div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           Who We Are
         </Badge>
-        <h1 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic">
+        <h2 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic">
           The Architects <br /> of Growth.
-        </h1>
+        </h2>
         <p className="text-text-secondary text-xl max-w-3xl mx-auto leading-relaxed">
           Nexcypher was founded on a simple principle: conventional digital services don't cut it for elite brands. 
           We engineer systems that don't just work—they dominate.

@@ -7,6 +7,15 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // Redirect www to non-www
+  app.use((req, res, next) => {
+    const host = req.headers['x-forwarded-host'] || req.headers.host;
+    if (host === 'www.nexcypher.us') {
+      return res.redirect(301, `https://nexcypher.us${req.originalUrl}`);
+    }
+    next();
+  });
+
   app.use(express.json());
 
   // API Route for Klaviyo Subscription (renamed to avoid ad-blocker "subscribe" keyword filters)

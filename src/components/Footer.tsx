@@ -55,6 +55,7 @@ export const Footer = () => {
               <li><Link to="/services" className="hover:text-accent-blue transition-colors">All Services</Link></li>
               <li><Link to="/ai-calling-agents" className="hover:text-accent-blue transition-colors">AI Calling Agents</Link></li>
               <li><Link to="/shopify-growth" className="hover:text-accent-blue transition-colors">Shopify Growth</Link></li>
+              <li><Link to="/store-audit" className="hover:text-accent-blue transition-colors">Free Store Audit</Link></li>
               <li><Link to="/sales-video-proof" className="hover:text-accent-blue transition-colors">Sales Video Proof</Link></li>
               <li><Link to="/portfolio" className="hover:text-accent-blue transition-colors">Client Portfolio</Link></li>
             </ul>
@@ -64,9 +65,12 @@ export const Footer = () => {
             <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Company</h4>
             <ul className="space-y-4 text-text-secondary text-sm font-medium">
               <li><Link to="/about" className="hover:text-accent-blue transition-colors">About Us</Link></li>
-              <li><Link to="/pricing" className="hover:text-accent-blue transition-colors">Our Pricing</Link></li>
+              <li><Link to="/process" className="hover:text-accent-blue transition-colors">Our Process</Link></li>
+              <li><Link to="/faq" className="hover:text-accent-blue transition-colors">FAQ</Link></li>
+              <li><Link to="/pricing" className="hover:text-accent-blue transition-colors">Pricing</Link></li>
+              <li><Link to="/blog" className="hover:text-accent-blue transition-colors">Blog</Link></li>
+              <li><Link to="/book-call" className="hover:text-accent-blue transition-colors">Book a Call</Link></li>
               <li><Link to="/contact" className="hover:text-accent-blue transition-colors">Contact Support</Link></li>
-              <li><a href="https://www.fiverr.com/nexcypher_us" target="_blank" rel="noopener noreferrer" className="hover:text-accent-blue transition-colors">Fiverr Profile</a></li>
             </ul>
           </div>
         </div>
@@ -75,9 +79,12 @@ export const Footer = () => {
           <p className="text-white/40 text-xs font-medium">
             © {new Date().getFullYear()} Nexcypher Team. All rights reserved.
           </p>
-          <div className="flex gap-8 text-white/40 text-xs font-medium uppercase tracking-widest">
-            <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+          <div className="flex gap-4 md:gap-8 flex-wrap justify-center text-white/40 text-xs font-medium uppercase tracking-widest">
+            <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-white transition-colors">Terms</Link>
+            <Link to="/cookie-policy" className="hover:text-white transition-colors">Cookies</Link>
+            <Link to="/refund-policy" className="hover:text-white transition-colors">Refund Policy</Link>
+            <Link to="/disclaimer" className="hover:text-white transition-colors">Disclaimer</Link>
           </div>
         </div>
       </div>

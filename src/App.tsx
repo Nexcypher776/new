@@ -22,6 +22,20 @@ const Contact = lazy(() => import('./pages/Contact').then(m => ({ default: m.Con
 const ThankYou = lazy(() => import('./pages/ThankYou').then(m => ({ default: m.ThankYou })));
 const Terms = lazy(() => import('./pages/Terms').then(m => ({ default: m.Terms })));
 const Privacy = lazy(() => import('./pages/Privacy').then(m => ({ default: m.Privacy })));
+const StartHere = lazy(() => import('./pages/StartHere').then(m => ({ default: m.StartHere })));
+const CaseStudies = lazy(() => import('./pages/CaseStudies').then(m => ({ default: m.CaseStudies })));
+const Process = lazy(() => import('./pages/Process').then(m => ({ default: m.Process })));
+const FAQ = lazy(() => import('./pages/FAQ').then(m => ({ default: m.FAQ })));
+const Reviews = lazy(() => import('./pages/Reviews').then(m => ({ default: m.Reviews })));
+const BookCall = lazy(() => import('./pages/BookCall').then(m => ({ default: m.BookCall })));
+const Blog = lazy(() => import('./pages/Blog').then(m => ({ default: m.Blog })));
+const CookiePolicy = lazy(() => import('./pages/CookiePolicy').then(m => ({ default: m.CookiePolicy })));
+const Disclaimer = lazy(() => import('./pages/Disclaimer').then(m => ({ default: m.Disclaimer })));
+const RefundPolicy = lazy(() => import('./pages/RefundPolicy').then(m => ({ default: m.RefundPolicy })));
+const AiDemo = lazy(() => import('./pages/AiDemo').then(m => ({ default: m.AiDemo })));
+const AiFeatures = lazy(() => import('./pages/AiFeatures').then(m => ({ default: m.AiFeatures })));
+const StoreAudit = lazy(() => import('./pages/StoreAudit').then(m => ({ default: m.StoreAudit })));
+const Industries = lazy(() => import('./pages/Industries').then(m => ({ default: m.Industries })));
 
 const PageTransition = ({ children }: { children: React.ReactNode }) => (
   <motion.div
@@ -79,6 +93,22 @@ const AppContent = () => {
             <Route path="/thank-you" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><ThankYou /></Suspense></PageTransition>} />
             <Route path="/terms" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><Terms /></Suspense></PageTransition>} />
             <Route path="/privacy" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><Privacy /></Suspense></PageTransition>} />
+            
+            {/* New Pages */}
+            <Route path="/start-here" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><StartHere /></Suspense></PageTransition>} />
+            <Route path="/case-studies" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><CaseStudies /></Suspense></PageTransition>} />
+            <Route path="/process" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><Process /></Suspense></PageTransition>} />
+            <Route path="/faq" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><FAQ /></Suspense></PageTransition>} />
+            <Route path="/reviews" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><Reviews /></Suspense></PageTransition>} />
+            <Route path="/book-call" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><BookCall /></Suspense></PageTransition>} />
+            <Route path="/blog" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><Blog /></Suspense></PageTransition>} />
+            <Route path="/cookie-policy" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><CookiePolicy /></Suspense></PageTransition>} />
+            <Route path="/disclaimer" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><Disclaimer /></Suspense></PageTransition>} />
+            <Route path="/refund-policy" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><RefundPolicy /></Suspense></PageTransition>} />
+            <Route path="/ai-demo" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><AiDemo /></Suspense></PageTransition>} />
+            <Route path="/ai-features" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><AiFeatures /></Suspense></PageTransition>} />
+            <Route path="/store-audit" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><StoreAudit /></Suspense></PageTransition>} />
+            <Route path="/industries" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><Industries /></Suspense></PageTransition>} />
           </Routes>
         </AnimatePresence>
       </main>

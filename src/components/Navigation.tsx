@@ -26,6 +26,7 @@ const Logo = ({ className = "w-12 h-12" }: { className?: string }) => {
 };
 
 const NAV_LINKS = [
+  { name: 'Start Here', path: '/start-here' },
   { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
   { 
@@ -34,12 +35,25 @@ const NAV_LINKS = [
     subLinks: [
       { name: 'All Services', path: '/services' },
       { name: 'AI Calling Agents', path: '/ai-calling-agents' },
+      { name: 'AI Features', path: '/ai-features' },
+      { name: 'Live AI Demo', path: '/ai-demo' },
       { name: 'Shopify Marketing', path: '/shopify-marketing' },
       { name: 'Shopify Growth', path: '/shopify-growth' },
+      { name: 'Store Audit', path: '/store-audit' },
     ]
   },
-  { name: 'Portfolio', path: '/portfolio' },
-  { name: 'Sales Video Proof', path: '/sales-video-proof' },
+  { 
+    name: 'Portfolio', 
+    path: '/portfolio',
+    subLinks: [
+      { name: 'All Portfolio', path: '/portfolio' },
+      { name: 'Case Studies', path: '/case-studies' },
+      { name: 'Results', path: '/results' },
+      { name: 'Sales Video Proof', path: '/sales-video-proof' },
+      { name: 'Reviews', path: '/reviews' },
+    ]
+  },
+  { name: 'FAQ', path: '/faq' },
   { name: 'Pricing', path: '/pricing' },
 ];
 
@@ -52,7 +66,7 @@ export const Navigation = () => {
       {/* Top Banner */}
       <div className="bg-black border-b border-white/5 py-2.5 px-4 text-center pointer-events-auto">
         <p className="text-white text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
-          🚀 Limited Time: Free 15-Min Shopify Growth Audit — <Link to="/contact" className="text-accent-gold underline cursor-pointer">Book Now</Link>
+          🚀 Limited Time: Free 15-Min Shopify Growth Audit — <Link to="/store-audit" className="text-accent-gold underline cursor-pointer">Book Now</Link>
         </p>
       </div>
 
@@ -205,7 +219,7 @@ export const Navigation = () => {
                     </div>
                   ))}
                 </div>
-                <Link to="/contact" className="mt-8" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link to="/book-call" className="mt-8" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button className="bg-accent-blue text-white w-full rounded-full h-14 font-black uppercase tracking-widest">
                     Book a Call
                   </Button>

@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -42,8 +43,15 @@ const AppContent = () => {
   });
   const location = useLocation();
 
+  // Canonical URL construction
+  const canonicalUrl = `https://nexcypher.us${location.pathname === '/' ? '' : location.pathname}`;
+
   return (
     <div className="bg-background min-h-screen selection:bg-accent-blue/30 selection:text-white font-sans text-white overflow-x-hidden">
+      <Helmet>
+        <link rel="canonical" href={canonicalUrl} />
+      </Helmet>
+      
       {/* Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-accent-blue z-[110] origin-left"

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nexcypher.com/sitemap.xml
+Sitemap: https://nexcypher.us/sitemap.xml

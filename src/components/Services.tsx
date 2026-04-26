@@ -5,10 +5,10 @@ import { Badge } from '@/components/ui/badge';
 
 export const Services = () => {
   const services = [
-    { title: "Shopify Development", desc: "Premium theme development, full store setup, and data migration.", icon: ShoppingBag, color: "accent-blue" },
-    { title: "AI Calling Agents", desc: "Autonomous AI agents that handle outbound sales and inbound support.", icon: Bot, color: "accent-gold" },
-    { title: "Shopify Growth/Scaling", desc: "Multi-channel marketing (TikTok, FB, Google) and ROAS optimization.", icon: Megaphone, color: "accent-cyan" },
-    { title: "UX/UI Design", desc: "Conversion-optimized design that turns visitors into loyal customers.", icon: TrendingUp, color: "accent-purple" },
+    { title: "Shopify Development", desc: "Premium theme development, full store setup, and data migration.", icon: ShoppingBag, colorClasses: "bg-accent-blue/10 text-accent-blue" },
+    { title: "AI Calling Agents", desc: "Autonomous AI agents that handle outbound sales and inbound support.", icon: Bot, colorClasses: "bg-accent-gold/10 text-accent-gold" },
+    { title: "Shopify Growth/Scaling", desc: "Multi-channel marketing (TikTok, FB, Google) and ROAS optimization.", icon: Megaphone, colorClasses: "bg-accent-cyan/10 text-accent-cyan" },
+    { title: "UX/UI Design", desc: "Conversion-optimized design that turns visitors into loyal customers.", icon: TrendingUp, colorClasses: "bg-accent-purple/10 text-accent-purple" },
   ];
 
   return (
@@ -32,7 +32,7 @@ export const Services = () => {
               className="p-8 rounded-[32px] bg-white/[0.03] border border-white/10 group hover:border-accent-blue/30 transition-all flex flex-col justify-between"
             >
               <div>
-                <div className={`w-14 h-14 rounded-2xl bg-${service.color}/10 flex items-center justify-center text-${service.color} mb-8 group-hover:scale-110 transition-transform`}>
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform ${service.colorClasses}`}>
                   <service.icon className="w-7 h-7" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>

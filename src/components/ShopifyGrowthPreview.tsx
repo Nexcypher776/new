@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { ShoppingBag, TrendingUp, Target, BarChart3, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
 
 export const ShopifyGrowthPreview = () => {
   return (
@@ -77,9 +78,22 @@ export const ShopifyGrowthPreview = () => {
               ))}
             </div>
 
-            <Button size="lg" className="bg-accent-blue hover:bg-accent-blue/90 text-white font-bold h-14 rounded-full px-8 shadow-xl shadow-accent-blue/10 group">
-              Start Scaling Now <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <div className="pt-2 max-w-full w-full">
+              <form className="flex flex-col gap-3" onSubmit={(e) => e.preventDefault()}>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Input 
+                    type="url" 
+                    placeholder="Enter your store URL" 
+                    className="bg-white/5 border-white/10 text-white h-14 flex-1 rounded-2xl focus:border-accent-blue/50 focus:ring-accent-blue/20"
+                    required
+                  />
+                  <Button type="submit" size="lg" className="bg-accent-blue hover:bg-accent-blue/90 text-white font-bold h-14 rounded-2xl px-8 shadow-xl shadow-accent-blue/10 shrink-0 group w-full sm:w-auto">
+                    Get Free Audit <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </div>
+                <p className="text-xs text-text-secondary/70 pl-2">Provide your exact Shopify URL (e.g., storename.myshopify.com) or custom domain for a comprehensive growth analysis.</p>
+              </form>
+            </div>
           </motion.div>
 
         </div>

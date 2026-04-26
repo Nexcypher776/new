@@ -15,12 +15,9 @@ export const VideoTestimonials = () => {
   };
 
   const getYoutubeId = (url: string) => {
-    const match = url.match(/[?&]v=([^&]+)/);
-    if (!match) {
-        const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
-        return shortMatch ? shortMatch[1] : null;
-    }
-    return match ? match[1] : null;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
   };
 
   const handleShare = (e: React.MouseEvent, platform: string, video: any) => {

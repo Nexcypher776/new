@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { HeroSlider } from '../components/HeroSlider';
+import { TrustedBrands } from '../components/TrustedBrands';
 import { TrustSection } from '../components/TrustSection';
 import { AboutSection } from '../components/AboutSection';
 import { AiCallingAgentsPreview } from '../components/AiCallingAgentsPreview';
@@ -19,6 +20,7 @@ export const Home = () => {
     <>
       <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
       <HeroSlider />
+      <TrustedBrands />
       <TrustSection />
       
       {/* Shortened About summary for home */}

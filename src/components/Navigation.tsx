@@ -171,18 +171,18 @@ export const Navigation = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[90] md:hidden"
+                className="fixed inset-0 bg-black/80 backdrop-blur-md z-[90] md:hidden pointer-events-auto"
               />
               <motion.div
                 initial={{ x: '-100%' }}
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                className="fixed top-0 left-0 bottom-0 w-[80%] max-w-xs bg-background border-r border-white/10 p-8 z-[100] md:hidden flex flex-col"
+                className="fixed top-0 left-0 bottom-0 w-[80%] max-w-sm bg-black/95 backdrop-blur-xl border-r border-white/10 p-8 z-[100] md:hidden flex flex-col pointer-events-auto shadow-2xl"
               >
                 <div className="flex items-center justify-between mb-12">
                   <Logo className="w-12 h-12" />
-                  <button onClick={() => setIsMobileMenuOpen(false)} className="text-white">
+                  <button onClick={() => setIsMobileMenuOpen(false)} className="text-white p-2 hover:bg-white/10 rounded-full transition-colors">
                     <X className="w-6 h-6" />
                   </button>
                 </div>
@@ -197,8 +197,8 @@ export const Navigation = () => {
                               key={sub.path}
                               to={sub.path}
                               onClick={() => setIsMobileMenuOpen(false)}
-                              className={`block text-sm font-black uppercase tracking-widest border-b border-white/5 pb-2 ml-4 ${
-                                location.pathname === sub.path ? 'text-accent-gold' : 'text-white/70'
+                              className={`block text-sm font-black uppercase tracking-widest border-b border-white/5 pb-2 ml-4 transition-colors ${
+                                location.pathname === sub.path ? 'text-accent-gold' : 'text-white/70 hover:text-white'
                               }`}
                             >
                               {sub.name}
@@ -209,8 +209,8 @@ export const Navigation = () => {
                         <Link
                           to={link.path}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className={`text-sm font-black uppercase tracking-widest border-b border-white/5 pb-2 block ${
-                            location.pathname === link.path ? 'text-accent-gold' : 'text-white'
+                          className={`text-sm font-black uppercase tracking-widest border-b border-white/5 pb-2 block transition-colors ${
+                            location.pathname === link.path ? 'text-accent-gold' : 'text-white hover:text-accent-gold'
                           }`}
                         >
                           {link.name}
@@ -220,7 +220,7 @@ export const Navigation = () => {
                   ))}
                 </div>
                 <Link to="/book-call" className="mt-8" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button className="bg-accent-blue text-white w-full rounded-full h-14 font-black uppercase tracking-widest">
+                  <Button className="bg-accent-blue hover:bg-accent-blue/90 text-white w-full rounded-full h-14 font-black uppercase tracking-widest transition-colors shadow-lg shadow-accent-blue/20">
                     Book a Call
                   </Button>
                 </Link>

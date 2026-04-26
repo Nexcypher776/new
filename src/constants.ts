@@ -35,21 +35,14 @@ export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
     id: '1',
     clientName: 'Camila Labad',
     result: 'Brand Authority Boosted',
-    thumbnail: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=800',
+    thumbnail: 'https://vumbnail.com/1111080035.jpg',
     videoUrl: 'https://vimeo.com/1111080035'
   },
   {
     id: '2',
     clientName: 'James Robot',
     result: 'Conversion Rate Doubled',
-    thumbnail: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800',
-    videoUrl: 'https://vimeo.com/1110647582'
-  },
-  {
-    id: '3',
-    clientName: 'Sarah Jenkins',
-    result: 'ROAS increased by 3.5x',
-    thumbnail: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800',
+    thumbnail: 'https://vumbnail.com/1110647582.jpg',
     videoUrl: 'https://vimeo.com/1110647582'
   }
 ];

@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { NichePortfolio } from '../components/NichePortfolio';
 import { CaseStudiesSection } from '../components/CaseStudiesSection';
 import { VideoTestimonials } from '../components/VideoTestimonials';
+import { SalesVideoProofSection } from '../components/SalesVideoProofSection';
 import { SalesProofSection } from '../components/SalesProofSection';
 import { Badge } from '@/components/ui/badge';
 
@@ -25,6 +26,7 @@ export const Portfolio = () => {
       <CaseStudiesSection />
       <NichePortfolio />
       <SalesProofSection />
+      <SalesVideoProofSection />
       <VideoTestimonials />
 
       <section className="py-32 bg-white/[0.01] border-t border-white/5">

@@ -14,6 +14,15 @@ export const VideoTestimonials = () => {
     return match ? match[1] : null;
   };
 
+  const getYoutubeId = (url: string) => {
+    const match = url.match(/[?&]v=([^&]+)/);
+    if (!match) {
+        const shortMatch = url.match(/youtu\.be\/([^?&]+)/);
+        return shortMatch ? shortMatch[1] : null;
+    }
+    return match ? match[1] : null;
+  };
+
   const handleShare = (e: React.MouseEvent, platform: string, video: any) => {
     e.preventDefault();
     e.stopPropagation();
@@ -107,7 +116,9 @@ export const VideoTestimonials = () => {
             <div className="aspect-video w-full">
               {selectedVideo && (
                 <iframe
-                  src={`https://player.vimeo.com/video/${getVimeoId(selectedVideo)}?autoplay=1`}
+                  src={selectedVideo.includes('vimeo.com') 
+                      ? `https://player.vimeo.com/video/${getVimeoId(selectedVideo)}?autoplay=1` 
+                      : `https://www.youtube.com/embed/${getYoutubeId(selectedVideo)}?autoplay=1&rel=0`}
                   className="w-full h-full"
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen

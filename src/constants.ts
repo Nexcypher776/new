@@ -54,6 +54,163 @@ export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
   }
 ];
 
+export const SALES_VIDEO_PROOFS: VideoTestimonial[] = [
+  {
+    id: '4',
+    clientName: 'Client Proof 1',
+    result: 'Massive Growth',
+    thumbnail: 'https://img.youtube.com/vi/y8368bBGgpY/hqdefault.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=y8368bBGgpY'
+  },
+  {
+    id: '5',
+    clientName: 'Client Proof 2',
+    result: 'Sales Scaled',
+    thumbnail: 'https://img.youtube.com/vi/OxZj9cUzWVs/hqdefault.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=OxZj9cUzWVs'
+  },
+  {
+    id: '6',
+    clientName: 'Client Proof 3',
+    result: 'Store Optimization',
+    thumbnail: 'https://img.youtube.com/vi/69i5JIwcJMY/hqdefault.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=69i5JIwcJMY'
+  },
+  {
+    id: '7',
+    clientName: 'Client Proof 4',
+    result: 'Record Revenue',
+    thumbnail: 'https://img.youtube.com/vi/S1c1LC3Osow/hqdefault.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=S1c1LC3Osow'
+  },
+  {
+    id: '8',
+    clientName: 'Client Proof 5',
+    result: 'AI Automation Success',
+    thumbnail: 'https://img.youtube.com/vi/zrAq35KPyTM/hqdefault.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=zrAq35KPyTM'
+  },
+  {
+    id: '9',
+    clientName: 'Client Proof 6',
+    result: 'High-Converting Store',
+    thumbnail: 'https://img.youtube.com/vi/75fGFBGlfWA/hqdefault.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=75fGFBGlfWA'
+  },
+  {
+    id: '10',
+    clientName: 'Client Proof 7',
+    result: 'Incredible ROAS',
+    thumbnail: 'https://img.youtube.com/vi/_1hrbBRmao8/hqdefault.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=_1hrbBRmao8'
+  },
+  {
+    id: '11',
+    clientName: 'Client Proof 8',
+    result: 'Conversion Rate Skyrocketed',
+    thumbnail: 'https://img.youtube.com/vi/4NBIcn4oEt8/hqdefault.jpg',
+    videoUrl: 'https://www.youtube.com/watch?v=4NBIcn4oEt8'
+  },
+  {
+    id: '12',
+    clientName: 'Client Proof 9',
+    result: 'Shorts Growth',
+    thumbnail: 'https://img.youtube.com/vi/n0R18yoOfGU/hqdefault.jpg',
+    videoUrl: 'https://youtube.com/shorts/n0R18yoOfGU'
+  },
+  {
+    id: '13',
+    clientName: 'Client Proof 10',
+    result: 'Sales Scaled',
+    thumbnail: 'https://img.youtube.com/vi/pn0oiLvQrR0/hqdefault.jpg',
+    videoUrl: 'https://www.youtube.com/shorts/pn0oiLvQrR0'
+  },
+  {
+    id: '14',
+    clientName: 'Client Proof 11',
+    result: 'High Conversions',
+    thumbnail: 'https://img.youtube.com/vi/EHBhSkxBjuQ/hqdefault.jpg',
+    videoUrl: 'https://youtube.com/shorts/EHBhSkxBjuQ'
+  },
+  {
+    id: '15',
+    clientName: 'Client Proof 12',
+    result: 'Epic ROAS',
+    thumbnail: 'https://img.youtube.com/vi/PmHyw85xEbY/hqdefault.jpg',
+    videoUrl: 'https://youtu.be/PmHyw85xEbY'
+  },
+  {
+    id: '16',
+    clientName: 'Client Proof 13',
+    result: 'Revenue Surge',
+    thumbnail: 'https://img.youtube.com/vi/lbF_lyBoM6Y/hqdefault.jpg',
+    videoUrl: 'https://youtu.be/lbF_lyBoM6Y'
+  },
+  {
+    id: '17',
+    clientName: 'Client Proof 14',
+    result: 'Brand Expansion',
+    thumbnail: 'https://img.youtube.com/vi/Ru_WM3jt5A8/hqdefault.jpg',
+    videoUrl: 'https://youtube.com/shorts/Ru_WM3jt5A8'
+  },
+  {
+    id: '18',
+    clientName: 'Client Proof 15',
+    result: 'Record Profits',
+    thumbnail: 'https://img.youtube.com/vi/Zx4z2bgeYeE/hqdefault.jpg',
+    videoUrl: 'https://youtube.com/shorts/Zx4z2bgeYeE'
+  },
+  {
+    id: '19',
+    clientName: 'Client Proof 16',
+    result: 'Unmatched Scale',
+    thumbnail: 'https://img.youtube.com/vi/kYxoee_38IQ/hqdefault.jpg',
+    videoUrl: 'https://youtube.com/shorts/kYxoee_38IQ'
+  },
+  {
+    id: '20',
+    clientName: 'Client Proof 17',
+    result: 'Crazy Metrics',
+    thumbnail: 'https://img.youtube.com/vi/IkgclcT4_7E/hqdefault.jpg',
+    videoUrl: 'https://youtube.com/shorts/IkgclcT4_7E'
+  },
+  {
+    id: '21',
+    clientName: 'Client Proof 18',
+    result: 'Global Expansion',
+    thumbnail: 'https://img.youtube.com/vi/-JOPzvZk6Pg/hqdefault.jpg',
+    videoUrl: 'https://youtube.com/shorts/-JOPzvZk6Pg'
+  },
+  {
+    id: '22',
+    clientName: 'Client Proof 19',
+    result: 'Massive Output',
+    thumbnail: 'https://img.youtube.com/vi/q9aEd-tEeGo/hqdefault.jpg',
+    videoUrl: 'https://youtube.com/shorts/q9aEd-tEeGo'
+  },
+  {
+    id: '23',
+    clientName: 'Client Proof 20',
+    result: 'Consistent Sales',
+    thumbnail: 'https://img.youtube.com/vi/chA_udI5M2U/hqdefault.jpg',
+    videoUrl: 'https://youtube.com/shorts/chA_udI5M2U'
+  },
+  {
+    id: '24',
+    clientName: 'Client Proof 21',
+    result: 'Rapid Growth',
+    thumbnail: 'https://img.youtube.com/vi/HmEPYr0pKJY/hqdefault.jpg',
+    videoUrl: 'https://youtube.com/shorts/HmEPYr0pKJY'
+  },
+  {
+    id: '25',
+    clientName: 'Client Proof 22',
+    result: 'Peak Performance',
+    thumbnail: 'https://img.youtube.com/vi/S6BEq7Jruok/hqdefault.jpg',
+    videoUrl: 'https://youtube.com/shorts/S6BEq7Jruok'
+  }
+];
+
 export const SALES_PROOFS: SalesProof[] = [
   {
     id: '1',

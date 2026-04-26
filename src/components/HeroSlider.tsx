@@ -28,6 +28,7 @@ export const HeroSlider = () => {
       id: 1,
       title: "Build a High-Converting Shopify Store That Actually Sells",
       subtitle: "We combine Shopify, AI automation, and data-driven marketing to scale your business fast",
+      testimonial: "“Nexcypher transformed our store. Conversion rate jumped by 40%.” — Sarah J.",
       ctas: [
         { label: "Get Started Now", path: "/contact", primary: true }
       ],
@@ -39,6 +40,7 @@ export const HeroSlider = () => {
       id: 2,
       title: "Shopify Store Design That Converts Visitors Into Buyers",
       subtitle: "From product research to full store setup we build winning stores",
+      testimonial: "“Best Shopify agency we have worked with. Attention to detail is unmatched.” — David L.",
       ctas: [
         { label: "View Portfolio", path: "/portfolio", primary: true }
       ],
@@ -50,6 +52,7 @@ export const HeroSlider = () => {
       id: 3,
       title: "AI Agents That Call, Chat, and Close Deals For You",
       subtitle: "Automate your business with smart AI systems that work 24/7",
+      testimonial: "“The AI agents handle 90% of our customer queries. Absolute game changer.” — Michael R.",
       ctas: [
         { label: "Explore AI Services", path: "/ai-calling-agents", primary: true }
       ],
@@ -107,32 +110,42 @@ export const HeroSlider = () => {
                   hidden: { opacity: 0 },
                   visible: {
                     opacity: 1,
-                    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+                    transition: { staggerChildren: 0.2, delayChildren: 0.3 }
                   }
                 }}
                 className="relative z-10"
               >
                 <motion.div 
-                  variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}
+                  variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
                   className="flex items-center gap-4 mb-8"
                 >
                   <Logo className="w-16 h-16 md:w-20 md:h-20" />
                   <div className={`w-12 h-1 ${slides[current].accent} rounded-full`} />
                 </motion.div>
                 <motion.h2 
-                  variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}
+                  variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
                   className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]"
                 >
                   {slides[current].title}
                 </motion.h2>
                 <motion.p 
-                  variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}
-                  className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed font-light max-w-xl"
+                  variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+                  className="text-lg md:text-xl text-white/80 mb-6 leading-relaxed font-light max-w-xl"
                 >
                   {slides[current].subtitle}
                 </motion.p>
+                
+                {slides[current].testimonial && (
+                  <motion.div
+                    variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+                    className="mb-10 pl-4 border-l-2 border-white/20 italic text-white/70 font-medium"
+                  >
+                    {slides[current].testimonial}
+                  </motion.div>
+                )}
+
                 <motion.div 
-                  variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.8 } } }}
+                  variants={{ hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
                   className="flex flex-wrap gap-4"
                 >
                   {slides[current].ctas.map((cta, idx) => (
@@ -161,7 +174,7 @@ export const HeroSlider = () => {
                 className="hidden lg:block relative"
               >
                 <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50 group">
-                  <img src={slides[current].image} alt={slides[current].title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+                  <img src={slides[current].image} alt={slides[current].title} className="w-full h-full object-cover transform-gpu group-hover:scale-105 transition-transform duration-[1.5s] ease-out" referrerPolicy="no-referrer" />
                   <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 glass p-4 rounded-2xl border border-white/20 backdrop-blur-md">
                     <div className="flex items-center gap-3">

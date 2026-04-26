@@ -76,13 +76,110 @@ export const AiFeatures = () => {
         </div>
       </section>
       
-      {/* Content Placeholder Section */}
-      <section className="py-24 bg-black border-t border-white/5">
-        <div className="max-w-4xl mx-auto px-6 prose prose-invert prose-lg">
-          <p className="text-text-secondary">
-            More detailed information regarding Ai Features will be updated here. 
-            Our team is engineering the best experience.
-          </p>
+      {/* Features Content Section */}
+      <section className="py-24 bg-black border-t border-white/5 relative z-10">
+        <div className="max-w-4xl mx-auto px-6 space-y-12">
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="border border-white/10 rounded-3xl p-10 bg-white/5 hover:bg-white/10 transition-colors"
+          >
+            <h3 className="text-3xl font-bold text-white mb-6 tracking-tight">Advanced Natural Language Processing (NLP)</h3>
+            <ul className="space-y-4 text-text-secondary text-lg leading-relaxed list-none m-0 p-0">
+              <li className="flex items-start gap-4">
+                <span className="w-2 h-2 rounded-full bg-accent-blue mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+                <p className="m-0">Engage your customers with conversational fluidity indistinguishable from human agents. Our algorithms understand intent, context, and sentiment dynamically.</p>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="w-2 h-2 rounded-full bg-accent-blue mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+                <p className="m-0">Handle complex interruptions seamlessly and ensure conversations never feel scripted or robotic.</p>
+              </li>
+            </ul>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="border border-white/10 rounded-3xl p-10 bg-white/5 hover:bg-white/10 transition-colors"
+          >
+            <h3 className="text-3xl font-bold text-white mb-6 tracking-tight">Impeccable Voice Recognition & Synthesis</h3>
+            <ul className="space-y-4 text-text-secondary text-lg leading-relaxed list-none m-0 p-0">
+              <li className="flex items-start gap-4">
+                <span className="w-2 h-2 rounded-full bg-accent-gold mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(250,204,21,0.5)]" />
+                <p className="m-0">Equipped with ultra-low latency recognition models that accurately capture nuances, accents, and rapid speech patterns effortlessly.</p>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="w-2 h-2 rounded-full bg-accent-gold mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(250,204,21,0.5)]" />
+                <p className="m-0">Deploy custom voice clones or select from our premium catalog of hyper-realistic voices designed to reflect your brand identity.</p>
+              </li>
+            </ul>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="border border-white/10 rounded-3xl p-10 bg-white/5 hover:bg-white/10 transition-colors"
+          >
+            <h3 className="text-3xl font-bold text-white mb-6 tracking-tight">Frictionless CRM Integration</h3>
+            <ul className="space-y-4 text-text-secondary text-lg leading-relaxed list-none m-0 p-0">
+              <li className="flex items-start gap-4">
+                <span className="w-2 h-2 rounded-full bg-accent-purple mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(168,85,247,0.5)]" />
+                <p className="m-0">Streamline your ecosystem by syncing live calls, transcripts, and identified lead scores directly into Salesforce, HubSpot, or your proprietary CRM.</p>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="w-2 h-2 rounded-full bg-accent-purple mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(168,85,247,0.5)]" />
+                <p className="m-0">Trigger automated post-call workflows instantly to accelerate the sales cycle without human intervention.</p>
+              </li>
+            </ul>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="border border-white/10 rounded-3xl p-10 bg-white/5 hover:bg-white/10 transition-colors"
+          >
+            <h3 className="text-3xl font-bold text-white mb-6 tracking-tight">Precision Real-Time Analytics</h3>
+            <ul className="space-y-4 text-text-secondary text-lg leading-relaxed list-none m-0 p-0">
+              <li className="flex items-start gap-4">
+                <span className="w-2 h-2 rounded-full bg-accent-cyan mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
+                <p className="m-0">Monitor performance at a granular level through a comprehensive command center tracking metrics like conversion rates and objection handling efficiency.</p>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="w-2 h-2 rounded-full bg-accent-cyan mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
+                <p className="m-0">Leverage AI-driven insights generated after every call to continually refine scripts and optimize operational strategy.</p>
+              </li>
+            </ul>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="border border-white/10 rounded-3xl p-10 bg-white/5 hover:bg-white/10 transition-colors"
+          >
+            <h3 className="text-3xl font-bold text-white mb-6 tracking-tight">Native Bilingual Support</h3>
+            <ul className="space-y-4 text-text-secondary text-lg leading-relaxed list-none m-0 p-0">
+              <li className="flex items-start gap-4">
+                <span className="w-2 h-2 rounded-full bg-accent-blue mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+                <p className="m-0">Break geographical barriers with agents capable of switching effortlessly between languages natively, maintaining cultural context throughout.</p>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="w-2 h-2 rounded-full bg-accent-blue mt-2.5 flex-shrink-0 shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+                <p className="m-0">Expand your total addressable market instantly and service international accounts with uncompromising quality 24/7.</p>
+              </li>
+            </ul>
+          </motion.div>
+
         </div>
       </section>
     </>

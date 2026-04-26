@@ -38,9 +38,15 @@ export const AiCallingAgents = () => {
               { icon: Bot, title: "Unlimited Scaling", desc: "Handle 10,000 calls simultaneously without hiring a single person." }
             ].map((item, i) => (
               <div key={i} className="space-y-4">
-                <div className="w-16 h-16 bg-accent-gold/10 rounded-2xl flex items-center justify-center text-accent-gold mx-auto">
+                <motion.div 
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2, type: 'spring', stiffness: 200, damping: 15 }}
+                  className="w-16 h-16 bg-accent-gold/10 rounded-2xl flex items-center justify-center text-accent-gold mx-auto"
+                >
                   <item.icon className="w-8 h-8 pointer-events-none" />
-                </div>
+                </motion.div>
                 <h3 className="text-white font-bold text-xl">{item.title}</h3>
                 <p className="text-text-secondary text-sm leading-relaxed">{item.desc}</p>
               </div>

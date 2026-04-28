@@ -36,6 +36,7 @@ const AiDemo = lazy(() => import('./pages/AiDemo').then(m => ({ default: m.AiDem
 const AiFeatures = lazy(() => import('./pages/AiFeatures').then(m => ({ default: m.AiFeatures })));
 const StoreAudit = lazy(() => import('./pages/StoreAudit').then(m => ({ default: m.StoreAudit })));
 const Industries = lazy(() => import('./pages/Industries').then(m => ({ default: m.Industries })));
+const NotFound = lazy(() => import('./pages/NotFound').then(m => ({ default: m.NotFound })));
 
 const PageTransition = ({ children }: { children: React.ReactNode }) => (
   <motion.div
@@ -109,6 +110,7 @@ const AppContent = () => {
             <Route path="/ai-features" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><AiFeatures /></Suspense></PageTransition>} />
             <Route path="/store-audit" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><StoreAudit /></Suspense></PageTransition>} />
             <Route path="/industries" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><Industries /></Suspense></PageTransition>} />
+            <Route path="*" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><NotFound /></Suspense></PageTransition>} />
           </Routes>
         </AnimatePresence>
       </main>

@@ -37,6 +37,8 @@ const AiFeatures = lazy(() => import('./pages/AiFeatures').then(m => ({ default:
 const StoreAudit = lazy(() => import('./pages/StoreAudit').then(m => ({ default: m.StoreAudit })));
 const Industries = lazy(() => import('./pages/Industries').then(m => ({ default: m.Industries })));
 const NotFound = lazy(() => import('./pages/NotFound').then(m => ({ default: m.NotFound })));
+const NicheResearch = lazy(() => import('./pages/NicheResearch').then(m => ({ default: m.NicheResearch })));
+const StoreDesignGallery = lazy(() => import('./pages/StoreDesignGallery').then(m => ({ default: m.StoreDesignGallery })));
 
 const PageTransition = ({ children }: { children: React.ReactNode }) => (
   <motion.div
@@ -109,6 +111,8 @@ const AppContent = () => {
             <Route path="/ai-demo" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><AiDemo /></Suspense></PageTransition>} />
             <Route path="/ai-features" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><AiFeatures /></Suspense></PageTransition>} />
             <Route path="/store-audit" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><StoreAudit /></Suspense></PageTransition>} />
+            <Route path="/niche-research" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><NicheResearch /></Suspense></PageTransition>} />
+            <Route path="/store-design-gallery" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><StoreDesignGallery /></Suspense></PageTransition>} />
             <Route path="/industries" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><Industries /></Suspense></PageTransition>} />
             <Route path="*" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><NotFound /></Suspense></PageTransition>} />
           </Routes>
@@ -123,6 +127,7 @@ const AppContent = () => {
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <LeadPopup />
       <AppContent />
     </Router>

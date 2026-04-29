@@ -1,19 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu as MenuIcon, X, ArrowRight, Bot, ChevronDown, ChevronRight } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { LOGO_URL } from '../constants';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuSub,
-  DropdownMenuSubTrigger,
-  DropdownMenuSubContent,
-  DropdownMenuPortal,
-} from "@/components/ui/dropdown-menu"
 
 const Logo = ({ className = "w-12 h-12" }: { className?: string }) => {
   return (
@@ -29,56 +19,50 @@ const Logo = ({ className = "w-12 h-12" }: { className?: string }) => {
   );
 };
 
-const NAV_LINKS = [
-  { name: 'Start Here', path: '/start-here' },
+type NavLink = {
+  name: string;
+  path: string;
+  subLinks?: NavLink[];
+};
+
+const NAV_LINKS: NavLink[] = [
   { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
+  { name: 'About Us', path: '/about' },
   { 
     name: 'Services', 
     path: '/services',
     subLinks: [
       { name: 'All Services', path: '/services' },
-      { 
-        name: 'AI Solutions',
-        subLinks: [
-          { name: 'AI Calling Agents', path: '/ai-calling-agents' },
-          { name: 'AI Features', path: '/ai-features' },
-          { name: 'Live AI Demo', path: '/ai-demo' },
-        ]
-      },
-      { 
-        name: 'Shopify Services',
-        subLinks: [
-          { name: 'Shopify Marketing', path: '/shopify-marketing' },
-          { name: 'Shopify Growth', path: '/shopify-growth' },
-          { name: 'Store Audit', path: '/store-audit' },
-        ]
-      }
+      { name: 'AI Calling Agents', path: '/ai-calling-agents' },
+      { name: 'Shopify Growth', path: '/shopify-growth' },
+      { name: 'Shopify Marketing', path: '/shopify-marketing' },
     ]
   },
   { 
-    name: 'Portfolio', 
-    path: '/portfolio',
+    name: 'Tools & Gallery', 
+    path: '/store-design-gallery',
     subLinks: [
-      { name: 'All Portfolio', path: '/portfolio' },
-      { 
-        name: 'Success Stories',
-        subLinks: [
-          { name: 'Case Studies', path: '/case-studies' },
-          { name: 'Results', path: '/results' },
-        ]
-      },
-      { name: 'Sales Video Proof', path: '/sales-video-proof' },
-      { name: 'Reviews', path: '/reviews' },
+      { name: 'Store Design Gallery', path: '/store-design-gallery' },
+      { name: 'Niche Research', path: '/niche-research' },
+      { name: 'Store Audit', path: '/store-audit' },
     ]
   },
-  { name: 'FAQ', path: '/faq' },
+  { 
+    name: 'Proof', 
+    path: '/case-studies',
+    subLinks: [
+      { name: 'Case Studies', path: '/case-studies' },
+      { name: 'Sales Video Proof', path: '/sales-video-proof' },
+    ]
+  },
   { name: 'Pricing', path: '/pricing' },
+  { name: 'Contact', path: '/contact' },
 ];
 
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -143,7 +127,7 @@ export const Navigation = () => {
           </div>
 
           {/* Desktop Nav Links (Centered) */}
-          <div className="hidden md:flex items-center justify-center gap-6 lg:gap-10 xl:gap-12 px-6">
+          <div className="hidden md:flex items-center justify-center gap-6 lg:gap-10 xl:gap-12 px-6 h-full">
             {NAV_LINKS.map((link) => {
               const isActive = location.pathname === link.path || (link.subLinks?.some(sub => 
                 (sub.path && location.pathname === sub.path) || 
@@ -152,67 +136,77 @@ export const Navigation = () => {
               
               if (link.subLinks) {
                 return (
-                  <DropdownMenu key={link.name}>
-                    <DropdownMenuTrigger className="outline-none">
-                      <div className={`text-[10px] xl:text-xs font-black uppercase tracking-[0.15em] transition-all duration-300 relative group flex items-center gap-1 cursor-pointer ${
-                        isActive ? 'text-accent-gold' : 'text-text-secondary hover:text-white'
-                      }`}>
-                        {link.name}
-                        <ChevronDown className="w-3 h-3 transition-transform group-data-[state=open]:rotate-180" />
-                        {isActive && (
-                          <motion.div 
-                            layoutId="nav-active" 
-                            className="absolute -bottom-2 translate-x-1/2 right-1/2 w-1 h-1 bg-accent-gold rounded-full" 
-                          />
-                        )}
-                      </div>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="bg-black/95 border border-white/10 backdrop-blur-3xl p-3 rounded-2xl min-w-[240px] z-[110] shadow-2xl">
-                      {link.subLinks.map((sub) => {
-                        if (sub.subLinks) {
-                          const isSubActive = sub.subLinks.some(nested => location.pathname === nested.path);
-                          return (
-                            <DropdownMenuSub key={sub.name}>
-                              <DropdownMenuSubTrigger className={`flex items-center justify-between w-full px-5 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all mb-1 ${
-                                isSubActive ? 'bg-accent-blue/10 text-accent-blue' : 'text-white/70 hover:bg-white/10 hover:text-white'
-                              }`}>
-                                {sub.name}
-                              </DropdownMenuSubTrigger>
-                              <DropdownMenuPortal>
-                                <DropdownMenuSubContent className="bg-black/95 border border-white/10 backdrop-blur-3xl p-3 rounded-2xl min-w-[240px] z-[120] shadow-2xl">
-                                  {sub.subLinks.map(nested => (
-                                    <DropdownMenuItem key={nested.path} className="p-0 focus:bg-transparent mb-1 last:mb-0">
-                                      <Link
+                  <div key={link.name} className="relative group h-full flex items-center">
+                    <div className={`h-full px-3 text-[10px] xl:text-xs font-black uppercase tracking-[0.15em] transition-all duration-300 flex items-center gap-1 cursor-pointer ${
+                      isActive ? 'text-accent-gold' : 'text-text-secondary hover:text-white'
+                    }`}>
+                      {link.name}
+                      <ChevronDown className="w-3 h-3 transition-transform group-hover:rotate-180" />
+                      {isActive && (
+                        <motion.div 
+                          layoutId="nav-active" 
+                          className="absolute bottom-2 translate-x-1/2 right-1/2 w-1 h-1 bg-accent-gold rounded-full" 
+                        />
+                      )}
+                    </div>
+                    {/* An invisible wide buffer area to catch diagonal mouse movements */}
+                    <div className="absolute top-0 w-[150%] left-1/2 -translate-x-1/2 h-full z-0 hidden group-hover:block" />
+                    
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[260px] z-[110]">
+                      <div className="relative">
+                        {/* Invisible bridge for hover */}
+                        <div className="absolute -top-4 left-0 right-0 h-8 bg-transparent" />
+                        <div className="bg-black/95 border border-white/10 backdrop-blur-3xl p-3 rounded-2xl shadow-2xl flex flex-col pointer-events-auto">
+                        {link.subLinks.map((sub) => {
+                          if (sub.subLinks) {
+                            const isSubActive = sub.subLinks.some(nested => location.pathname === nested.path);
+                            return (
+                              <div key={sub.name} className="relative group/sub">
+                                <div className={`flex items-center justify-between w-full px-5 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all mb-1 cursor-pointer relative z-10 ${
+                                  isSubActive ? 'bg-accent-blue/10 text-accent-blue' : 'text-white/70 hover:bg-white/10 hover:text-white'
+                                }`}>
+                                  {sub.name}
+                                  <ChevronRight className="w-3 h-3" />
+                                </div>
+                                {/* Invisible bridge for sub-menu horizontal hover */}
+                                <div className="absolute top-0 bottom-0 -right-4 w-8 bg-transparent z-0" />
+                                <div className="absolute top-0 left-full pl-4 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 min-w-[260px] z-[120]">
+                                  <div className="bg-black/95 border border-white/10 backdrop-blur-3xl p-3 rounded-2xl shadow-2xl flex flex-col pointer-events-auto relative">
+                                    {/* Bridge back to parent menu */}
+                                    <div className="absolute top-0 bottom-0 -left-4 w-8 bg-transparent" />
+                                    {sub.subLinks.map(nested => (
+                                      <Link 
+                                        key={nested.path} 
                                         to={nested.path}
-                                        className={`flex items-center gap-3 w-full px-5 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${
+                                        className={`flex items-center gap-3 w-full px-5 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all mb-1 last:mb-0 relative z-10 ${
                                           location.pathname === nested.path ? 'bg-accent-blue/20 text-accent-blue shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)]' : 'text-white/70 hover:bg-white/10 hover:text-white'
                                         }`}
                                       >
                                         {nested.name}
                                       </Link>
-                                    </DropdownMenuItem>
-                                  ))}
-                                </DropdownMenuSubContent>
-                              </DropdownMenuPortal>
-                            </DropdownMenuSub>
-                          );
-                        }
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          }
 
-                        return (
-                          <DropdownMenuItem key={sub.path} className="p-0 focus:bg-transparent mb-1 last:mb-0">
-                            <Link
+                          return (
+                            <Link 
+                              key={sub.path} 
                               to={sub.path!}
-                              className={`flex items-center gap-3 w-full px-5 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${
+                              className={`flex items-center gap-3 w-full px-5 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all mb-1 last:mb-0 relative z-10 ${
                                 location.pathname === sub.path ? 'bg-accent-blue/20 text-accent-blue shadow-[0_0_20px_-5px_rgba(59,130,246,0.5)]' : 'text-white/70 hover:bg-white/10 hover:text-white'
                               }`}
                             >
                               {sub.name}
                             </Link>
-                          </DropdownMenuItem>
-                        );
-                      })}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                          );
+                        })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 );
               }
 
@@ -220,7 +214,7 @@ export const Navigation = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-[10px] lg:text-xs font-bold uppercase tracking-[0.15em] transition-all duration-300 relative group flex flex-col items-center whitespace-nowrap ${
+                  className={`h-full px-2 text-[10px] lg:text-xs font-bold uppercase tracking-[0.15em] transition-all duration-300 relative group flex items-center whitespace-nowrap ${
                     isActive ? 'text-accent-gold' : 'text-text-secondary hover:text-white'
                   }`}
                 >
@@ -228,7 +222,7 @@ export const Navigation = () => {
                   {isActive && (
                     <motion.div 
                       layoutId="nav-active" 
-                      className="absolute -bottom-2 w-1 h-1 bg-accent-gold rounded-full" 
+                      className="absolute bottom-2 translate-x-1/2 right-1/2 w-1 h-1 bg-accent-gold rounded-full" 
                     />
                   )}
                 </Link>

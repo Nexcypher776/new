@@ -8,7 +8,7 @@ export const ShopifyGrowthPreview = () => {
   return (
     <section id="shopify-growth" className="py-32 bg-white/[0.01] border-y border-white/5 relative overflow-hidden">
       {/* Background Orbs */}
-      <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-accent-blue/10 rounded-full blur-[120px] animate-pulse" />
+      <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-accent-blue/10 rounded-full blur-[120px] animate-pulse pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">

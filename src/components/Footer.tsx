@@ -55,9 +55,18 @@ export const Footer = () => {
               <li><Link to="/services" className="hover:text-accent-blue transition-colors">All Services</Link></li>
               <li><Link to="/ai-calling-agents" className="hover:text-accent-blue transition-colors">AI Calling Agents</Link></li>
               <li><Link to="/shopify-growth" className="hover:text-accent-blue transition-colors">Shopify Growth</Link></li>
-              <li><Link to="/store-audit" className="hover:text-accent-blue transition-colors">Free Store Audit</Link></li>
+              <li><Link to="/shopify-marketing" className="hover:text-accent-blue transition-colors">Shopify Marketing</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Portfolio & Tools</h4>
+            <ul className="space-y-4 text-text-secondary text-sm font-medium">
+              <li><Link to="/store-design-gallery" className="hover:text-accent-blue transition-colors">Store Design Gallery</Link></li>
+              <li><Link to="/case-studies" className="hover:text-accent-blue transition-colors">Case Studies</Link></li>
               <li><Link to="/sales-video-proof" className="hover:text-accent-blue transition-colors">Sales Video Proof</Link></li>
-              <li><Link to="/portfolio" className="hover:text-accent-blue transition-colors">Client Portfolio</Link></li>
+              <li><Link to="/niche-research" className="hover:text-accent-blue transition-colors">Niche Research</Link></li>
+              <li><Link to="/store-audit" className="hover:text-accent-blue transition-colors">Free Store Audit</Link></li>
             </ul>
           </div>
 

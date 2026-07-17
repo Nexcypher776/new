@@ -228,6 +228,19 @@ export const SALES_PROOFS: SalesProof[] = [
   }
 ];
 
+export const BEAUTY_IMAGES = [
+  "https://kommodo.ai/i/4Fo50lycWFsPkGqN2Qp4",
+  "https://kommodo.ai/i/rHRSDBx5OY6RlbTMwXX9",
+  "https://kommodo.ai/i/WJrC7qv9PTEach7hKnUK",
+  "https://kommodo.ai/i/KHTBsFEmnvxvbKRqptTU",
+  "https://kommodo.ai/i/ttjAsv6XpnTdiKzaTG50",
+  "https://kommodo.ai/i/ZP9eA75UGJoxZSy7ikvg",
+  "https://kommodo.ai/i/vk1s8AOE3fuZitf7sHPi",
+  "https://kommodo.ai/i/GJDPWgWcXtyJYBGH7fXP",
+  "https://kommodo.ai/i/rPqJeG3J3CtkncBK9FJQ",
+  "https://kommodo.ai/i/LZnKKDFO97LPaBbQe336"
+];
+
 export const NICHE_PROJECTS: NicheProject[] = [
   {
     id: 'pet',

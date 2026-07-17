@@ -29,7 +29,7 @@ export const FiverrProfileSection = () => {
             <div className="relative mb-8">
               <div className="w-32 h-32 md:w-40 md:h-40 rounded-full p-1 bg-gradient-to-tr from-[#1dbf73] to-accent-blue shadow-2xl">
                 <div className="w-full h-full rounded-full overflow-hidden border-4 border-background bg-white/5 flex items-center justify-center p-4">
-                  <img src={LOGO_URL} alt="Chase" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                  <img src={LOGO_URL} alt="Chase" className="w-full h-full object-contain" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
                 </div>
               </div>
               <div className="absolute -bottom-2 -right-2 bg-[#1dbf73] p-2 rounded-full shadow-lg border-2 border-background">

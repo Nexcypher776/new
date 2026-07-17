@@ -10,19 +10,17 @@ import { Badge } from '@/components/ui/badge';
 export const LeadForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [submitError, setSubmitError] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitError(false);
+    setSubmitError(null);
     
     if (!window.klaviyo) {
-      console.error("Klaviyo script not loaded. Cannot submit lead.");
-      setSubmitError(true);
+      console.error("Klaviyo script not loaded.");
+      setSubmitError("Lead tracking service is unavailable. Please try again later.");
       return;
     }
-    
-    console.log("Klaviyo script loaded.");
     
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email') as string;
@@ -30,10 +28,13 @@ export const LeadForm = () => {
     const budget = formData.get('budget') as string;
     const message = formData.get('message') as string;
 
-    // Basic email validation
+    // Basic validation
+    if (!name.trim()) {
+      setSubmitError("Please enter your name.");
+      return;
+    }
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      console.error("Invalid email address provided.");
-      setSubmitError(true);
+      setSubmitError("Please enter a valid email address.");
       return;
     }
 
@@ -97,7 +98,7 @@ export const LeadForm = () => {
       setIsSubmitted(true);
     } catch (error) {
       console.error("Subscription request error:", error);
-      setSubmitError(true);
+      setSubmitError("We couldn't reach our servers. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
@@ -140,7 +141,7 @@ export const LeadForm = () => {
             <div className="p-8 rounded-[32px] bg-white/[0.02] border border-white/10">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-accent-blue">
-                  <img src="https://imglink.cc/cdn/EKSMSiB2jK.png" alt="Chase" className="w-full h-full object-cover" />
+                  <img src="https://imglink.cc/cdn/EKSMSiB2jK.png" alt="Chase" className="w-full h-full object-cover" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
                 </div>
                 <div>
                   <p className="text-white font-bold">Direct Support</p>
@@ -203,8 +204,8 @@ export const LeadForm = () => {
                     {isSubmitting ? 'Sending...' : 'Send Strategy Request'}
                   </Button>
                   {submitError && (
-                    <div className="text-red-400 text-sm text-center font-medium mt-4 bg-red-500/10 border border-red-500/20 py-2 rounded-lg">
-                      We could not complete your signup right now. Please try again.
+                    <div className="text-red-400 text-sm text-center font-medium mt-4 bg-red-500/10 border border-red-500/20 py-2 rounded-lg px-4">
+                      {submitError}
                     </div>
                   )}
                 </form>

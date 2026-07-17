@@ -64,7 +64,7 @@ export const VideoTestimonials = () => {
               onHoverEnd={() => setHoveredVideo(null)}
             >
               <div className="relative aspect-video">
-                <img src={video.thumbnail} alt={video.clientName} className="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+                <img src={video.thumbnail} alt={video.clientName} className="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                   <div className="w-16 h-16 bg-accent-blue rounded-full flex items-center justify-center shadow-xl shadow-accent-blue/40 group-hover:scale-110 transition-transform">
                     <Play className="text-white w-8 h-8 fill-white" />

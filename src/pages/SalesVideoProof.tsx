@@ -79,7 +79,7 @@ export const SalesVideoProof = () => {
             >
               {/* Video Thumbnail Box */}
               <div className={`aspect-video w-full bg-accent-blue/5 relative flex items-center justify-center overflow-hidden`}>
-                <img src={video.thumbnail} alt={video.clientName} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+                <img src={video.thumbnail} alt={video.clientName} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent p-6 flex items-end opacity-0 group-hover:opacity-100 transition-opacity">
                    <Badge className="bg-accent-blue text-white border-none text-[8px] font-black uppercase tracking-widest">
                      Click to Play

@@ -14,7 +14,7 @@ const Logo = ({ className = "w-12 h-12" }: { className?: string }) => {
         alt="Nexcypher Logo" 
         className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_8px_rgba(59,130,246,0.3)] whitespace-nowrap" 
         referrerPolicy="no-referrer"
-      />
+      loading="lazy" decoding="async" />
     </div>
   );
 };

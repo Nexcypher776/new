@@ -402,7 +402,17 @@ const INITIAL_DESIGNS = [
     image: "https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=800&h=1600&q=80",
     thumbnail: "https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=600&h=800&q=80",
     videoUrl: "https://www.awesomescreenshot.com/video/52027851?key=cfc71437d3630f7c051d2922422c0ae0"
-  }
+  },
+  { id: 501, title: "Premium Beauty Store 1", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1596704017254-9b5c10898154?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1596704017254-9b5c10898154?auto=format&fit=crop&w=600&h=800&q=80" },
+  { id: 502, title: "Premium Beauty Store 2", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&h=800&q=80" },
+  { id: 503, title: "Premium Beauty Store 3", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=600&h=800&q=80" },
+  { id: 504, title: "Premium Beauty Store 4", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&h=800&q=80" },
+  { id: 505, title: "Premium Beauty Store 5", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1598440947619-2c35fd9591c4?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1598440947619-2c35fd9591c4?auto=format&fit=crop&w=600&h=800&q=80" },
+  { id: 506, title: "Premium Beauty Store 6", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=600&h=800&q=80" },
+  { id: 507, title: "Premium Beauty Store 7", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1570172619644-dfd03d5d812e?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1570172619644-dfd03d5d812e?auto=format&fit=crop&w=600&h=800&q=80" },
+  { id: 508, title: "Premium Beauty Store 8", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1612442436855-64c924bc01c7?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1612442436855-64c924bc01c7?auto=format&fit=crop&w=600&h=800&q=80" },
+  { id: 509, title: "Premium Beauty Store 9", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&h=800&q=80" },
+  { id: 510, title: "Premium Beauty Store 10", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1522335643444-245ed73d1f05?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1522335643444-245ed73d1f05?auto=format&fit=crop&w=600&h=800&q=80" }
 ];
 
 // Generate placeholder data
@@ -411,7 +421,7 @@ const GENERATED_DESIGNS = Array.from({ length: 4 }).map((_, i) => {
   const randomNiche = nichesWithoutAll[i % nichesWithoutAll.length];
   
   return {
-    id: i + 55,
+    id: i + 100,
     title: `Premium ${randomNiche} Store`,
     niche: randomNiche,
     // Using a vertical placeholder to represent a full page screenshot
@@ -498,7 +508,7 @@ export const StoreDesignGallery = () => {
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
-                    />
+                    decoding="async" />
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
                        <Button 
                         onClick={() => setSelectedItem(design)}
@@ -550,7 +560,7 @@ export const StoreDesignGallery = () => {
         </div>
       </section>
 
-      {/* Lightbox / Modal */}
+      {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedItem && (
           <motion.div
@@ -597,7 +607,7 @@ export const StoreDesignGallery = () => {
                   alt={selectedItem.title!} 
                   referrerPolicy="no-referrer"
                   className="w-full h-auto object-cover block bg-zinc-900" 
-                />
+                loading="lazy" decoding="async" />
               )}
             </motion.div>
           </motion.div>

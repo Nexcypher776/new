@@ -82,7 +82,7 @@ export const NichePortfolio = () => {
                 onHoverEnd={() => setHoveredProject(null)}
                 className="glass-card overflow-hidden relative group h-[300px]"
               >
-                <img src={project.image} alt={project.niche} className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+                <img src={project.image} alt={project.niche} className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                 
                 <div className="absolute top-6 right-6 z-20 flex flex-col items-end gap-2">

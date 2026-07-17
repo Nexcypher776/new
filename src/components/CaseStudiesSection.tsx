@@ -26,7 +26,7 @@ export const CaseStudiesSection = () => {
               className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-12 items-center`}
             >
               <div className="flex-1 w-full relative group rounded-3xl overflow-hidden">
-                <img src={study.image} alt={study.client} className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
+                <img src={study.image} alt={study.client} className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-8 left-8">
                   <p className="text-accent-blue font-bold tracking-widest uppercase text-sm mb-2">{study.category}</p>

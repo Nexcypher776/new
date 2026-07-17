@@ -67,7 +67,7 @@ export const AiCallingAgentsPreview = () => {
                   alt="AI Agent Visualization"
                   className="w-full h-full object-cover opacity-60"
                   referrerPolicy="no-referrer"
-                />
+                loading="lazy" decoding="async" />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
                    <div className="text-center p-8">
                       <Bot className="w-16 h-16 text-accent-gold mx-auto mb-4 animate-bounce" />

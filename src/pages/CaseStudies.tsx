@@ -31,7 +31,7 @@ const CASE_STUDIES = [
       "AI Voice/SMS Agent integration for abandoned cart recovery.",
       "TikTok and Meta Ads creative overhaul."
     ],
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&h=800&q=80",
+    image: "https://images.unsplash.com/photo-1518310383802-640c2de311b2?auto=format&fit=crop&w=1200&h=800&q=80",
     chartType: "bar",
     chartData: [
       { name: "Month 1", revenue: 45000 },
@@ -66,7 +66,7 @@ const CASE_STUDIES = [
       "High-converting automated email lifecycle flows.",
       "Data-backed audience pivot and ad restructuring."
     ],
-    image: "https://images.unsplash.com/photo-1550572017-edb9cf112999?auto=format&fit=crop&w=1200&h=800&q=80",
+    image: "https://images.unsplash.com/photo-1593095948386-8ad30d5ef861?auto=format&fit=crop&w=1200&h=800&q=80",
     chartType: "line",
     chartData: [
       { name: "Q1", cpa: 48, repeatRate: 15 },
@@ -104,7 +104,7 @@ const CASE_STUDIES = [
       "Long-form educational advertorial funnels.",
       "Streamlined high-ticket sales cycle."
     ],
-    image: "https://images.unsplash.com/photo-1558661081-30064f2601ae?auto=format&fit=crop&w=1200&h=800&q=80",
+    image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1200&h=800&q=80",
     chartType: "bar",
     chartData: [
       { name: "Oct", sales: 40000, tickets: 350 },

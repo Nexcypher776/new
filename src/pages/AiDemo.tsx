@@ -3,6 +3,59 @@ import { motion } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { getAssistantResponse } from '@/lib/gemini';
+
+const ChatInterface = () => {
+  const [messages, setMessages] = useState<{ role: string; content: string }[]>([
+    { role: 'assistant', content: 'Hello! I am your Nexcypher AI assistant. How can I help you scale your Shopify store today?' }
+  ]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const sendMessage = async () => {
+    if (!input.trim()) return;
+
+    const newMessages = [...messages, { role: 'user', content: input }];
+    setMessages(newMessages);
+    setInput('');
+    setIsLoading(true);
+
+    try {
+      const response = await getAssistantResponse(messages, input);
+      setMessages([...newMessages, { role: 'assistant', content: response }]);
+    } catch (error) {
+      console.error('Chat error:', error);
+      setMessages([...newMessages, { role: 'assistant', content: 'Sorry, something went wrong.' }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-12">
+      <div className="space-y-4 mb-4 h-64 overflow-y-auto">
+        {messages.map((m, i) => (
+          <div key={i} className={`p-3 rounded-lg ${m.role === 'user' ? 'bg-accent-blue/20 ml-auto' : 'bg-white/10 mr-auto'} max-w-[80%]`}>
+            {m.content}
+          </div>
+        ))}
+        {isLoading && <div className="text-text-secondary">AI is typing...</div>}
+      </div>
+      <div className="flex gap-2">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+          className="flex-grow bg-transparent border border-white/20 rounded-full px-4 py-2 text-white"
+          placeholder="Ask me anything about Shopify..."
+        />
+        <Button onClick={sendMessage} disabled={isLoading}>Send</Button>
+      </div>
+    </div>
+  );
+};
 
 export const AiDemo = () => {
   const location = useLocation();
@@ -56,9 +109,24 @@ export const AiDemo = () => {
               Live AI Agent Demo
             </h2>
             
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+              className="relative mt-8 mb-12 rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1620712946342-99079986bcdf?auto=format&fit=crop&w=1200&h=675&q=80"
+                alt="Futuristic AI Agent"
+                className="w-full h-auto rounded-2xl object-cover"
+              />
+            </motion.div>
+            
             <p className="text-xl md:text-2xl text-text-secondary leading-relaxed mb-12 max-w-2xl">
               Experience a live demonstration of our autonomous AI calling agents built for sales, support, and closing.
             </p>
+            
+            <ChatInterface />
 
             <div className="flex flex-wrap gap-4">
               <Link to="/contact">

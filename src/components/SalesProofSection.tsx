@@ -52,7 +52,7 @@ export const SalesProofSection = () => {
               className="glass-card overflow-hidden group cursor-pointer"
             >
               <div className="relative aspect-[4/3]">
-                <img src={proof.image} alt={proof.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" referrerPolicy="no-referrer" />
+                <img src={proof.image} alt={proof.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
                 <div className="absolute top-4 left-4 z-20">
                   <Badge className="bg-accent-blue text-white border-none shadow-lg">{proof.label}</Badge>
                 </div>

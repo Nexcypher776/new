@@ -93,7 +93,7 @@ export const AboutSection = () => {
                   alt="Chase portrait" 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
-                />
+                loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
               </div>
             </div>

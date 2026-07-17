@@ -27,7 +27,7 @@ export const ShopifyGrowthPreview = () => {
                   alt="Shopify Growth Dashboard"
                   className="w-full h-full object-cover opacity-60"
                   referrerPolicy="no-referrer"
-                />
+                loading="lazy" decoding="async" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm p-12 text-center">
                    <div className="w-16 h-16 bg-accent-blue/30 rounded-full flex items-center justify-center mb-6">
                       <TrendingUp className="w-8 h-8 text-white" />

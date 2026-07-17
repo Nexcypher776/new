@@ -34,7 +34,7 @@ export const Pricing = () => {
                 <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
                 <div className="flex items-baseline gap-1">
                   <span className="text-4xl font-bold text-white">{plan.price}</span>
-                  <span className="text-text-secondary text-sm">/ {plan.period}</span>
+                  <span className="text-text-secondary text-sm">{plan.period}</span>
                 </div>
               </div>
               <ul className="space-y-4 mb-10 flex-1">

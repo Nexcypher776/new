@@ -64,7 +64,7 @@ export const About = () => {
                {/* Chase - Founder */}
                <div className="p-8 bg-white/5 border border-white/10 rounded-2xl flex flex-col items-center text-center col-span-1 md:col-span-3 lg:col-span-1 lg:max-w-sm mx-auto w-full group hover:border-accent-blue/30 transition-colors">
                  <div className="w-24 h-24 rounded-full bg-accent-blue/20 flex items-center justify-center mb-6 overflow-hidden border-2 border-accent-blue/30 group-hover:border-accent-blue transition-colors">
-                   <img src="https://www.image2url.com/r2/default/images/1777095458889-2e95060d-15f5-4178-9fd0-7db8197b6771.jpg" alt="Chase - Founder of Nexcypher" className="w-full h-full object-cover" />
+                   <img src="https://www.image2url.com/r2/default/images/1777095458889-2e95060d-15f5-4178-9fd0-7db8197b6771.jpg" alt="Chase - Founder of Nexcypher" className="w-full h-full object-cover" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
                  </div>
                  <h3 className="text-2xl font-bold text-white mb-2">Chase</h3>
                  <p className="text-accent-blue font-bold uppercase tracking-widest text-xs mb-4">Founder & Lead Strategist</p>

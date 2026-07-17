@@ -62,8 +62,18 @@ export const LeadPopup = () => {
       notes: formData.get('notes') as string,
     };
 
+    if (!data.name.trim()) {
+      setSubmitError("Please enter your full name.");
+      setIsSubmitting(false);
+      return;
+    }
     if (!data.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
       setSubmitError("Please enter a valid email address.");
+      setIsSubmitting(false);
+      return;
+    }
+    if (!data.phone.trim()) {
+      setSubmitError("Please enter your phone number.");
       setIsSubmitting(false);
       return;
     }

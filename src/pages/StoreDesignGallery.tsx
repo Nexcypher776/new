@@ -403,15 +403,15 @@ const INITIAL_DESIGNS = [
     thumbnail: "https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=600&h=800&q=80",
     videoUrl: "https://www.awesomescreenshot.com/video/52027851?key=cfc71437d3630f7c051d2922422c0ae0"
   },
-  { id: 501, title: "Premium Beauty Store 1", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1596704017254-9b5c10898154?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1596704017254-9b5c10898154?auto=format&fit=crop&w=600&h=800&q=80" },
-  { id: 502, title: "Premium Beauty Store 2", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&h=800&q=80" },
-  { id: 503, title: "Premium Beauty Store 3", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=600&h=800&q=80" },
-  { id: 504, title: "Premium Beauty Store 4", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&h=800&q=80" },
-  { id: 505, title: "Premium Beauty Store 5", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1598440947619-2c35fd9591c4?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1598440947619-2c35fd9591c4?auto=format&fit=crop&w=600&h=800&q=80" },
-  { id: 506, title: "Premium Beauty Store 6", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=600&h=800&q=80" },
-  { id: 507, title: "Premium Beauty Store 7", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1570172619644-dfd03d5d812e?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1570172619644-dfd03d5d812e?auto=format&fit=crop&w=600&h=800&q=80" },
-  { id: 508, title: "Premium Beauty Store 8", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1612442436855-64c924bc01c7?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1612442436855-64c924bc01c7?auto=format&fit=crop&w=600&h=800&q=80" },
-  { id: 509, title: "Premium Beauty Store 9", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&h=800&q=80" },
+  { id: 501, title: "Premium Beauty Store 1", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1596704017254-9b5c10898154?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1596704017254-9b5c10898154?auto=format&fit=crop&w=600&h=750&q=80" },
+  { id: 502, title: "Premium Beauty Store 2", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&h=920&q=80" },
+  { id: 503, title: "Premium Beauty Store 3", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=600&h=680&q=80" },
+  { id: 504, title: "Premium Beauty Store 4", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&h=860&q=80" },
+  { id: 505, title: "Premium Beauty Store 5", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1598440947619-2c35fd9591c4?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1598440947619-2c35fd9591c4?auto=format&fit=crop&w=600&h=1000&q=80" },
+  { id: 506, title: "Premium Beauty Store 6", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=600&h=780&q=80" },
+  { id: 507, title: "Premium Beauty Store 7", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1570172619644-dfd03d5d812e?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1570172619644-dfd03d5d812e?auto=format&fit=crop&w=600&h=900&q=80" },
+  { id: 508, title: "Premium Beauty Store 8", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1612442436855-64c924bc01c7?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1612442436855-64c924bc01c7?auto=format&fit=crop&w=600&h=720&q=80" },
+  { id: 509, title: "Premium Beauty Store 9", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&h=880&q=80" },
   { id: 510, title: "Premium Beauty Store 10", niche: "Beauty & Skincare", image: "https://images.unsplash.com/photo-1522335643444-245ed73d1f05?auto=format&fit=crop&w=800&h=1600&q=80", thumbnail: "https://images.unsplash.com/photo-1522335643444-245ed73d1f05?auto=format&fit=crop&w=600&h=800&q=80" }
 ];
 
@@ -488,8 +488,8 @@ export const StoreDesignGallery = () => {
             ))}
           </div>
 
-          {/* Grid Layout */}
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Masonry Grid Layout */}
+          <motion.div layout className="columns-xs md:columns-md lg:columns-lg gap-8 [column-fill:_balance]">
             <AnimatePresence>
               {filteredDesigns.map((design) => (
                 <motion.div
@@ -499,20 +499,21 @@ export const StoreDesignGallery = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
-                  className="group rounded-3xl bg-white/[0.02] border border-white/5 overflow-hidden flex flex-col hover:border-accent-blue/30 transition-colors"
+                  className="break-inside-avoid inline-block w-full mb-8 group rounded-3xl bg-white/[0.02] border border-white/5 overflow-hidden hover:border-accent-blue/30 transition-colors"
                 >
-                  <div className="relative aspect-[3/4] overflow-hidden bg-white/5">
+                  <div className="relative overflow-hidden bg-white/5">
                     <img 
                       src={design.thumbnail} 
                       alt={design.title}
                       referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 block"
                       loading="lazy"
-                    decoding="async" />
+                      decoding="async" 
+                    />
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
                        <Button 
                         onClick={() => setSelectedItem(design)}
-                        className="bg-accent-blue hover:bg-accent-blue/90 text-white rounded-full font-bold px-8"
+                        className="bg-accent-blue hover:bg-accent-blue/90 text-white rounded-full font-bold px-8 shadow-lg"
                        >
                          {('videoUrl' in design && design.videoUrl) ? <><div className="w-0 h-0 mr-2 border-l-[12px] border-l-white border-y-[8px] border-y-transparent"></div> Play Video</> : <><Maximize2 className="w-4 h-4 mr-2" /> View Design</>}
                        </Button>

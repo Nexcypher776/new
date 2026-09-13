@@ -16,7 +16,7 @@ export const NichePortfolio = () => {
     e.stopPropagation();
     
     // Use the current page URL or fallback
-    const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://nexcypher.com/portfolio';
+    const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://nexcypher.us/portfolio';
     const url = encodeURIComponent(currentUrl);
     const text = encodeURIComponent(`Check out this ${project.category} project by Nexcypher: ${project.niche}`);
     

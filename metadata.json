@@ -1,6 +1,8 @@
 {
   "name": "Nexcypher - Premium Shopify & AI Agency",
-  "description": "High-converting portfolio for Nexcypher, specializing in Shopify development, marketing, and AI agent solutions.",
+  "description": "High-converting portfolio for Nexcypher, specializing in Shopify store development, marketing, and autonomous AI agent solutions.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

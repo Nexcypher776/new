@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -9,6 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 
 export const SalesVideoProof = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const canonicalUrl = "https://nexcypher.us/sales-video-proof";
 
   const getVimeoId = (url: string) => {
     const match = url.match(/vimeo\.com\/(\d+)/);
@@ -22,12 +24,20 @@ export const SalesVideoProof = () => {
   };
 
   return (
-    <div className="pt-44 md:pt-64 pb-32">
-            
-        
-        <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
-<h2 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h2>
-{/* Hero Section */}
+    <>
+      <Helmet>
+        <title>Shopify Video Sales Proof & Revenue Walkthroughs | Nexcypher</title>
+        <meta name="description" content="Watch real video screen recordings of live Shopify store dashboards, verified sales metrics, and AI calling agent operations scaled by Nexcypher." />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Video Sales Proof & Revenue Walkthroughs | Nexcypher" />
+        <meta property="og:description" content="Watch real video screen recordings of live Shopify store dashboards and verified sales proof." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
+      <div className="pt-44 md:pt-64 pb-32">
+        <h1 className="sr-only">Nexcypher Live Video Sales Proof & Shopify Dashboard Verification</h1>
+        {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           Evidence of Excellence
@@ -156,6 +166,7 @@ export const SalesVideoProof = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };

@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { ShopifyGrowthPreview } from '../components/ShopifyGrowthPreview';
 import { SalesProofSection } from '../components/SalesProofSection';
 import { Badge } from '@/components/ui/badge';
@@ -7,11 +8,23 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 export const ShopifyGrowth = () => {
+  const canonicalUrl = "https://nexcypher.us/shopify-growth";
+
   return (
-    <div className="pt-44 md:pt-64 pb-32">
-             
-        <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
-<div className="max-w-7xl mx-auto px-6 mb-32 text-center">
+    <>
+      <Helmet>
+        <title>Shopify Growth Systems | 0 to $1M/mo Scaling & CRO - Nexcypher</title>
+        <meta name="description" content="Scale your Shopify store with high-velocity sales engines, custom 2.0 architectures, speed optimization, and CRO strategies engineered for 7-8 figure brands." />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Shopify Growth Systems | Nexcypher" />
+        <meta property="og:description" content="Billion-dollar Shopify systems engineered for rapid revenue scaling and conversion rate optimization." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
+      <div className="pt-44 md:pt-64 pb-32">
+        <h1 className="sr-only">Shopify Growth & Scale Architecture - Nexcypher</h1>
+        <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-cyan/10 text-accent-cyan border-accent-cyan/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           Scaling Logic
         </Badge>
@@ -81,7 +94,8 @@ export const ShopifyGrowth = () => {
       </section>
 
       <SalesProofSection />
-    </div>
+      </div>
+    </>
   );
 };
 

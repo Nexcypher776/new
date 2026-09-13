@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { SalesProofSection } from '../components/SalesProofSection';
 import { VideoTestimonials } from '../components/VideoTestimonials';
 import { Badge } from '@/components/ui/badge';
@@ -7,11 +8,23 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 export const Results = () => {
+  const canonicalUrl = "https://nexcypher.us/results";
+
   return (
-    <div className="pt-44 md:pt-64 pb-32">
-            
-        <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
-{/* Hero Section */}
+    <>
+      <Helmet>
+        <title>Client Revenue Results & Video Sales Proof | Nexcypher</title>
+        <meta name="description" content="View verified Shopify store revenue screenshots, video dashboard walkthroughs, and client testimonial proof from Nexcypher client scaling projects." />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Client Revenue Results & Video Proof | Nexcypher" />
+        <meta property="og:description" content="Verified Shopify store revenue screenshots and video dashboard walkthroughs." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
+      <div className="pt-44 md:pt-64 pb-32">
+        <h1 className="sr-only">Nexcypher Client Revenue Results & Proof of Performance</h1>
+        {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           Proof of Concept
@@ -94,6 +107,7 @@ export const Results = () => {
           </Link>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };

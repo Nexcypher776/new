@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { SalesProofSection } from '../components/SalesProofSection';
 import { VideoTestimonials } from '../components/VideoTestimonials';
 import { Badge } from '@/components/ui/badge';
@@ -52,11 +53,23 @@ const STEPS = [
 ];
 
 export const ShopifyMarketing = () => {
+  const canonicalUrl = "https://nexcypher.us/shopify-marketing";
+
   return (
-    <div className="pt-44 md:pt-64 pb-32">
-            
-        <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
-{/* Hero Section */}
+    <>
+      <Helmet>
+        <title>Shopify Marketing & Paid Advertising Frameworks | Nexcypher</title>
+        <meta name="description" content="Discover Nexcypher's multi-step Shopify marketing framework: Facebook ads, TikTok ads, Google Ads, funnel optimization, site mapping, and full SEO setup." />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Shopify Marketing & Paid Ads | Nexcypher" />
+        <meta property="og:description" content="Structured customer acquisition frameworks designed to scale Shopify stores consistently." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
+      <div className="pt-44 md:pt-64 pb-32">
+        <h1 className="sr-only">Shopify Marketing & Full-Funnel Advertising - Nexcypher</h1>
+        {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 mb-32">
         <div className="max-w-4xl">
           <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
@@ -186,6 +199,7 @@ export const ShopifyMarketing = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };

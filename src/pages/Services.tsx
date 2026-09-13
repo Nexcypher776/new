@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -54,11 +55,23 @@ const SERVICE_CATEGORIES = [
 ];
 
 export const Services = () => {
+  const canonicalUrl = "https://nexcypher.us/services";
+
   return (
-    <div className="pt-44 md:pt-64 pb-32">
-            
-        <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
-{/* Hero */}
+    <>
+      <Helmet>
+        <title>Shopify & AI Services | Development, Marketing & Automation - Nexcypher</title>
+        <meta name="description" content="Explore Nexcypher's full suite of services: Shopify store creation, CRO audit, dropshipping growth, paid advertising, and autonomous 24/7 AI calling agents." />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Shopify & AI Services | Nexcypher" />
+        <meta property="og:description" content="Custom Shopify storefronts, ecommerce marketing systems, and autonomous AI voice agents." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
+      <div className="pt-44 md:pt-64 pb-32">
+        <h1 className="sr-only">Nexcypher Services - Shopify Store Creation, Marketing & AI Automation</h1>
+        {/* Hero */}
       <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           Solutions Portfolio
@@ -143,6 +156,7 @@ export const Services = () => {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };

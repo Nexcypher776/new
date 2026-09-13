@@ -446,9 +446,15 @@ export const StoreDesignGallery = () => {
   return (
     <>
       <Helmet>
-        <title>Shopify Store Design Gallery | Nexcypher</title>
+        <title>Shopify Store Design Gallery | Niche Themes & Layouts - Nexcypher</title>
         <meta name="description" content="Explore premium Shopify homepage designs created for different niches, including fashion, pets, tech gadgets, print-on-demand, beauty, fitness, and more." />
+        <meta name="keywords" content="Shopify store designs, ecommerce gallery, Shopify theme inspiration, dropshipping store layouts, beauty Shopify store, fashion store design" />
         <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Shopify Store Design Gallery | Nexcypher" />
+        <meta property="og:description" content="Explore premium Shopify homepage designs created for different niches." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
       {/* Header Section */}

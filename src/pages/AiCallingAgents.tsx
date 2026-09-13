@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { AiCallingAgentsPreview } from '../components/AiCallingAgentsPreview';
 import { Badge } from '@/components/ui/badge';
 import { Bot, Phone, Zap, ShieldCheck, ArrowRight, MessageSquare, Mic } from 'lucide-react';
@@ -6,11 +7,23 @@ import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export const AiCallingAgents = () => {
+  const canonicalUrl = "https://nexcypher.us/ai-calling-agents";
+
   return (
-    <div className="pt-44 md:pt-64 pb-32">
-              
-        <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
-<div className="max-w-7xl mx-auto px-6 mb-32 text-center">
+    <>
+      <Helmet>
+        <title>Autonomous AI Calling Agents | 24/7 Voice Support & Inbound Sales - Nexcypher</title>
+        <meta name="description" content="Deploy human-like AI calling agents that handle inbound support and outbound sales 24/7. Integrate directly with your CRM and calendar to convert leads instantly." />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="Autonomous AI Calling Agents | Nexcypher" />
+        <meta property="og:description" content="Human-like autonomous voice agents for 24/7 customer support and inbound sales conversion." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
+      <div className="pt-44 md:pt-64 pb-32">
+        <h1 className="sr-only">Autonomous AI Calling Agents - Nexcypher Voice Automation</h1>
+        <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-gold/10 text-accent-gold border-accent-gold/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           The New Standard
         </Badge>
@@ -76,6 +89,7 @@ export const AiCallingAgents = () => {
           </Accordion>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };

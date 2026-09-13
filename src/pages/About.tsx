@@ -1,15 +1,28 @@
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { AboutSection } from '../components/AboutSection';
 import { WhyChooseSection } from '../components/WhyChooseSection';
 import { TrustSection } from '../components/TrustSection';
 import { Badge } from '@/components/ui/badge';
 
 export const About = () => {
+  const canonicalUrl = "https://nexcypher.us/about";
+
   return (
-    <div className="pt-44 md:pt-64 pb-32">
-            
-        <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
-<div className="max-w-7xl mx-auto px-6 mb-32 text-center">
+    <>
+      <Helmet>
+        <title>About Nexcypher | Elite Shopify Development & AI Automation Agency</title>
+        <meta name="description" content="Discover the mission, philosophy, and proven results behind Nexcypher - engineering high-performance Shopify storefronts and autonomous AI voice agents." />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content="About Nexcypher | Elite Shopify & AI Agency" />
+        <meta property="og:description" content="Discover the mission, philosophy, and engineering behind Nexcypher's high-performance ecommerce solutions." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
+      <div className="pt-44 md:pt-64 pb-32">
+        <h1 className="sr-only">About Nexcypher - Shopify & AI Growth Agency</h1>
+        <div className="max-w-7xl mx-auto px-6 mb-32 text-center">
         <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           Who We Are
         </Badge>
@@ -100,6 +113,7 @@ export const About = () => {
       </section>
 
       <TrustSection />
-    </div>
+      </div>
+    </>
   );
 };

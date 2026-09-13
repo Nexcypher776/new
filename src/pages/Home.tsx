@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
 import { HeroSlider } from '../components/HeroSlider';
 import { TrustedBrands } from '../components/TrustedBrands';
 import { TrustSection } from '../components/TrustSection';
@@ -16,7 +17,27 @@ import { Link } from 'react-router-dom';
 export const Home = () => {
   return (
     <>
-      <h1 className="sr-only">Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
+      <Helmet>
+        <title>Nexcypher | Premier Shopify Store Design & Autonomous AI Calling Agency</title>
+        <meta name="description" content="Nexcypher designs high-converting Shopify 2.0 stores, deploys autonomous AI calling agents, and implements proven ecommerce marketing systems for scaling brands." />
+        <meta name="keywords" content="Shopify store design, Shopify development agency, AI calling agents, ecommerce scaling, Shopify CRO, dropshipping agency" />
+        <link rel="canonical" href="https://nexcypher.us/" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Nexcypher | Premier Shopify Store Design & AI Agency" />
+        <meta property="og:description" content="Scale your brand with custom Shopify stores and autonomous AI phone agents engineered for high conversion rates." />
+        <meta property="og:url" content="https://nexcypher.us/" />
+        <meta property="og:image" content="https://nexcypher.us/favicon-32x32.png" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Nexcypher | Premier Shopify Store Design & AI Agency" />
+        <meta name="twitter:description" content="Scale your brand with custom Shopify stores and autonomous AI phone agents engineered for high conversion rates." />
+        <meta name="twitter:image" content="https://nexcypher.us/favicon-32x32.png" />
+      </Helmet>
+
+      <h1 className="sr-only">Nexcypher - Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>
       <HeroSlider />
       <TrustedBrands />
       <TrustSection />

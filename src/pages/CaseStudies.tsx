@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, TrendingUp, Users, DollarSign, Clock, CheckCircle2, BarChart3 } from 'lucide-react';
+import { CheckCircle2, BarChart3 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, Legend } from 'recharts';
 

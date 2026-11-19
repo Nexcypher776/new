@@ -16,20 +16,13 @@ export const LeadForm = () => {
     e.preventDefault();
     setSubmitError(null);
     
-    if (!window.klaviyo) {
-      console.error("Klaviyo script not loaded.");
-      setSubmitError("Lead tracking service is unavailable. Please try again later.");
-      return;
-    }
-    
     const formData = new FormData(e.currentTarget);
-    const email = formData.get('email') as string;
-    const name = formData.get('name') as string;
-    const budget = formData.get('budget') as string;
-    const message = formData.get('message') as string;
+    const email = (formData.get('email') as string || '').trim();
+    const name = (formData.get('name') as string || '').trim();
+    const budget = (formData.get('budget') as string || '').trim();
+    const message = (formData.get('message') as string || '').trim();
 
-    // Basic validation
-    if (!name.trim()) {
+    if (!name) {
       setSubmitError("Please enter your name.");
       return;
     }
@@ -40,64 +33,59 @@ export const LeadForm = () => {
 
     setIsSubmitting(true);
 
-    const parts = name.trim().split(' ');
+    const parts = name.split(' ');
     const firstName = parts[0] || '';
     const lastName = parts.length > 1 ? parts.slice(1).join(' ') : '';
 
     try {
-      // 1. Identify User explicitly
-      await window.klaviyo.push([
-        'identify',
-        {
-          '$email': email,
-          '$first_name': firstName,
-          '$last_name': lastName,
-          'budget': budget,
-          'notes': message
+      // 1. Optional client-side Klaviyo queue (non-blocking)
+      if (typeof window !== 'undefined' && window.klaviyo && typeof window.klaviyo.push === 'function') {
+        try {
+          window.klaviyo.push([
+            'identify',
+            {
+              '$email': email,
+              '$first_name': firstName,
+              '$last_name': lastName,
+              'budget': budget,
+              'notes': message
+            }
+          ]);
+          window.klaviyo.push([
+            'track',
+            'Lead Submitted',
+            {
+              source: 'Contact Form',
+              budget: budget
+            }
+          ]);
+        } catch {
+          // Ignore client tracker blockers
         }
-      ]);
-      console.log("Profile identified.");
+      }
 
-      // 2. Track Custom Event
-      await window.klaviyo.push([
-        'track',
-        'Lead Submitted',
-        {
-          source: 'Contact Form',
-          budget: budget
-        }
-      ]);
-      console.log("Lead Submitted tracked.");
-
-      // 3. Subscribe User to List via Secure Backend API
-      console.log("Subscription request sent.");
+      // 2. Subscribe User to List via Secure Backend API
       const subscribeRes = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          email: email,
-          firstName: firstName,
-          lastName: lastName,
-          budget: budget,
+          email,
+          firstName,
+          lastName,
+          budget,
           notes: message,
           source: 'Contact Form'
         })
       });
 
       if (!subscribeRes.ok) {
-        const errorData = await subscribeRes.json();
-        console.error(`Subscription API failed:`, errorData);
         throw new Error("Subscription failed");
       }
-      
-      console.log("Subscription request success.");
 
-      // 4. Show success state
       setIsSubmitted(true);
-    } catch (error) {
-      console.error("Subscription request error:", error);
+    } catch {
       setSubmitError("We couldn't reach our servers. Please try again later.");
     } finally {
       setIsSubmitting(false);
@@ -105,8 +93,8 @@ export const LeadForm = () => {
   };
 
   return (
-    <section id="contact" className="py-32 bg-background relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-blue/5 rounded-full blur-[120px] -z-10" />
+    <section id="contact" className="py-24 md:py-32 bg-background relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.08)_0%,transparent_65%)] -z-10 pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
@@ -138,23 +126,24 @@ export const LeadForm = () => {
               ))}
             </div>
 
-            <div className="p-8 rounded-[32px] bg-white/[0.02] border border-white/10">
+            <div className="p-6 sm:p-8 rounded-[32px] bg-white/[0.02] border border-white/10">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-accent-blue">
-                  <img src="https://imglink.cc/cdn/EKSMSiB2jK.png" alt="Chase" className="w-full h-full object-cover" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
+                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-accent-blue shrink-0">
+                  <img src="https://imglink.cc/cdn/EKSMSiB2jK.png" alt="Chase" width={48} height={48} className="w-full h-full object-cover" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
                 </div>
                 <div>
                   <p className="text-white font-bold">Direct Support</p>
                   <p className="text-xs text-text-secondary">Message us directly on WhatsApp</p>
                 </div>
               </div>
-              <Button 
-                variant="outline" 
-                className="w-full h-14 rounded-2xl border-white/10 text-white hover:bg-white/5 font-bold"
-                onClick={() => window.open('https://wa.me/447465616990', '_blank')}
+              <a
+                href="https://wa.me/447465616990"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full h-14 rounded-2xl border border-white/10 text-white hover:bg-white/5 font-bold flex items-center justify-center transition-colors"
               >
                 Chat with Chase
-              </Button>
+              </a>
             </div>
           </div>
 

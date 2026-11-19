@@ -1,3 +1,4 @@
+import { lazy } from 'react';
 import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { HeroSlider } from '../components/HeroSlider';
@@ -5,10 +6,8 @@ import { TrustedBrands } from '../components/TrustedBrands';
 import { TrustSection } from '../components/TrustSection';
 import { AiCallingAgentsPreview } from '../components/AiCallingAgentsPreview';
 import { ShopifyGrowthPreview } from '../components/ShopifyGrowthPreview';
-import { VideoTestimonials } from '../components/VideoTestimonials';
-import { FiverrProfileSection } from '../components/FiverrProfileSection';
-import { GrowthChart } from '../components/GrowthChart';
 import { Services } from '../components/Services';
+import { LazySection } from '../components/LazySection';
 import {
   MaskedWords,
   VIEWPORT_ONCE,
@@ -19,34 +18,46 @@ import {
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { prefetchRoute } from '../lib/routePrefetch';
+
+// Defer heavy below-the-fold bundles (Recharts + D3, Video Dialogs, Fiverr showcase)
+const VideoTestimonials = lazy(() =>
+  import('../components/VideoTestimonials').then((m) => ({ default: m.VideoTestimonials }))
+);
+const FiverrProfileSection = lazy(() =>
+  import('../components/FiverrProfileSection').then((m) => ({ default: m.FiverrProfileSection }))
+);
+const GrowthChart = lazy(() =>
+  import('../components/GrowthChart').then((m) => ({ default: m.GrowthChart }))
+);
 
 export const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Nexcypher | Scale Your Shopify Store | High-Converting 2.0 Themes & AI Voice Agents</title>
-        <meta name="description" content="Scale your e-commerce revenue with custom Shopify 2.0 stores engineered for high conversion rates (CRO), sub-second load speeds, and 24/7 autonomous AI calling agents. Trusted by 7-figure brand founders." />
+        <title>Nexcypher – Shopify 2.0 Agency & AI Voice Agents</title>
+        <meta name="description" content="Scale your Shopify store with high-converting 2.0 themes, speed optimization, CRO, and 24/7 AI calling agents. Book a free Shopify growth audit today." />
         <meta name="keywords" content="Shopify store development, Shopify CRO agency, Shopify speed optimization, custom Shopify 2.0 themes, Shopify dropshipping scale, AI voice agents for ecommerce, Shopify Plus experts, high converting Shopify design, ecommerce revenue optimization, DTC Shopify agency" />
         <link rel="canonical" href="https://nexcypher.us/" />
 
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Nexcypher" />
-        <meta property="og:title" content="Scale Your Shopify Store to $1M/mo | Custom 2.0 Design & AI Agents - Nexcypher" />
-        <meta property="og:description" content="Turn ad clicks into profitable orders. Custom Shopify 2.0 architectures, conversion-focused UI/UX, checkout optimization, and autonomous AI sales callers." />
+        <meta property="og:title" content="Nexcypher – Shopify 2.0 Agency & AI Voice Agents" />
+        <meta property="og:description" content="Scale your Shopify store with high-converting 2.0 themes, speed optimization, CRO, and 24/7 AI calling agents. Book a free Shopify growth audit today." />
         <meta property="og:url" content="https://nexcypher.us/" />
         <meta property="og:image" content="https://nexcypher.us/og-image.jpg" />
         <meta property="og:image:secure_url" content="https://nexcypher.us/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Nexcypher - High-Converting Shopify 2.0 Architecture & Autonomous AI Voice Agents" />
+        <meta property="og:image:alt" content="Nexcypher – High-Converting Shopify 2.0 Agency & AI Voice Agents" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@nexcypher" />
         <meta name="twitter:creator" content="@nexcypher" />
-        <meta name="twitter:title" content="Scale Your Shopify Store to $1M/mo | High-Converting 2.0 Themes - Nexcypher" />
-        <meta name="twitter:description" content="Engineered for serious 6-8 figure e-commerce founders. Custom Shopify 2.0 stores, sub-second load times, CRO, and 24/7 autonomous AI voice agents." />
+        <meta name="twitter:title" content="Nexcypher – Shopify 2.0 Agency & AI Voice Agents" />
+        <meta name="twitter:description" content="Scale your Shopify store with high-converting 2.0 themes, speed optimization, CRO, and 24/7 AI calling agents. Book a free Shopify growth audit today." />
         <meta name="twitter:image" content="https://nexcypher.us/og-image.jpg" />
         <meta name="twitter:image:alt" content="Nexcypher High-Converting Shopify Agency Preview" />
       </Helmet>
@@ -75,7 +86,7 @@ export const Home = () => {
             Nexcypher engineers high-performance Shopify ecosystems and AI voice agents for elite brands.
           </motion.p>
           <motion.div variants={textFadeUpVariants}>
-            <Link to="/about">
+            <Link to="/about" onMouseEnter={() => prefetchRoute('/about')}>
               <Button size="lg" variant="outline" className="border-white/10 text-white rounded-full px-8">
                 Learn Our Mission <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
@@ -117,7 +128,11 @@ export const Home = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
             <motion.div variants={cardFadeUpVariants} className="flex">
-              <Link to="/store-design-gallery" className="group p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-accent-blue/30 transition-all flex flex-col items-center text-center w-full">
+              <Link
+                to="/store-design-gallery"
+                onMouseEnter={() => prefetchRoute('/store-design-gallery')}
+                className="group p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-accent-blue/30 transition-colors flex flex-col items-center text-center w-full"
+              >
                 <div className="w-16 h-16 rounded-2xl bg-accent-blue/10 text-accent-blue flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>
                 </div>
@@ -130,7 +145,11 @@ export const Home = () => {
             </motion.div>
 
             <motion.div variants={cardFadeUpVariants} className="flex">
-              <Link to="/niche-research" className="group p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-accent-blue/30 transition-all flex flex-col items-center text-center w-full">
+              <Link
+                to="/niche-research"
+                onMouseEnter={() => prefetchRoute('/niche-research')}
+                className="group p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-accent-blue/30 transition-colors flex flex-col items-center text-center w-full"
+              >
                 <div className="w-16 h-16 rounded-2xl bg-accent-gold/10 text-accent-gold flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 </div>
@@ -143,7 +162,11 @@ export const Home = () => {
             </motion.div>
 
             <motion.div variants={cardFadeUpVariants} className="flex">
-              <Link to="/store-audit" className="group p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-accent-blue/30 transition-all flex flex-col items-center text-center w-full">
+              <Link
+                to="/store-audit"
+                onMouseEnter={() => prefetchRoute('/store-audit')}
+                className="group p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:border-accent-blue/30 transition-colors flex flex-col items-center text-center w-full"
+              >
                 <div className="w-16 h-16 rounded-2xl bg-accent-cyan/10 text-accent-cyan flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                 </div>
@@ -158,10 +181,17 @@ export const Home = () => {
         </div>
       </section>
 
-      <VideoTestimonials />
-      <FiverrProfileSection />
+      <LazySection minHeight="560px">
+        <VideoTestimonials />
+      </LazySection>
 
-      <GrowthChart />
+      <LazySection minHeight="680px">
+        <FiverrProfileSection />
+      </LazySection>
+
+      <LazySection minHeight="640px">
+        <GrowthChart />
+      </LazySection>
 
       {/* Global CTA */}
       <section className="py-32 bg-accent-blue relative overflow-hidden">
@@ -179,7 +209,7 @@ export const Home = () => {
             <MaskedWords text="Your Niche?" baseDelay={0.18} className="justify-center" />
           </h2>
           <motion.div variants={textFadeUpVariants}>
-            <Link to="/contact">
+            <Link to="/contact" onMouseEnter={() => prefetchRoute('/contact')}>
               <Button size="lg" className="bg-white text-accent-blue hover:bg-gray-100 rounded-full px-12 h-16 text-xl font-bold">
                 Start Your Project Today
               </Button>

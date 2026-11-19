@@ -1,13 +1,12 @@
 import { motion } from 'motion/react';
-import { Clock, Briefcase, ShieldCheck, Award, MessageSquare, ExternalLink, CheckCircle2, ShoppingBag, Bot, Star } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Clock, Briefcase, ShieldCheck, Award, MessageSquare, ExternalLink, CheckCircle2, ShoppingBag, Bot } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="py-32 bg-background relative overflow-hidden">
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-accent-blue/10 rounded-full blur-[120px] animate-pulse" />
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent-purple/10 rounded-full blur-[120px] animate-pulse delay-1000" />
+    <section id="about" className="py-24 md:py-32 bg-background relative overflow-hidden">
+      <div className="absolute top-1/4 -left-20 w-96 h-96 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.12)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.12)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -63,19 +62,24 @@ export const AboutSection = () => {
             </div>
 
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button size="lg" className="bg-accent-blue hover:bg-accent-blue/90 text-white rounded-full px-8 h-14 font-bold shadow-lg shadow-accent-blue/20 flex items-center gap-2">
+              <a
+                href="https://www.fiverr.com/nexcypher_uk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-accent-blue hover:bg-accent-blue/90 text-white rounded-full px-8 h-14 font-bold shadow-lg shadow-accent-blue/20 transition-colors"
+              >
                 Hire Me on Fiverr
                 <ExternalLink className="w-4 h-4" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-white/10 text-white hover:bg-white/5 rounded-full px-8 h-14 font-bold flex items-center gap-2"
-                onClick={() => window.open('https://wa.me/447465616990', '_blank')}
+              </a>
+              <a
+                href="https://wa.me/447465616990"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border border-white/10 text-white hover:bg-white/5 rounded-full px-8 h-14 font-bold transition-colors"
               >
                 Chat on WhatsApp
                 <MessageSquare className="w-4 h-4" />
-              </Button>
+              </a>
             </div>
           </motion.div>
 
@@ -90,10 +94,14 @@ export const AboutSection = () => {
               <div className="aspect-[4/5] rounded-[32px] overflow-hidden relative group">
                 <img 
                   src="https://imglink.cc/cdn/EKSMSiB2jK.png" 
-                  alt="Chase portrait" 
+                  alt="Chase portrait"
+                  width={600}
+                  height={750}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
-                loading="lazy" decoding="async" />
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
               </div>
             </div>

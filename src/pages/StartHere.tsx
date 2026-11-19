@@ -18,7 +18,7 @@ export const StartHere = () => {
     }
     
     if (selectedPath === 'shopify') {
-      window.location.href = "https://www.fiverr.com/nexcypher_us";
+      window.location.href = "https://www.fiverr.com/nexcypher_uk";
     } else {
       window.location.href = "https://wa.me/447465616990";
     }

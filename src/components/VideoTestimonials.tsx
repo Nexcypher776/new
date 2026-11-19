@@ -31,7 +31,7 @@ export const VideoTestimonials = () => {
     e.preventDefault();
     e.stopPropagation();
     
-    const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://nexcypher.com/results';
+    const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://nexcypher.us/results';
     const url = encodeURIComponent(currentUrl);
     const text = encodeURIComponent(`Watch this testimonial by ${video.clientName} about Nexcypher's results!`);
     
@@ -137,6 +137,7 @@ export const VideoTestimonials = () => {
             <div className="aspect-video w-full">
               {selectedVideo && (
                 <iframe
+                  title="Client Testimonial Video"
                   src={selectedVideo.includes('vimeo.com') 
                       ? `https://player.vimeo.com/video/${getVimeoId(selectedVideo)}?autoplay=1` 
                       : `https://www.youtube.com/embed/${getYoutubeId(selectedVideo)}?autoplay=1&rel=0`}

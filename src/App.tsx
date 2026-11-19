@@ -1,51 +1,80 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect, useMemo, useState } from 'react';
 import { motion, useScroll, useSpring, AnimatePresence, MotionConfig } from 'motion/react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
-import { LeadPopup } from './components/LeadPopup';
+import { Home } from './pages/Home';
+import { routeImporters } from './lib/routePrefetch';
+import { getSubPageStructuredData } from './lib/structuredData';
 
-// Pages - Lazy loaded for speed
-const Home = lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
-const About = lazy(() => import('./pages/About').then(m => ({ default: m.About })));
-const Services = lazy(() => import('./pages/Services').then(m => ({ default: m.Services })));
-const AiCallingAgents = lazy(() => import('./pages/AiCallingAgents').then(m => ({ default: m.AiCallingAgents })));
-const ShopifyMarketing = lazy(() => import('./pages/ShopifyMarketing').then(m => ({ default: m.ShopifyMarketing })));
-const ShopifyGrowth = lazy(() => import('./pages/ShopifyGrowth').then(m => ({ default: m.ShopifyGrowth })));
-const Portfolio = lazy(() => import('./pages/Portfolio').then(m => ({ default: m.Portfolio })));
-const SalesVideoProof = lazy(() => import('./pages/SalesVideoProof').then(m => ({ default: m.SalesVideoProof })));
-const Results = lazy(() => import('./pages/Results').then(m => ({ default: m.Results })));
-const Pricing = lazy(() => import('./pages/Pricing').then(m => ({ default: m.Pricing })));
-const Contact = lazy(() => import('./pages/Contact').then(m => ({ default: m.Contact })));
-const ThankYou = lazy(() => import('./pages/ThankYou').then(m => ({ default: m.ThankYou })));
-const Terms = lazy(() => import('./pages/Terms').then(m => ({ default: m.Terms })));
-const Privacy = lazy(() => import('./pages/Privacy').then(m => ({ default: m.Privacy })));
-const StartHere = lazy(() => import('./pages/StartHere').then(m => ({ default: m.StartHere })));
-const CaseStudies = lazy(() => import('./pages/CaseStudies').then(m => ({ default: m.CaseStudies })));
-const Process = lazy(() => import('./pages/Process').then(m => ({ default: m.Process })));
-const FAQ = lazy(() => import('./pages/FAQ').then(m => ({ default: m.FAQ })));
-const Reviews = lazy(() => import('./pages/Reviews').then(m => ({ default: m.Reviews })));
-const BookCall = lazy(() => import('./pages/BookCall').then(m => ({ default: m.BookCall })));
-const Blog = lazy(() => import('./pages/Blog').then(m => ({ default: m.Blog })));
-const CookiePolicy = lazy(() => import('./pages/CookiePolicy').then(m => ({ default: m.CookiePolicy })));
-const Disclaimer = lazy(() => import('./pages/Disclaimer').then(m => ({ default: m.Disclaimer })));
-const RefundPolicy = lazy(() => import('./pages/RefundPolicy').then(m => ({ default: m.RefundPolicy })));
-const AiDemo = lazy(() => import('./pages/AiDemo').then(m => ({ default: m.AiDemo })));
-const AiFeatures = lazy(() => import('./pages/AiFeatures').then(m => ({ default: m.AiFeatures })));
-const StoreAudit = lazy(() => import('./pages/StoreAudit').then(m => ({ default: m.StoreAudit })));
-const Industries = lazy(() => import('./pages/Industries').then(m => ({ default: m.Industries })));
+// Secondary pages - Lazy loaded via shared prefetchable importers
+const About = lazy(() => routeImporters['/about']().then(m => ({ default: m.About })));
+const Services = lazy(() => routeImporters['/services']().then(m => ({ default: m.Services })));
+const AiCallingAgents = lazy(() => routeImporters['/ai-calling-agents']().then(m => ({ default: m.AiCallingAgents })));
+const ShopifyMarketing = lazy(() => routeImporters['/shopify-marketing']().then(m => ({ default: m.ShopifyMarketing })));
+const ShopifyGrowth = lazy(() => routeImporters['/shopify-growth']().then(m => ({ default: m.ShopifyGrowth })));
+const Portfolio = lazy(() => routeImporters['/portfolio']().then(m => ({ default: m.Portfolio })));
+const SalesVideoProof = lazy(() => routeImporters['/sales-video-proof']().then(m => ({ default: m.SalesVideoProof })));
+const Results = lazy(() => routeImporters['/results']().then(m => ({ default: m.Results })));
+const Pricing = lazy(() => routeImporters['/pricing']().then(m => ({ default: m.Pricing })));
+const Contact = lazy(() => routeImporters['/contact']().then(m => ({ default: m.Contact })));
+const ThankYou = lazy(() => routeImporters['/thank-you']().then(m => ({ default: m.ThankYou })));
+const Terms = lazy(() => routeImporters['/terms']().then(m => ({ default: m.Terms })));
+const Privacy = lazy(() => routeImporters['/privacy']().then(m => ({ default: m.Privacy })));
+const StartHere = lazy(() => routeImporters['/start-here']().then(m => ({ default: m.StartHere })));
+const CaseStudies = lazy(() => routeImporters['/case-studies']().then(m => ({ default: m.CaseStudies })));
+const Process = lazy(() => routeImporters['/process']().then(m => ({ default: m.Process })));
+const FAQ = lazy(() => routeImporters['/faq']().then(m => ({ default: m.FAQ })));
+const Reviews = lazy(() => routeImporters['/reviews']().then(m => ({ default: m.Reviews })));
+const BookCall = lazy(() => routeImporters['/book-call']().then(m => ({ default: m.BookCall })));
+const Blog = lazy(() => routeImporters['/blog']().then(m => ({ default: m.Blog })));
+const CookiePolicy = lazy(() => routeImporters['/cookie-policy']().then(m => ({ default: m.CookiePolicy })));
+const Disclaimer = lazy(() => routeImporters['/disclaimer']().then(m => ({ default: m.Disclaimer })));
+const RefundPolicy = lazy(() => routeImporters['/refund-policy']().then(m => ({ default: m.RefundPolicy })));
+const AiDemo = lazy(() => routeImporters['/ai-demo']().then(m => ({ default: m.AiDemo })));
+const AiFeatures = lazy(() => routeImporters['/ai-features']().then(m => ({ default: m.AiFeatures })));
+const StoreAudit = lazy(() => routeImporters['/store-audit']().then(m => ({ default: m.StoreAudit })));
+const Industries = lazy(() => routeImporters['/industries']().then(m => ({ default: m.Industries })));
 const NotFound = lazy(() => import('./pages/NotFound').then(m => ({ default: m.NotFound })));
-const NicheResearch = lazy(() => import('./pages/NicheResearch').then(m => ({ default: m.NicheResearch })));
-const StoreDesignGallery = lazy(() => import('./pages/StoreDesignGallery').then(m => ({ default: m.StoreDesignGallery })));
+const NicheResearch = lazy(() => routeImporters['/niche-research']().then(m => ({ default: m.NicheResearch })));
+const StoreDesignGallery = lazy(() => routeImporters['/store-design-gallery']().then(m => ({ default: m.StoreDesignGallery })));
+const LeadPopup = lazy(() => import('./components/LeadPopup').then(m => ({ default: m.LeadPopup })));
+
+const DeferredLeadPopup = () => {
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    try {
+      if (
+        localStorage.getItem('nexcypher_lead_submitted') ||
+        localStorage.getItem('nexcypher_lead_popup_dismissed')
+      ) {
+        return;
+      }
+    } catch {
+      // Ignore storage access restrictions inside iframes
+    }
+
+    const timer = window.setTimeout(() => setShouldLoad(true), 7500);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  if (!shouldLoad) return null;
+  return (
+    <Suspense fallback={null}>
+      <LeadPopup initialDelayMs={2500} />
+    </Suspense>
+  );
+};
 
 const PageTransition = ({ children }: { children: React.ReactNode }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
+    initial={{ opacity: 0, y: 12 }}
     animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
-    transition={{ duration: 0.3 }}
+    exit={{ opacity: 0, y: -10 }}
+    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
   >
     {children}
   </motion.div>
@@ -61,14 +90,29 @@ const AppContent = () => {
   const location = useLocation();
 
   // Canonical URL construction
-  const canonicalUrl = `https://nexcypher.us${location.pathname === '/' ? '' : location.pathname}`;
+  const isSubPage = location.pathname !== '/';
+  const canonicalUrl = `https://nexcypher.us${isSubPage ? location.pathname : ''}`;
+  const subPageStructuredDataJson = useMemo(
+    () => (isSubPage ? JSON.stringify(getSubPageStructuredData(location.pathname)) : null),
+    [isSubPage, location.pathname]
+  );
 
   return (
     <div className="bg-background min-h-screen selection:bg-accent-blue/30 selection:text-white font-sans text-white overflow-x-hidden">
-      <Helmet>
-        <title>Nexcypher | Shopify Growth & AI Calling Agency</title>
-        <meta name="description" content="Nexcypher helps brands scale with Shopify marketing and AI calling agents. Get more leads, conversions, and automated growth today." />
+      <Helmet defaultTitle="Nexcypher – Shopify 2.0 Agency & AI Voice Agents">
+        <html lang="en" />
+        <meta name="description" content="Scale your Shopify store with high-converting 2.0 themes, speed optimization, CRO, and 24/7 AI calling agents. Book a free Shopify growth audit today." />
         <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:site_name" content="Nexcypher" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://nexcypher.us/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://nexcypher.us/og-image.jpg" />
+        {subPageStructuredDataJson && (
+          <script id="nexcypher-subpage-jsonld" type="application/ld+json">
+            {subPageStructuredDataJson}
+          </script>
+        )}
       </Helmet>
       
       {/* Progress Bar */}
@@ -82,7 +126,7 @@ const AppContent = () => {
       <main className="relative z-10">
         <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
           <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><Home /></Suspense></PageTransition>} />
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><About /></Suspense></PageTransition>} />
             <Route path="/services" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><Services /></Suspense></PageTransition>} />
             <Route path="/ai-calling-agents" element={<PageTransition><Suspense fallback={<div className="min-h-screen" />}><AiCallingAgents /></Suspense></PageTransition>} />
@@ -129,7 +173,7 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <Router>
         <ScrollToTop />
-        <LeadPopup />
+        <DeferredLeadPopup />
         <AppContent />
       </Router>
     </MotionConfig>

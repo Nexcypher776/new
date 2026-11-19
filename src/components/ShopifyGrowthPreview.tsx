@@ -15,8 +15,8 @@ import {
 export const ShopifyGrowthPreview = () => {
   return (
     <section id="shopify-growth" className="py-32 bg-white/[0.01] border-y border-white/5 relative overflow-hidden">
-      {/* Background Orbs */}
-      <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-accent-blue/10 rounded-full blur-[120px] animate-pulse pointer-events-none" />
+      {/* Background Glow */}
+      <div className="absolute bottom-1/4 -left-20 w-96 h-96 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.12)_0%,transparent_70%)] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -31,11 +31,15 @@ export const ShopifyGrowthPreview = () => {
             <div className="relative z-10 glass-card p-6 border-accent-blue/20">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=1200" 
+                  src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&q=75&w=900" 
                   alt="Shopify Growth Dashboard"
+                  width={900}
+                  height={675}
                   className="w-full h-full object-cover opacity-60"
                   referrerPolicy="no-referrer"
-                loading="lazy" decoding="async" />
+                  loading="lazy"
+                  decoding="async"
+                />
                 <motion.div
                   variants={staggerContainerVariants}
                   initial="hidden"
@@ -52,7 +56,7 @@ export const ShopifyGrowthPreview = () => {
               </div>
             </div>
             {/* Decorative Glow */}
-            <div className="absolute -inset-4 bg-accent-blue/20 rounded-full blur-[100px] -z-10 opacity-30" />
+            <div className="absolute -inset-6 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.16)_0%,transparent_65%)] -z-10 pointer-events-none" />
           </motion.div>
 
           <motion.div

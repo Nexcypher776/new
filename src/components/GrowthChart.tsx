@@ -35,14 +35,16 @@ export const GrowthChart = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setData(generateData());
-    }, 60000); // Refresh every minute to keep dates "living"
+      if (!document.hidden) {
+        setData(generateData());
+      }
+    }, 60000); // Refresh every minute when tab is active
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="py-32 bg-black relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-accent-blue/5 blur-[160px] rounded-full" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08)_0%,transparent_65%)] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-5 gap-16 items-center">
@@ -94,7 +96,7 @@ export const GrowthChart = () => {
                whileInView={{ opacity: 1, scale: 1, y: 0 }}
                transition={{ duration: 0.75, ease: PREMIUM_EASE }}
                viewport={VIEWPORT_ONCE}
-               className="p-8 pb-12 rounded-[48px] bg-white/[0.01] border border-white/5 backdrop-blur-[2px] relative group"
+               className="p-8 pb-12 rounded-[48px] bg-white/[0.02] border border-white/5 relative group"
              >
                 <div className="flex justify-between items-center mb-12">
                    <div className="flex items-center gap-4">
@@ -142,7 +144,7 @@ export const GrowthChart = () => {
                   </ResponsiveContainer>
                 </div>
                 
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent-blue blur-[80px] opacity-20 pointer-events-none" />
+                <div className="absolute -bottom-6 -right-6 w-40 h-40 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.2)_0%,transparent_70%)] pointer-events-none" />
              </motion.div>
           </div>
         </div>

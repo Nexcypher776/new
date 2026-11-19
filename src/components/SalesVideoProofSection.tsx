@@ -24,7 +24,7 @@ export const SalesVideoProofSection = () => {
     e.preventDefault();
     e.stopPropagation();
     
-    const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://nexcypher.com/results';
+    const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://nexcypher.us/results';
     const url = encodeURIComponent(currentUrl);
     const text = encodeURIComponent(`Watch this testimonial by ${video.clientName} about Nexcypher's results!`);
     
@@ -58,7 +58,7 @@ export const SalesVideoProofSection = () => {
             <motion.div
               key={video.id}
               whileHover={{ y: -10 }}
-              className="glass-card overflow-hidden group relative cursor-pointer"
+              className="cv-auto glass-card overflow-hidden group relative cursor-pointer"
               onClick={() => setSelectedVideo(video.videoUrl)}
               onHoverStart={() => setHoveredVideo(video.id)}
               onHoverEnd={() => setHoveredVideo(null)}
@@ -113,6 +113,7 @@ export const SalesVideoProofSection = () => {
             <div className="aspect-video w-full">
               {selectedVideo && (
                 <iframe
+                  title="Sales Video Proof"
                   src={selectedVideo.includes('vimeo.com') 
                       ? `https://player.vimeo.com/video/${getVimeoId(selectedVideo)}?autoplay=1` 
                       : `https://www.youtube.com/embed/${getYoutubeId(selectedVideo)}?autoplay=1&rel=0`}

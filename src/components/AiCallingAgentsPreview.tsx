@@ -14,8 +14,8 @@ import {
 export const AiCallingAgentsPreview = () => {
   return (
     <section id="ai-calling-agents" className="py-32 bg-background relative overflow-hidden">
-      {/* Background Orbs */}
-      <div className="absolute top-1/4 -right-20 w-96 h-96 bg-accent-gold/10 rounded-full blur-[120px] animate-pulse" />
+      {/* Background Glow */}
+      <div className="absolute top-1/4 -right-20 w-96 h-96 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.12)_0%,transparent_70%)] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -82,11 +82,15 @@ export const AiCallingAgentsPreview = () => {
             <div className="relative z-10 glass-card p-6 border-accent-gold/20">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden relative">
                 <img 
-                  src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200" 
+                  src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=75&w=900" 
                   alt="AI Agent Visualization"
+                  width={900}
+                  height={675}
                   className="w-full h-full object-cover opacity-60"
                   referrerPolicy="no-referrer"
-                loading="lazy" decoding="async" />
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
                    <div className="text-center p-8">
                       <Bot className="w-16 h-16 text-accent-gold mx-auto mb-4 animate-bounce" />
@@ -98,7 +102,7 @@ export const AiCallingAgentsPreview = () => {
               </div>
             </div>
             {/* Decorative Glow */}
-            <div className="absolute -inset-4 bg-accent-gold/20 rounded-full blur-[100px] -z-10 opacity-30" />
+            <div className="absolute -inset-6 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.16)_0%,transparent_65%)] -z-10 pointer-events-none" />
           </motion.div>
         </div>
       </div>

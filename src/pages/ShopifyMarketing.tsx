@@ -4,9 +4,9 @@ import { SalesProofSection } from '../components/SalesProofSection';
 import { VideoTestimonials } from '../components/VideoTestimonials';
 import { Badge } from '@/components/ui/badge';
 import { 
-  Rocket, Users, Zap, Search, Globe, 
-  ArrowRight, CheckCircle2, ChevronRight, Layout,
-  Smartphone, BarChartHorizontal
+  Users, Zap, Search, Globe, 
+  CheckCircle2, ChevronRight, Layout,
+  BarChartHorizontal
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';

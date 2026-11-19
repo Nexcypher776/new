@@ -31,22 +31,22 @@ export const NicheResearchTool = () => {
   };
 
   return (
-    <section className="py-32 bg-background relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-blue-500/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4" />
+    <section className="py-24 md:py-32 bg-background relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-[radial-gradient(circle,rgba(59,130,246,0.08)_0%,transparent_70%)] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="max-w-3xl mb-16">
           <Badge className="mb-4 bg-accent-blue/10 text-accent-blue border-accent-blue/20">Market Intelligence</Badge>
-          <h2 className="text-4xl md:text-7xl font-black text-white italic uppercase tracking-tighter leading-none mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-white italic uppercase tracking-tighter leading-none mb-6">
             Research Your Niche <br /> <span className="text-accent-blue">Before You Build.</span>
           </h2>
-          <p className="text-text-secondary text-lg">
+          <p className="text-text-secondary text-base sm:text-lg">
             Enter the niche you want to explore and get a structured opportunity report designed to help you make better business decisions.
           </p>
         </div>
 
         <div className="relative max-w-4xl mx-auto md:mx-0">
-          <div className="flex flex-col md:flex-row gap-4 p-2 bg-white/[0.03] border border-white/10 rounded-2xl md:rounded-[32px] backdrop-blur-xl mb-8">
+          <div className="flex flex-col md:flex-row gap-4 p-2 bg-white/[0.03] border border-white/10 rounded-2xl md:rounded-[32px] backdrop-blur-md mb-8">
             <div className="flex-1 flex items-center px-4 md:px-6">
               <Search className="w-5 h-5 text-text-secondary mr-4 shrink-0" />
               <Input 
@@ -134,7 +134,7 @@ export const NicheResearchTool = () => {
           </AnimatePresence>
 
           {!report && !isLoading && (
-            <div className="p-20 rounded-[32px] bg-white/[0.01] border border-white/5 border-dashed text-center">
+            <div className="p-10 sm:p-16 md:p-20 rounded-[32px] bg-white/[0.01] border border-white/5 border-dashed text-center">
               <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Search className="w-8 h-8 text-white/20" />
               </div>

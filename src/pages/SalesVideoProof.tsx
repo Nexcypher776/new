@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Play, ArrowRight, Video, Target, Bot, TrendingUp } from 'lucide-react';
+import { Play, ArrowRight } from 'lucide-react';
 import { SALES_VIDEO_PROOFS } from '../constants';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
@@ -45,7 +45,7 @@ export const SalesVideoProof = () => {
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic leading-none"
+          className="text-4xl sm:text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic leading-none"
         >
           Sales <br /> <span className="text-accent-blue">Video Proof.</span>
         </motion.h2>

@@ -31,10 +31,10 @@ const features = [
 
 export const WhyChooseSection = () => {
   return (
-    <section className="py-32 bg-background relative overflow-hidden">
+    <section className="py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Background glow effects */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-accent-blue/5 rounded-full blur-[120px] -z-10" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent-purple/5 rounded-full blur-[120px] -z-10" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.08)_0%,transparent_70%)] -z-10 pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.08)_0%,transparent_70%)] -z-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
@@ -64,9 +64,8 @@ export const WhyChooseSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="p-8 md:p-12 rounded-[2rem] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all hover:-translate-y-2 group relative overflow-hidden"
+              className="p-8 md:p-12 rounded-[2rem] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-[background-color,transform] duration-300 hover:-translate-y-2 group relative overflow-hidden"
             >
-              <div className={`absolute top-0 right-0 w-32 h-32 ${feature.bgColor} blur-3xl opacity-20 -z-10 transition-opacity group-hover:opacity-40`} />
               
               <div className={`w-16 h-16 rounded-2xl ${feature.bgColor} ${feature.borderColor} border flex items-center justify-center mb-8 group-hover:scale-110 transition-transform`}>
                 <feature.icon className={`w-8 h-8 ${feature.color}`} />

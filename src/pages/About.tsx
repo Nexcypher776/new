@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { AboutSection } from '../components/AboutSection';
 import { WhyChooseSection } from '../components/WhyChooseSection';
@@ -26,7 +25,7 @@ export const About = () => {
         <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           Who We Are
         </Badge>
-        <h2 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic">
+        <h2 className="text-4xl sm:text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic">
           The Architects <br /> of Growth.
         </h2>
         <p className="text-text-secondary text-xl max-w-3xl mx-auto leading-relaxed">

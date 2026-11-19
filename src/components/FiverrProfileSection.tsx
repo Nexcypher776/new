@@ -12,11 +12,11 @@ import {
 } from './MotionText';
 
 export const FiverrProfileSection = () => {
-  const fiverrUrl = "https://www.fiverr.com/nexcypher_us";
+  const fiverrUrl = "https://www.fiverr.com/nexcypher_uk";
   
   return (
-    <section className="py-32 bg-background relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#1dbf73]/5 rounded-full blur-[120px] -z-10" />
+    <section className="py-24 md:py-32 bg-background relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(29,191,115,0.08)_0%,transparent_65%)] -z-10 pointer-events-none" />
       
       <div className="max-w-4xl mx-auto px-6">
         <motion.div
@@ -43,7 +43,7 @@ export const FiverrProfileSection = () => {
             <motion.div variants={textFadeUpVariants} className="relative mb-8">
               <div className="w-32 h-32 md:w-40 md:h-40 rounded-full p-1 bg-gradient-to-tr from-[#1dbf73] to-accent-blue shadow-2xl">
                 <div className="w-full h-full rounded-full overflow-hidden border-4 border-background bg-white/5 flex items-center justify-center p-4">
-                  <img src={LOGO_URL} alt="Chase" className="w-full h-full object-contain" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
+                  <img src={LOGO_URL} alt="Chase - Nexcypher Fiverr Pro" width={128} height={128} className="w-full h-full object-contain" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
                 </div>
               </div>
               <div className="absolute -bottom-2 -right-2 bg-[#1dbf73] p-2 rounded-full shadow-lg border-2 border-background">
@@ -90,11 +90,15 @@ export const FiverrProfileSection = () => {
               ))}
             </motion.div>
 
-            <motion.a variants={textFadeUpVariants} href={fiverrUrl} target="_blank" rel="noopener noreferrer" className="w-full group">
-              <button className="w-full h-16 bg-[#1dbf73] hover:bg-[#1dbf73]/90 text-white rounded-2xl font-black text-xl tracking-tighter transition-all shadow-xl shadow-[#1dbf73]/20 flex items-center justify-center gap-3">
-                View My Fiverr Profile
-                <Star className="w-6 h-6 fill-white" />
-              </button>
+            <motion.a
+              variants={textFadeUpVariants}
+              href={fiverrUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full h-16 bg-[#1dbf73] hover:bg-[#1dbf73]/90 text-white rounded-2xl font-black text-lg sm:text-xl tracking-tighter transition-colors shadow-xl shadow-[#1dbf73]/20 flex items-center justify-center gap-3 group"
+            >
+              View My Fiverr Profile
+              <Star className="w-6 h-6 fill-white" />
             </motion.a>
           </motion.div>
         </motion.div>

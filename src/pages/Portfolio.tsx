@@ -1,6 +1,5 @@
-import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
-import { ShoppingCart, Cloud, Cpu, Gem, Heart, ArrowRight, ExternalLink } from 'lucide-react';
+import { ShoppingCart, Cloud, Cpu, Gem, Heart, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { NichePortfolio } from '../components/NichePortfolio';
 import { CaseStudiesSection } from '../components/CaseStudiesSection';

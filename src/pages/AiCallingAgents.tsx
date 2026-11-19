@@ -2,8 +2,7 @@ import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { AiCallingAgentsPreview } from '../components/AiCallingAgentsPreview';
 import { Badge } from '@/components/ui/badge';
-import { Bot, Phone, Zap, ShieldCheck, ArrowRight, MessageSquare, Mic } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Bot, Zap, Mic } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export const AiCallingAgents = () => {
@@ -43,7 +42,7 @@ export const AiCallingAgents = () => {
         <Badge className="mb-6 bg-accent-gold/10 text-accent-gold border-accent-gold/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
           The New Standard
         </Badge>
-        <h2 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic">
+        <h2 className="text-4xl sm:text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic">
           AI Voice <br /> <span className="text-accent-gold">Domination.</span>
         </h2>
         <p className="text-text-secondary text-xl max-w-3xl mx-auto leading-relaxed">

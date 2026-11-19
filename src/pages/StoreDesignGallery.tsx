@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, X, Maximize2 } from 'lucide-react';
+import { prefetchRoute } from '../lib/routePrefetch';
+
+const PAGE_SIZE = 12;
 
 const NICHES = [
   "All",
@@ -437,11 +440,25 @@ export const StoreDesignGallery = () => {
   const canonicalUrl = `https://nexcypher.us${location.pathname}`;
   
   const [activeTab, setActiveTab] = useState("All");
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [selectedItem, setSelectedItem] = useState<typeof DESIGNS[0] | null>(null);
 
-  const filteredDesigns = activeTab === "All" 
-    ? DESIGNS 
-    : DESIGNS.filter(d => d.niche === activeTab);
+  const filteredDesigns = useMemo(
+    () => (activeTab === "All" ? DESIGNS : DESIGNS.filter(d => d.niche === activeTab)),
+    [activeTab]
+  );
+
+  const visibleDesigns = useMemo(
+    () => filteredDesigns.slice(0, visibleCount),
+    [filteredDesigns, visibleCount]
+  );
+
+  const remainingCount = filteredDesigns.length - visibleDesigns.length;
+
+  const handleTabChange = (niche: string) => {
+    setActiveTab(niche);
+    setVisibleCount(PAGE_SIZE);
+  };
 
   return (
     <>
@@ -458,13 +475,13 @@ export const StoreDesignGallery = () => {
       </Helmet>
 
       {/* Header Section */}
-      <section className="pt-40 pb-20 bg-background relative overflow-hidden">
+      <section className="pt-48 md:pt-60 pb-16 md:pb-20 bg-background relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.15),transparent_50%)]" />
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-2 text-xs">
             Premium Designs
           </Badge>
-          <h1 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter">
             Shopify Store <br className="hidden md:block"/> <span className="text-accent-blue italic">Design Gallery</span>
           </h1>
           <p className="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
@@ -482,8 +499,8 @@ export const StoreDesignGallery = () => {
             {NICHES.map(niche => (
               <button
                 key={niche}
-                onClick={() => setActiveTab(niche)}
-                className={`px-6 py-3 rounded-full text-sm font-bold uppercase tracking-widest transition-all ${
+                onClick={() => handleTabChange(niche)}
+                className={`px-6 py-3 rounded-full text-sm font-bold uppercase tracking-widest transition-colors ${
                   activeTab === niche 
                     ? 'bg-accent-gold text-black shadow-[0_0_20px_rgba(252,192,44,0.3)]' 
                     : 'bg-white/5 border border-white/10 text-text-secondary hover:text-white hover:border-white/30'
@@ -495,44 +512,49 @@ export const StoreDesignGallery = () => {
           </div>
 
           {/* Masonry Grid Layout */}
-          <motion.div layout className="columns-xs md:columns-md lg:columns-lg gap-8 [column-fill:_balance]">
-            <AnimatePresence>
-              {filteredDesigns.map((design) => (
-                <motion.div
-                  key={design.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  className="break-inside-avoid inline-block w-full mb-8 group rounded-3xl bg-white/[0.02] border border-white/5 overflow-hidden hover:border-accent-blue/30 transition-colors"
-                >
-                  <div className="relative overflow-hidden bg-white/5">
-                    <img 
-                      src={design.thumbnail} 
-                      alt={design.title}
-                      referrerPolicy="no-referrer"
-                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 block"
-                      loading="lazy"
-                      decoding="async" 
-                    />
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
-                       <Button 
-                        onClick={() => setSelectedItem(design)}
-                        className="bg-accent-blue hover:bg-accent-blue/90 text-white rounded-full font-bold px-8 shadow-lg"
-                       >
-                         {('videoUrl' in design && design.videoUrl) ? <><div className="w-0 h-0 mr-2 border-l-[12px] border-l-white border-y-[8px] border-y-transparent"></div> Play Video</> : <><Maximize2 className="w-4 h-4 mr-2" /> View Design</>}
-                       </Button>
-                    </div>
+          <div className="columns-xs md:columns-md lg:columns-lg gap-8 [column-fill:_balance]">
+            {visibleDesigns.map((design) => (
+              <div
+                key={design.id}
+                className="cv-auto break-inside-avoid inline-block w-full mb-8 group rounded-3xl bg-white/[0.02] border border-white/5 overflow-hidden hover:border-accent-blue/30 transition-colors"
+              >
+                <div className="relative overflow-hidden bg-white/5">
+                  <img 
+                    src={design.thumbnail} 
+                    alt={design.title}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 block"
+                    loading="lazy"
+                    decoding="async" 
+                  />
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+                     <Button 
+                      onClick={() => setSelectedItem(design)}
+                      className="bg-accent-blue hover:bg-accent-blue/90 text-white rounded-full font-bold px-8 shadow-lg"
+                     >
+                       {('videoUrl' in design && design.videoUrl) ? <><div className="w-0 h-0 mr-2 border-l-[12px] border-l-white border-y-[8px] border-y-transparent"></div> Play Video</> : <><Maximize2 className="w-4 h-4 mr-2" /> View Design</>}
+                     </Button>
                   </div>
-                  <div className="p-6">
-                    <Badge variant="outline" className="text-[10px] text-accent-blue border-accent-blue/20 mb-3">{design.niche}</Badge>
-                    <h3 className="text-xl font-bold text-white">{design.title}</h3>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+                </div>
+                <div className="p-6">
+                  <Badge variant="outline" className="text-[10px] text-accent-blue border-accent-blue/20 mb-3">{design.niche}</Badge>
+                  <h3 className="text-xl font-bold text-white">{design.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {remainingCount > 0 && (
+            <div className="mt-12 text-center">
+              <Button
+                size="lg"
+                onClick={() => setVisibleCount(prev => prev + PAGE_SIZE)}
+                className="bg-white/10 hover:bg-white/15 border border-white/15 text-white rounded-full px-10 h-14 text-sm font-bold uppercase tracking-widest transition-colors"
+              >
+                Load More Designs ({remainingCount} remaining)
+              </Button>
+            </div>
+          )}
           
           {filteredDesigns.length === 0 && (
             <div className="text-center py-20 text-white/50 font-medium">
@@ -553,12 +575,12 @@ export const StoreDesignGallery = () => {
             Let Nexcypher design a premium Shopify store built around your niche, products, and growth goals.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to="/contact">
+            <Link to="/contact" onMouseEnter={() => prefetchRoute('/contact')} onFocus={() => prefetchRoute('/contact')}>
               <Button size="lg" className="bg-white text-accent-blue hover:bg-gray-100 rounded-full px-12 h-16 text-lg font-bold shadow-2xl">
                 Start My Store Project <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-            <Link to="/pricing">
+            <Link to="/pricing" onMouseEnter={() => prefetchRoute('/pricing')} onFocus={() => prefetchRoute('/pricing')}>
               <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full px-12 h-16 text-lg font-bold">
                 View Pricing
               </Button>
@@ -574,12 +596,14 @@ export const StoreDesignGallery = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex justify-center overflow-y-auto p-4 md:p-12 cursor-zoom-out"
+            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-md flex justify-center overflow-y-auto p-4 md:p-12 cursor-zoom-out"
             onClick={() => setSelectedItem(null)}
           >
             <div className="absolute top-6 right-6 md:top-10 md:right-10 z-[210]">
               <button 
-                className="bg-white/10 hover:bg-white/20 p-3 rounded-full text-white backdrop-blur-md transition-colors"
+                type="button"
+                aria-label="Close design preview"
+                className="bg-white/10 hover:bg-white/20 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full text-white backdrop-blur-md transition-colors"
                 onClick={(e) => { e.stopPropagation(); setSelectedItem(null); }}
               >
                 <X className="w-6 h-6" />

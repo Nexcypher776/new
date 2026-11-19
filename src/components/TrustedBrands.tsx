@@ -32,18 +32,18 @@ export const TrustedBrands = () => {
         Trusted platforms we scale brands on
       </motion.p>
       <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-        <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
+        <ul className="flex items-center justify-center md:justify-start [&_li]:mx-6 sm:[&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
           {brands.map((brand, idx) => (
-            <li key={idx} className="flex items-center gap-2 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <brand.icon className="w-8 h-8 text-white" />
-              <span className="text-white font-black uppercase tracking-tighter">{brand.name}</span>
+            <li key={idx} className="flex items-center gap-2 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-opacity duration-300">
+              <brand.icon className="w-7 h-7 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
+              <span className="text-white font-black uppercase tracking-tighter text-sm sm:text-base">{brand.name}</span>
             </li>
           ))}
           {/* Duplicate for infinite scroll */}
           {brands.map((brand, idx) => (
-            <li key={`dup-${idx}`} className="flex items-center gap-2 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-              <brand.icon className="w-8 h-8 text-white" />
-              <span className="text-white font-black uppercase tracking-tighter">{brand.name}</span>
+            <li key={`dup-${idx}`} aria-hidden="true" className="flex items-center gap-2 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-opacity duration-300">
+              <brand.icon className="w-7 h-7 sm:w-8 sm:h-8 text-white" />
+              <span className="text-white font-black uppercase tracking-tighter text-sm sm:text-base">{brand.name}</span>
             </li>
           ))}
         </ul>

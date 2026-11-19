@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { NICHE_PROJECTS } from '../constants';
 import { Twitter, Linkedin, Facebook } from 'lucide-react';
 
@@ -9,7 +8,10 @@ export const NichePortfolio = () => {
   const [filter, setFilter] = useState<'All' | 'Shopify Dev' | 'Marketing' | 'AI Automation'>('All');
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const categories = ['All', 'Shopify Dev', 'Marketing', 'AI Automation'] as const;
-  const filteredProjects = filter === 'All' ? NICHE_PROJECTS : NICHE_PROJECTS.filter(p => p.category === filter);
+  const filteredProjects = useMemo(
+    () => (filter === 'All' ? NICHE_PROJECTS : NICHE_PROJECTS.filter(p => p.category === filter)),
+    [filter]
+  );
 
   const handleShare = (e: React.MouseEvent, platform: string, project: any) => {
     e.preventDefault();
@@ -67,22 +69,21 @@ export const NichePortfolio = () => {
           </div>
         </div>
 
-        <motion.div layout className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <motion.div
                 key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.94 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                whileHover={{ y: -10 }}
+                exit={{ opacity: 0, scale: 0.94 }}
+                transition={{ duration: 0.25 }}
+                whileHover={{ y: -8 }}
                 onHoverStart={() => setHoveredProject(project.id)}
                 onHoverEnd={() => setHoveredProject(null)}
-                className="glass-card overflow-hidden relative group h-[300px]"
+                className="cv-auto glass-card overflow-hidden relative group h-[300px]"
               >
-                <img src={project.image} alt={project.niche} className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
+                <img src={project.image} alt={project.niche} className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" loading="lazy" decoding="async" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                 
                 <div className="absolute top-6 right-6 z-20 flex flex-col items-end gap-2">
@@ -117,7 +118,7 @@ export const NichePortfolio = () => {
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

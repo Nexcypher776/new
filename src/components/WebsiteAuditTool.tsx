@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Globe, Info, Zap, Search, ShieldCheck, Smartphone, Target, Layout, Loader2, ArrowRight } from 'lucide-react';
+import { Globe, Info, Zap, Search, ShieldCheck, Smartphone, Target, Layout, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -32,22 +32,22 @@ export const WebsiteAuditTool = () => {
   };
 
   return (
-    <section className="py-32 bg-background relative overflow-hidden">
-      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-accent-blue/5 blur-[120px] rounded-full translate-y-1/2 -translate-x-1/4" />
+    <section className="py-24 md:py-32 bg-background relative overflow-hidden">
+      <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-[radial-gradient(circle,rgba(59,130,246,0.08)_0%,transparent_70%)] rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="max-w-3xl mb-16">
           <Badge className="mb-4 bg-accent-blue/10 text-accent-blue border-accent-blue/20">Site Diagnostics</Badge>
-          <h2 className="text-4xl md:text-7xl font-black text-white italic uppercase tracking-tighter leading-none mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-white italic uppercase tracking-tighter leading-none mb-6">
             Analyze Your <br /> <span className="text-accent-blue">Store Performance.</span>
           </h2>
-          <p className="text-text-secondary text-lg">
+          <p className="text-text-secondary text-base sm:text-lg">
             Paste your website link to review key performance signals, technical issues, speed insights, and store optimization opportunities.
           </p>
         </div>
 
         <div className="relative max-w-5xl">
-          <div className="flex flex-col md:flex-row gap-4 p-2 md:p-2 bg-white/[0.03] border border-white/10 rounded-2xl md:rounded-full backdrop-blur-xl mb-12">
+          <div className="flex flex-col md:flex-row gap-4 p-2 bg-white/[0.03] border border-white/10 rounded-2xl md:rounded-full backdrop-blur-md mb-12">
             <div className="flex-1 flex items-center px-4 md:px-8">
               <Globe className="w-5 h-5 text-text-secondary mr-4 shrink-0" />
               <Input 
@@ -73,7 +73,7 @@ export const WebsiteAuditTool = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                className="p-24 rounded-[48px] bg-white/[0.02] border border-white/5 border-dashed text-center"
+                className="p-10 sm:p-16 md:p-24 rounded-[32px] sm:rounded-[48px] bg-white/[0.02] border border-white/5 border-dashed text-center"
               >
                 <div className="inline-flex flex-col items-center gap-6">
                   <div className="relative">
@@ -163,8 +163,8 @@ export const WebsiteAuditTool = () => {
                     </div>
                     <h4 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter leading-tight">Let Nexcypher Fix These <br /> Issues & Scale Your Store.</h4>
                   </div>
-                  <Link to="/contact">
-                    <Button size="lg" className="bg-white text-accent-blue hover:bg-gray-100 h-20 px-12 rounded-full font-black text-2xl italic uppercase tracking-tighter shadow-2xl">
+                  <Link to="/contact" className="w-full md:w-auto">
+                    <Button size="lg" className="bg-white text-accent-blue hover:bg-gray-100 w-full md:w-auto h-14 sm:h-16 md:h-20 px-8 sm:px-12 rounded-full font-black text-lg sm:text-2xl italic uppercase tracking-tighter shadow-2xl">
                       Book Full Audit
                     </Button>
                   </Link>
@@ -174,7 +174,7 @@ export const WebsiteAuditTool = () => {
           </AnimatePresence>
 
           {!auditResult && !isLoading && (
-            <div className="p-24 rounded-[48px] bg-white/[0.01] border border-white/5 border-dashed text-center">
+            <div className="p-10 sm:p-16 md:p-24 rounded-[32px] sm:rounded-[48px] bg-white/[0.01] border border-white/5 border-dashed text-center">
               <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-8">
                 <Globe className="w-10 h-10 text-white/20" />
               </div>

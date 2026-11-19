@@ -10,13 +10,13 @@ import { useNavigate } from 'react-router-dom';
 
 // Safe local storage helpers to prevent iframe SecurityError crashes and persist across sessions
 const safeLocalSet = (key: string, value: string) => {
-  try { localStorage.setItem(key, value); } catch (e) { console.warn('local storage blocked'); }
+  try { localStorage.setItem(key, value); } catch { /* ignore blocked storage */ }
 };
 const safeLocalGet = (key: string) => {
-  try { return localStorage.getItem(key); } catch (e) { return null; }
+  try { return localStorage.getItem(key); } catch { return null; }
 };
 
-export const LeadPopup = () => {
+export const LeadPopup = ({ initialDelayMs = 10000 }: { initialDelayMs?: number }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -30,10 +30,10 @@ export const LeadPopup = () => {
 
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 10000); // Trigger after 10s to engage user
+    }, initialDelayMs); // Trigger after dwell to engage user
     
     return () => clearTimeout(timer);
-  }, []);
+  }, [initialDelayMs]);
 
   const handleClose = () => {
     safeLocalSet('nexcypher_lead_popup_dismissed', 'true');
@@ -101,8 +101,8 @@ export const LeadPopup = () => {
         window.klaviyo.push(['track', 'Strategy Requested', { service: data.service, budget: data.budget }]);
         clientTrackingSucceeded = true;
       }
-    } catch (e) {
-      console.warn("Client tracking skipped (likely blocked).");
+    } catch {
+      // Ignore client tracking blockers
     }
 
     // 2. Secure Backend Subscription
@@ -136,18 +136,9 @@ export const LeadPopup = () => {
       handleSuccessRedirect();
 
     } catch (error: any) {
-      console.error("Backend sync failed:", error.message);
-
-      // UX FALLBACK:
-      // If the backend API failed (often due to missing 'Subscriptions:Write' scope, explicit list rules, 
-      // or invalid api key setups), BUT the frontend script successfully injected the lead into 
-      // Klaviyo via standard JS tracking, we DO NOT want to show an error to the user and ruin the UX.
-      // We route them to the thank you page anyway so they think it perfectly succeeded.
       if (clientTrackingSucceeded) {
-        console.log("Backend failed, but client tracking secured the lead perfectly. Silently redirecting to ensure flawless UX.");
         handleSuccessRedirect();
       } else {
-        // Hard failure on both front and back
         setSubmitError(`Could not securely verify. (${error.message})`);
       }
     } finally {
@@ -173,25 +164,27 @@ export const LeadPopup = () => {
             initial={{ scale: 0.95, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
-            className="relative w-full max-w-2xl bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[95vh] backdrop-blur-xl"
+            className="relative w-full max-w-2xl bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[95vh] backdrop-blur-md"
           >
             {/* Header Decoration */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-blue/0 via-accent-blue to-accent-blue/0 opacity-50" />
-            <div className="absolute -top-32 -left-32 w-64 h-64 bg-accent-blue/20 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute -top-32 -left-32 w-64 h-64 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.22)_0%,transparent_70%)] pointer-events-none" />
 
             {/* Close Button */}
             <button
+              type="button"
               onClick={handleClose}
-              className="absolute top-4 right-4 p-2 text-white/50 hover:text-white hover:bg-white/5 rounded-full transition-colors z-20"
+              aria-label="Close strategy session dialog"
+              className="absolute top-4 right-4 min-w-[44px] min-h-[44px] flex items-center justify-center text-white/60 hover:text-white hover:bg-white/5 rounded-full transition-colors z-20"
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Scrollable Content Area */}
-            <div className="overflow-y-auto w-full p-6 sm:p-10 pt-10 sm:pt-12 custom-scrollbar relative z-10">
+            <div className="overflow-y-auto w-full p-5 sm:p-10 pt-10 sm:pt-12 custom-scrollbar relative z-10">
               {/* Title & Branding */}
               <div className="text-center mb-8">
-                <img src={LOGO_URL} alt="Nexcypher" className="w-12 h-12 mx-auto mb-4 object-contain brightness-0 invert opacity-90" referrerPolicy="no-referrer" />
+                <img src={LOGO_URL} alt="Nexcypher" width={48} height={48} loading="lazy" decoding="async" className="w-12 h-12 mx-auto mb-4 object-contain brightness-0 invert opacity-90" referrerPolicy="no-referrer" />
                 <Badge className="bg-accent-blue/10 text-accent-blue border-accent-blue/20 mb-3 hover:bg-accent-blue/20 transition-colors uppercase tracking-[0.2em] font-black text-[10px] px-3 py-1">
                   Scale Your Brand
                 </Badge>

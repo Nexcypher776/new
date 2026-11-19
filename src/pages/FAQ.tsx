@@ -27,10 +27,16 @@ export const FAQ = () => {
   return (
     <>
       <Helmet>
-        <title>Frequently Asked Questions (FAQ) | Nexcypher</title>
-        <meta name="description" content="Find answers to common questions about our Shopify services, AI calling agents, pricing, and how we help brands scale." />
+        <title>Frequently Asked Questions | Nexcypher</title>
+        <meta name="description" content="Find answers to common questions about our Shopify 2.0 store builds, AI calling agents, pricing, and how Nexcypher helps brands scale." />
         <meta name="keywords" content="Nexcypher FAQ, Shopify agency questions, AI automation FAQ" />
         <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Frequently Asked Questions | Nexcypher" />
+        <meta property="og:description" content="Answers about Nexcypher Shopify 2.0 store development, AI calling agents, and growth packages." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://nexcypher.us/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
         {schemaData && (
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
         )}
@@ -38,7 +44,7 @@ export const FAQ = () => {
       
       <h1 className="sr-only">Frequently Asked Questions (FAQ) | Nexcypher</h1>
 
-      <section className="pt-32 pb-24 bg-background min-h-[50vh] flex flex-col justify-center relative overflow-hidden">
+      <section className="pt-48 md:pt-60 pb-20 md:pb-24 bg-background min-h-[50vh] flex flex-col justify-center relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.1),transparent_50%)]" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10 w-full text-center">
@@ -54,11 +60,11 @@ export const FAQ = () => {
               </span>
             </div>
             
-            <h2 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-tight">
               Frequently Asked Questions
             </h2>
             
-            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed mb-12 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-text-secondary leading-relaxed mb-12 max-w-2xl mx-auto">
               Find answers to common questions about our Shopify services, AI calling agents, pricing, and how we help brands scale.
             </p>
 

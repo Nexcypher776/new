@@ -33,24 +33,21 @@ export const fastStaggerContainerVariants: Variants = {
 export const textFadeUpVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: 22,
-    filter: 'blur(6px)',
+    y: 20,
   },
   visible: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
     transition: {
-      duration: 0.65,
+      duration: 0.6,
       ease: PREMIUM_EASE,
     },
   },
   exit: {
     opacity: 0,
     y: -12,
-    filter: 'blur(4px)',
     transition: {
-      duration: 0.3,
+      duration: 0.25,
       ease: [0.4, 0, 1, 1],
     },
   },

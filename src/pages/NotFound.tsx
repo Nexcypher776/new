@@ -5,13 +5,15 @@ import { Helmet } from 'react-helmet-async';
 
 export const NotFound = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center pt-24 pb-12 px-6">
+    <div className="min-h-screen flex items-center justify-center pt-48 md:pt-56 pb-16 px-6">
       <Helmet>
-        <title>404 - Page Not Found | Nexcypher</title>
+        <title>404 – Page Not Found | Nexcypher</title>
+        <meta name="description" content="The page you requested could not be found on Nexcypher." />
+        <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <div className="text-center max-w-2xl mx-auto">
-        <h1 className="text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-cyan mb-8">404</h1>
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Page Not Found</h2>
+        <h1 className="text-7xl sm:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-cyan mb-6 sm:mb-8">404</h1>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">Page Not Found</h2>
         <p className="text-text-secondary text-lg mb-10 max-w-lg mx-auto">
           The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
         </p>

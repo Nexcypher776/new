@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { Pricing as PricingGrid } from '../components/Pricing';
 import { Badge } from '@/components/ui/badge';
@@ -41,7 +40,7 @@ export const Pricing = () => {
           <Badge className="mb-6 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
             The Investment
           </Badge>
-          <h2 className="text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic">
+          <h2 className="text-4xl sm:text-5xl md:text-8xl font-black text-white mb-8 tracking-tighter uppercase italic">
             Premium <br /> <span className="text-accent-blue">Value.</span>
           </h2>
           <p className="text-text-secondary text-xl max-w-3xl mx-auto leading-relaxed">
@@ -58,10 +57,11 @@ export const Pricing = () => {
                Need a bespoke solution that doesn't fit into our standard packages? 
                We build custom enterprise-grade Shopify architectures and private AI infrastructures.
              </p>
-             <Link to="/contact">
-               <button className="text-accent-blue font-bold uppercase tracking-widest flex items-center justify-center gap-2 mx-auto hover:gap-4 transition-all">
-                 Contact for Enterprise Quote →
-               </button>
+             <Link
+               to="/contact"
+               className="text-accent-blue font-bold uppercase tracking-widest inline-flex items-center justify-center gap-2 mx-auto hover:gap-4 transition-all"
+             >
+               Contact for Enterprise Quote →
              </Link>
           </div>
         </section>

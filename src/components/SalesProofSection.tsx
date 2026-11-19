@@ -12,7 +12,7 @@ export const SalesProofSection = () => {
     e.stopPropagation();
     
     // Use the current page URL or fallback
-    const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://nexcypher.com/results';
+    const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://nexcypher.us/results';
     const url = encodeURIComponent(currentUrl);
     const text = encodeURIComponent(`Check out this result by Nexcypher: ${proof.title}`);
     
@@ -49,7 +49,7 @@ export const SalesProofSection = () => {
               whileHover={{ scale: 1.02 }}
               onHoverStart={() => setHoveredProof(proof.id)}
               onHoverEnd={() => setHoveredProof(null)}
-              className="glass-card overflow-hidden group cursor-pointer"
+              className="cv-auto glass-card overflow-hidden group cursor-pointer"
             >
               <div className="relative aspect-[4/3]">
                 <img src={proof.image} alt={proof.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" referrerPolicy="no-referrer" loading="lazy" decoding="async" />

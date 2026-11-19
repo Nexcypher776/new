@@ -1,4 +1,3 @@
-import { ShoppingBag, Megaphone, Bot, Mail, TrendingUp, Zap } from 'lucide-react';
 import { Service, PricingTier, Testimonial, VideoTestimonial, SalesProof, NicheProject, CaseStudy } from './types';
 
 export const LOGO_URL = "https://imglink.cc/cdn/BjEmiX6yMd.png";
@@ -209,21 +208,21 @@ export const SALES_PROOFS: SalesProof[] = [
     id: '1',
     title: '$12,450 Revenue in 30 Days',
     label: 'Shopify Sales',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=75&w=800',
     description: 'Complete store overhaul and marketing strategy.'
   },
   {
     id: '2',
     title: '4.2x ROAS on TikTok Ads',
     label: 'ROAS 4.2x',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=75&w=800',
     description: 'Aggressive scaling with creative ad content.'
   },
   {
     id: '3',
     title: '$8,200 in First 14 Days',
     label: 'Google Ads Result',
-    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=75&w=800',
     description: 'Targeted search campaigns for high-intent buyers.'
   }
 ];
@@ -247,42 +246,42 @@ export const NICHE_PROJECTS: NicheProject[] = [
     niche: 'Pet Store',
     category: 'Shopify Dev',
     description: 'High-converting pet store with winning products.',
-    image: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=75&w=800'
   },
   {
     id: 'fashion',
     niche: 'Fashion',
     category: 'Marketing',
     description: 'Premium apparel brand with seamless UX.',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=75&w=800'
   },
   {
     id: 'tech',
     niche: 'Tech & Gadgets',
     category: 'AI Automation',
     description: 'Futuristic electronics store with AI support.',
-    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=75&w=800'
   },
   {
     id: 'home',
     niche: 'Home Decor',
     category: 'Shopify Dev',
     description: 'Elegant interior design shop with high AOV.',
-    image: 'https://images.unsplash.com/photo-1513519247388-4e282a142d62?q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1513519247388-4e282a142d62?auto=format&fit=crop&q=75&w=800'
   },
   {
     id: 'fitness',
     niche: 'Fitness / Gym',
     category: 'Marketing',
     description: 'Performance-driven supplement and gear store.',
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=75&w=800'
   },
   {
     id: 'beauty',
     niche: 'Beauty / Skincare',
     category: 'AI Automation',
     description: 'Clean aesthetic skincare brand with subscription model.',
-    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=75&w=800'
   }
 ];
 
@@ -292,7 +291,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: 'Scaling a Pet Brand from $0 to $50k/Month',
     client: 'Pet Empire',
     category: 'Shopify Dev & Marketing',
-    image: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=75&w=1000',
     goals: [
       'Launch a premium Shopify store',
       'Establish a consistent brand identity',
@@ -314,7 +313,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: 'Automating Customer Support for a Beauty Giant',
     client: 'Glow Skincare',
     category: 'AI Automation',
-    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=75&w=1000',
     goals: [
       'Reduce support response time',
       'Automate lead qualification',
@@ -336,7 +335,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: '300% Increase in ROAS for Fashion Brand',
     client: 'Urban Threads',
     category: 'Marketing',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=75&w=1000',
     goals: [
       'Improve ad creative performance',
       'Scale spend while maintaining ROAS',
@@ -435,6 +434,6 @@ export const FAQS = [
   },
   {
     question: "Can I hire you directly on Fiverr?",
-    answer: "Absolutely! We have a strong presence on Fiverr with hundreds of 5-star reviews. You can find our profile here: https://www.fiverr.com/nexcypher_us"
+    answer: "Absolutely! We have a strong presence on Fiverr with hundreds of 5-star reviews. You can find our profile here: https://www.fiverr.com/nexcypher_uk"
   }
 ];

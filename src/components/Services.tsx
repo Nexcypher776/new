@@ -2,6 +2,13 @@ import { motion } from 'motion/react';
 import { ShoppingBag, Bot, Megaphone, TrendingUp, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import {
+  MaskedWords,
+  VIEWPORT_ONCE,
+  staggerContainerVariants,
+  textFadeUpVariants,
+  cardFadeUpVariants,
+} from './MotionText';
 
 export const Services = () => {
   const services = [
@@ -14,20 +21,40 @@ export const Services = () => {
   return (
     <section id="services" className="py-32 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
-          <Badge className="mb-4 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
-            Expertise
-          </Badge>
-          <h2 className="text-4xl md:text-7xl font-bold text-white mb-6 tracking-tighter">Growth Engineered.</h2>
-          <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+        <motion.div
+          variants={staggerContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+          className="text-center mb-20"
+        >
+          <motion.div variants={textFadeUpVariants}>
+            <Badge className="mb-4 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
+              Expertise
+            </Badge>
+          </motion.div>
+          <h2 className="text-4xl md:text-7xl font-bold text-white mb-6 tracking-tighter">
+            <MaskedWords text="Growth Engineered." className="justify-center" />
+          </h2>
+          <motion.p
+            variants={textFadeUpVariants}
+            className="text-text-secondary text-lg max-w-2xl mx-auto"
+          >
             We provide the full stack of technology and marketing services needed to scale your brand.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div
+          variants={staggerContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
           {services.map((service, i) => (
             <motion.div
               key={i}
+              variants={cardFadeUpVariants}
               whileHover={{ y: -10 }}
               className="p-8 rounded-[32px] bg-white/[0.03] border border-white/10 group hover:border-accent-blue/30 transition-all flex flex-col justify-between"
             >
@@ -43,7 +70,7 @@ export const Services = () => {
               </Button>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

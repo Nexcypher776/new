@@ -4,6 +4,13 @@ import { Play, Star, Twitter, Linkedin, Facebook } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { VIDEO_TESTIMONIALS } from '../constants';
+import {
+  MaskedWords,
+  VIEWPORT_ONCE,
+  staggerContainerVariants,
+  textFadeUpVariants,
+  cardFadeUpVariants,
+} from './MotionText';
 
 export const VideoTestimonials = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
@@ -46,17 +53,34 @@ export const VideoTestimonials = () => {
   return (
     <section className="py-32 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
-          <Badge className="mb-4 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
-            Social Proof
-          </Badge>
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tighter">Real Clients. Real Results.</h2>
-        </div>
+        <motion.div
+          variants={staggerContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+          className="text-center mb-20"
+        >
+          <motion.div variants={textFadeUpVariants}>
+            <Badge className="mb-4 bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
+              Social Proof
+            </Badge>
+          </motion.div>
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tighter">
+            <MaskedWords text="Real Clients. Real Results." className="justify-center" />
+          </h2>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <motion.div
+          variants={staggerContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+          className="grid md:grid-cols-3 gap-8"
+        >
           {VIDEO_TESTIMONIALS.map((video) => (
             <motion.div
               key={video.id}
+              variants={cardFadeUpVariants}
               whileHover={{ y: -10 }}
               className="glass-card overflow-hidden group relative cursor-pointer"
               onClick={() => setSelectedVideo(video.videoUrl)}
@@ -103,7 +127,7 @@ export const VideoTestimonials = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
           <DialogContent className="max-w-4xl p-0 bg-black border-white/10 overflow-hidden">

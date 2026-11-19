@@ -1,5 +1,7 @@
+import { motion } from 'motion/react';
 import { FaShopify, FaFacebook, FaInstagram, FaGoogle, FaYoutube } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
+import { VIEWPORT_ONCE, textFadeUpVariants } from './MotionText';
 
 const CustomKlaviyoIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -20,7 +22,15 @@ export const TrustedBrands = () => {
 
   return (
     <section className="py-10 bg-black border-y border-white/5 overflow-hidden flex flex-col items-center">
-      <p className="text-sm text-white/50 uppercase tracking-widest font-bold mb-6">Trusted platforms we scale brands on</p>
+      <motion.p
+        variants={textFadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={VIEWPORT_ONCE}
+        className="text-sm text-white/50 uppercase tracking-widest font-bold mb-6"
+      >
+        Trusted platforms we scale brands on
+      </motion.p>
       <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
         <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
           {brands.map((brand, idx) => (

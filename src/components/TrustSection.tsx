@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Clock, Briefcase, Users, ShieldCheck } from 'lucide-react';
+import { PREMIUM_EASE, VIEWPORT_ONCE } from './MotionText';
 
 export const TrustSection = () => {
   const stats = [
@@ -16,15 +17,31 @@ export const TrustSection = () => {
           {stats.map((stat, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.65, ease: PREMIUM_EASE }}
+              viewport={VIEWPORT_ONCE}
               className="px-4 py-8 sm:p-8 rounded-3xl bg-white/5 border border-white/10 text-center group hover:bg-white/10 transition-all hover:border-accent-gold/30"
             >
               <stat.icon className={`w-8 h-8 ${stat.color} mx-auto mb-4 opacity-80 group-hover:scale-110 transition-transform`} />
-              <p className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.value}</p>
-              <p className="text-[10px] sm:text-xs text-text-secondary uppercase tracking-widest sm:tracking-[0.2em] font-bold break-words">{stat.label}</p>
+              <motion.p
+                initial={{ opacity: 0, y: 12, filter: 'blur(4px)' }}
+                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ delay: i * 0.08 + 0.12, duration: 0.6, ease: PREMIUM_EASE }}
+                viewport={VIEWPORT_ONCE}
+                className="text-3xl md:text-4xl font-bold text-white mb-1 tabular-nums"
+              >
+                {stat.value}
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.08 + 0.2, duration: 0.55, ease: PREMIUM_EASE }}
+                viewport={VIEWPORT_ONCE}
+                className="text-[10px] sm:text-xs text-text-secondary uppercase tracking-widest sm:tracking-[0.2em] font-bold break-words"
+              >
+                {stat.label}
+              </motion.p>
             </motion.div>
           ))}
         </div>

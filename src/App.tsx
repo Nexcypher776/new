@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
+import { motion, useScroll, useSpring, AnimatePresence, MotionConfig } from 'motion/react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Navigation } from './components/Navigation';
@@ -126,10 +126,12 @@ const AppContent = () => {
 
 export default function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <LeadPopup />
-      <AppContent />
-    </Router>
+    <MotionConfig reducedMotion="user">
+      <Router>
+        <ScrollToTop />
+        <LeadPopup />
+        <AppContent />
+      </Router>
+    </MotionConfig>
   );
 }

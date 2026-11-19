@@ -3,6 +3,13 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { motion } from 'motion/react';
 import { Info, TrendingUp, ArrowUpRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import {
+  MaskedWords,
+  PREMIUM_EASE,
+  VIEWPORT_ONCE,
+  staggerContainerVariants,
+  textFadeUpVariants,
+} from './MotionText';
 
 const generateData = () => {
   const data = [];
@@ -39,24 +46,37 @@ export const GrowthChart = () => {
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-5 gap-16 items-center">
-          <div className="lg:col-span-2 space-y-8">
-            <Badge className="bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest leading-none">
-               Scale Architecture
-            </Badge>
+          <motion.div
+            variants={staggerContainerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT_ONCE}
+            className="lg:col-span-2 space-y-8"
+          >
+            <motion.div variants={textFadeUpVariants}>
+              <Badge className="bg-accent-blue/10 text-accent-blue border-accent-blue/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest leading-none">
+                 Scale Architecture
+              </Badge>
+            </motion.div>
             <h2 className="text-5xl md:text-7xl font-black text-white italic uppercase tracking-tighter leading-none">
-              Built to Scale <br /> <span className="text-accent-blue font-black">Over Time.</span>
+              <MaskedWords text="Built to Scale" />
+              <br />
+              <MaskedWords text="Over Time." baseDelay={0.14} className="text-accent-blue font-black" />
             </h2>
-            <p className="text-text-secondary text-xl font-medium italic leading-relaxed">
+            <motion.p
+              variants={textFadeUpVariants}
+              className="text-text-secondary text-xl font-medium italic leading-relaxed"
+            >
               Growth is a process powered by structure, testing, execution, and continuous optimization. Our systems are engineered to produce compounding performance.
-            </p>
+            </motion.p>
             
-            <div className="space-y-6 pt-4">
+            <motion.div variants={textFadeUpVariants} className="space-y-6 pt-4">
                <div className="flex items-center gap-6 p-6 rounded-3xl bg-white/[0.03] border border-white/5 backdrop-blur-sm">
                   <div className="w-12 h-12 bg-accent-blue/10 rounded-2xl flex items-center justify-center text-accent-blue">
                     <TrendingUp className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="text-3xl font-black text-white italic tracking-tighter">$14,208.50</p>
+                    <p className="text-3xl font-black text-white italic tracking-tighter tabular-nums">$14,208.50</p>
                     <p className="text-text-secondary text-[10px] font-bold uppercase tracking-widest">Projected Daily Scaling Velocity</p>
                   </div>
                </div>
@@ -65,13 +85,15 @@ export const GrowthChart = () => {
                 <Info className="w-4 h-4 text-accent-blue/50" />
                 This visualization represents our illustrative growth model for high-velocity Shopify stores.
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           <div className="lg:col-span-3">
              <motion.div 
-               initial={{ opacity: 0, scale: 0.95 }}
-               whileInView={{ opacity: 1, scale: 1 }}
+               initial={{ opacity: 0, scale: 0.96, y: 20 }}
+               whileInView={{ opacity: 1, scale: 1, y: 0 }}
+               transition={{ duration: 0.75, ease: PREMIUM_EASE }}
+               viewport={VIEWPORT_ONCE}
                className="p-8 pb-12 rounded-[48px] bg-white/[0.01] border border-white/5 backdrop-blur-[2px] relative group"
              >
                 <div className="flex justify-between items-center mb-12">

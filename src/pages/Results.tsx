@@ -15,11 +15,27 @@ export const Results = () => {
       <Helmet>
         <title>Client Revenue Results & Video Sales Proof | Nexcypher</title>
         <meta name="description" content="View verified Shopify store revenue screenshots, video dashboard walkthroughs, and client testimonial proof from Nexcypher client scaling projects." />
+        <meta name="keywords" content="Shopify store revenue proof, ecommerce case studies, Shopify dropshipping results, client sales dashboards, Shopify growth proof" />
         <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content="Client Revenue Results & Video Proof | Nexcypher" />
-        <meta property="og:description" content="Verified Shopify store revenue screenshots and video dashboard walkthroughs." />
-        <meta property="og:url" content={canonicalUrl} />
+
+        {/* Open Graph */}
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Nexcypher" />
+        <meta property="og:title" content="Client Revenue Results & Verified Sales Proof | Nexcypher" />
+        <meta property="og:description" content="Verified Shopify store revenue screenshots and video dashboard walkthroughs for 6-8 figure scaling brands." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:secure_url" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Nexcypher Verified Client Results" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@nexcypher" />
+        <meta name="twitter:title" content="Shopify Client Revenue Results & Proof | Nexcypher" />
+        <meta name="twitter:description" content="Verified Shopify store revenue screenshots and video dashboard walkthroughs." />
+        <meta name="twitter:image" content="https://nexcypher.us/og-image.jpg" />
       </Helmet>
 
       <div className="pt-44 md:pt-64 pb-32">

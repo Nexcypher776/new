@@ -60,11 +60,27 @@ export const ShopifyMarketing = () => {
       <Helmet>
         <title>Shopify Marketing & Paid Advertising Frameworks | Nexcypher</title>
         <meta name="description" content="Discover Nexcypher's multi-step Shopify marketing framework: Facebook ads, TikTok ads, Google Ads, funnel optimization, site mapping, and full SEO setup." />
+        <meta name="keywords" content="Shopify marketing agency, Facebook ads for Shopify, TikTok ads ecommerce, Google Shopping ads, Shopify sales funnel, ecommerce advertising scale" />
         <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content="Shopify Marketing & Paid Ads | Nexcypher" />
-        <meta property="og:description" content="Structured customer acquisition frameworks designed to scale Shopify stores consistently." />
-        <meta property="og:url" content={canonicalUrl} />
+
+        {/* Open Graph */}
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Nexcypher" />
+        <meta property="og:title" content="Shopify Marketing & Paid Advertising | Nexcypher" />
+        <meta property="og:description" content="Structured customer acquisition frameworks and multi-channel ad funnels engineered to scale Shopify stores." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:secure_url" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Nexcypher Shopify Marketing Frameworks" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@nexcypher" />
+        <meta name="twitter:title" content="Shopify Marketing & Paid Advertising | Nexcypher" />
+        <meta name="twitter:description" content="Structured customer acquisition frameworks designed to scale Shopify stores consistently." />
+        <meta name="twitter:image" content="https://nexcypher.us/og-image.jpg" />
       </Helmet>
 
       <div className="pt-44 md:pt-64 pb-32">

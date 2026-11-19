@@ -84,23 +84,31 @@ export const Portfolio = () => {
   return (
     <>
       <Helmet>
-        <title>Shopify & AI Agency Portfolio | Client Case Studies & Store Builds - Nexcypher</title>
-        <meta name="description" content="Explore Nexcypher's portfolio of custom high-converting Shopify stores, autonomous AI calling agents, verified client revenue results, and ecommerce case studies." />
-        <meta name="keywords" content="Shopify portfolio, Shopify agency work, Shopify store designs, ecommerce case studies, AI calling agents portfolio, dropshipping store builds, Shopify developer" />
+        <title>Shopify 2.0 Portfolio & Case Studies | 7-Figure Store Redesigns - Nexcypher</title>
+        <meta name="description" content="Review verified Shopify 2.0 store builds, high-converting checkout redesigns, and AI voice sales case studies engineered for 6-8 figure e-commerce brands." />
+        <meta name="keywords" content="Shopify portfolio, Shopify 2.0 theme case studies, custom Shopify development, ecommerce redesign, high converting dropshipping stores, Shopify speed optimization, AI voice agent portfolio" />
         <link rel="canonical" href={canonicalUrl} />
 
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Shopify & AI Agency Portfolio | Nexcypher" />
-        <meta property="og:description" content="Explore Nexcypher's portfolio of custom high-converting Shopify stores, autonomous AI calling agents, and verified client revenue results." />
+        <meta property="og:site_name" content="Nexcypher" />
+        <meta property="og:title" content="Shopify 2.0 Portfolio & 7-Figure Case Studies | Nexcypher" />
+        <meta property="og:description" content="Explore custom high-converting Shopify 2.0 stores, CRO overhauls, sub-second page speeds, and autonomous AI voice sales agents." />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content="https://nexcypher.us/favicon-32x32.png" />
+        <meta property="og:image" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:secure_url" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Nexcypher Shopify E-Commerce Portfolio" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Shopify & AI Agency Portfolio | Nexcypher" />
-        <meta name="twitter:description" content="Explore Nexcypher's portfolio of custom high-converting Shopify stores, autonomous AI calling agents, and verified client revenue results." />
-        <meta name="twitter:image" content="https://nexcypher.us/favicon-32x32.png" />
+        <meta name="twitter:site" content="@nexcypher" />
+        <meta name="twitter:creator" content="@nexcypher" />
+        <meta name="twitter:title" content="Shopify 2.0 Portfolio & Case Studies | Nexcypher" />
+        <meta name="twitter:description" content="Engineered for high conversion rates. Review custom Shopify 2.0 redesigns, client sales dashboards, and autonomous AI agents." />
+        <meta name="twitter:image" content="https://nexcypher.us/og-image.jpg" />
+        <meta name="twitter:image:alt" content="Nexcypher Shopify E-Commerce Portfolio" />
 
         {/* Structured Data */}
         <script type="application/ld+json">

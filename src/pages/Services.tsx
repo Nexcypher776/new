@@ -60,13 +60,29 @@ export const Services = () => {
   return (
     <>
       <Helmet>
-        <title>Shopify & AI Services | Development, Marketing & Automation - Nexcypher</title>
-        <meta name="description" content="Explore Nexcypher's full suite of services: Shopify store creation, CRO audit, dropshipping growth, paid advertising, and autonomous 24/7 AI calling agents." />
+        <title>Shopify E-Commerce Services | Custom Themes, CRO & AI Automation - Nexcypher</title>
+        <meta name="description" content="Explore full-service Shopify solutions engineered for 6-8 figure brands: bespoke Shopify 2.0 development, speed optimization, high-ROAS marketing, and 24/7 AI voice sales agents." />
+        <meta name="keywords" content="Shopify store services, ecommerce CRO agency, Shopify speed optimization, custom Shopify themes, Shopify marketing agency, dropshipping scaling, AI calling agents for ecommerce" />
         <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content="Shopify & AI Services | Nexcypher" />
-        <meta property="og:description" content="Custom Shopify storefronts, ecommerce marketing systems, and autonomous AI voice agents." />
-        <meta property="og:url" content={canonicalUrl} />
+
+        {/* Open Graph */}
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Nexcypher" />
+        <meta property="og:title" content="Shopify E-Commerce Services | High-Converting Stores & AI - Nexcypher" />
+        <meta property="og:description" content="Bespoke Shopify 2.0 development, CRO redesigns, multi-channel marketing funnels, and autonomous 24/7 AI voice agents." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:secure_url" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Nexcypher E-Commerce Services" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@nexcypher" />
+        <meta name="twitter:title" content="Shopify E-Commerce Services | Nexcypher" />
+        <meta name="twitter:description" content="Bespoke Shopify 2.0 development, CRO redesigns, and autonomous 24/7 AI voice agents for high-growth brands." />
+        <meta name="twitter:image" content="https://nexcypher.us/og-image.jpg" />
       </Helmet>
 
       <div className="pt-44 md:pt-64 pb-32">

@@ -15,11 +15,27 @@ export const ShopifyGrowth = () => {
       <Helmet>
         <title>Shopify Growth Systems | 0 to $1M/mo Scaling & CRO - Nexcypher</title>
         <meta name="description" content="Scale your Shopify store with high-velocity sales engines, custom 2.0 architectures, speed optimization, and CRO strategies engineered for 7-8 figure brands." />
+        <meta name="keywords" content="Shopify growth agency, scale Shopify store, Shopify CRO, ecommerce revenue scaling, high converting Shopify theme, Shopify dropshipping scale" />
         <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content="Shopify Growth Systems | Nexcypher" />
-        <meta property="og:description" content="Billion-dollar Shopify systems engineered for rapid revenue scaling and conversion rate optimization." />
-        <meta property="og:url" content={canonicalUrl} />
+
+        {/* Open Graph */}
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Nexcypher" />
+        <meta property="og:title" content="Shopify Growth Systems | 0 to $1M/mo Scaling - Nexcypher" />
+        <meta property="og:description" content="Turn ad clicks into profitable orders with custom Shopify 2.0 architectures, CRO systems, and rapid revenue scaling." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:secure_url" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Nexcypher Shopify Growth Systems" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@nexcypher" />
+        <meta name="twitter:title" content="Shopify Growth Systems | Nexcypher" />
+        <meta name="twitter:description" content="High-velocity sales engines, custom 2.0 architectures, and CRO strategies engineered for 7-8 figure brands." />
+        <meta name="twitter:image" content="https://nexcypher.us/og-image.jpg" />
       </Helmet>
 
       <div className="pt-44 md:pt-64 pb-32">

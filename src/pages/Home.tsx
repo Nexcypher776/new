@@ -18,23 +18,31 @@ export const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Nexcypher | Premier Shopify Store Design & Autonomous AI Calling Agency</title>
-        <meta name="description" content="Nexcypher designs high-converting Shopify 2.0 stores, deploys autonomous AI calling agents, and implements proven ecommerce marketing systems for scaling brands." />
-        <meta name="keywords" content="Shopify store design, Shopify development agency, AI calling agents, ecommerce scaling, Shopify CRO, dropshipping agency" />
+        <title>Nexcypher | Scale Your Shopify Store | High-Converting 2.0 Themes & AI Voice Agents</title>
+        <meta name="description" content="Scale your e-commerce revenue with custom Shopify 2.0 stores engineered for high conversion rates (CRO), sub-second load speeds, and 24/7 autonomous AI calling agents. Trusted by 7-figure brand founders." />
+        <meta name="keywords" content="Shopify store development, Shopify CRO agency, Shopify speed optimization, custom Shopify 2.0 themes, Shopify dropshipping scale, AI voice agents for ecommerce, Shopify Plus experts, high converting Shopify design, ecommerce revenue optimization, DTC Shopify agency" />
         <link rel="canonical" href="https://nexcypher.us/" />
 
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Nexcypher | Premier Shopify Store Design & AI Agency" />
-        <meta property="og:description" content="Scale your brand with custom Shopify stores and autonomous AI phone agents engineered for high conversion rates." />
+        <meta property="og:site_name" content="Nexcypher" />
+        <meta property="og:title" content="Scale Your Shopify Store to $1M/mo | Custom 2.0 Design & AI Agents - Nexcypher" />
+        <meta property="og:description" content="Turn ad clicks into profitable orders. Custom Shopify 2.0 architectures, conversion-focused UI/UX, checkout optimization, and autonomous AI sales callers." />
         <meta property="og:url" content="https://nexcypher.us/" />
-        <meta property="og:image" content="https://nexcypher.us/favicon-32x32.png" />
+        <meta property="og:image" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:secure_url" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Nexcypher - High-Converting Shopify 2.0 Architecture & Autonomous AI Voice Agents" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Nexcypher | Premier Shopify Store Design & AI Agency" />
-        <meta name="twitter:description" content="Scale your brand with custom Shopify stores and autonomous AI phone agents engineered for high conversion rates." />
-        <meta name="twitter:image" content="https://nexcypher.us/favicon-32x32.png" />
+        <meta name="twitter:site" content="@nexcypher" />
+        <meta name="twitter:creator" content="@nexcypher" />
+        <meta name="twitter:title" content="Scale Your Shopify Store to $1M/mo | High-Converting 2.0 Themes - Nexcypher" />
+        <meta name="twitter:description" content="Engineered for serious 6-8 figure e-commerce founders. Custom Shopify 2.0 stores, sub-second load times, CRO, and 24/7 autonomous AI voice agents." />
+        <meta name="twitter:image" content="https://nexcypher.us/og-image.jpg" />
+        <meta name="twitter:image:alt" content="Nexcypher High-Converting Shopify Agency Preview" />
       </Helmet>
 
       <h1 className="sr-only">Nexcypher - Scale Your Shopify Store with AI Automation & Proven Marketing Systems</h1>

@@ -12,13 +12,29 @@ export const AiCallingAgents = () => {
   return (
     <>
       <Helmet>
-        <title>Autonomous AI Calling Agents | 24/7 Voice Support & Inbound Sales - Nexcypher</title>
-        <meta name="description" content="Deploy human-like AI calling agents that handle inbound support and outbound sales 24/7. Integrate directly with your CRM and calendar to convert leads instantly." />
+        <title>Autonomous AI Calling Agents for E-Commerce | 24/7 Voice Support & Sales - Nexcypher</title>
+        <meta name="description" content="Deploy human-like AI calling agents that handle inbound customer support, order inquiries, and outbound sales 24/7 for high-growth Shopify stores." />
+        <meta name="keywords" content="AI calling agents, ecommerce AI phone support, Shopify AI voice agent, automated phone sales, AI customer service, inbound lead qualification" />
         <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content="Autonomous AI Calling Agents | Nexcypher" />
-        <meta property="og:description" content="Human-like autonomous voice agents for 24/7 customer support and inbound sales conversion." />
-        <meta property="og:url" content={canonicalUrl} />
+
+        {/* Open Graph */}
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Nexcypher" />
+        <meta property="og:title" content="Autonomous AI Calling Agents for E-Commerce | Nexcypher" />
+        <meta property="og:description" content="Human-like autonomous voice agents for 24/7 customer support and inbound sales conversion for Shopify stores." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:secure_url" content="https://nexcypher.us/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Nexcypher AI Voice Agents" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@nexcypher" />
+        <meta name="twitter:title" content="Autonomous AI Calling Agents for E-Commerce | Nexcypher" />
+        <meta name="twitter:description" content="Human-like autonomous voice agents for 24/7 customer support and inbound sales conversion." />
+        <meta name="twitter:image" content="https://nexcypher.us/og-image.jpg" />
       </Helmet>
 
       <div className="pt-44 md:pt-64 pb-32">
